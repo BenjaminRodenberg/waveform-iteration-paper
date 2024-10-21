@@ -33,7 +33,7 @@ class StraightBoundary(SubDomain):
 
 
 def get_geometry(domain_part):
-    nx = ny = 15
+    nx = ny = 15  # We require a finer resolution here? https://github.com/precice/precice/issues/1610
 
     if domain_part is DomainPart.LEFT:
         p0 = Point(x_left, y_bottom)
