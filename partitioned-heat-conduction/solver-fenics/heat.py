@@ -54,12 +54,12 @@ def determine_gradient(V_g, u, flux):
 
 parser = argparse.ArgumentParser(description="Solving heat equation for simple or complex interface case")
 parser.add_argument("participantName", help="Name of the solver.", type=str, choices=[p.value for p in ProblemType])
-parser.add_argument("-e", "--error-tol", help="set error tolerance", type=float, default=10**-8,)
-
+parser.add_argument("-e", "--error-tol", help="set error tolerance", type=float, default=10**-8)
+parser.add_argument("-s", "--substeps", help="number of substeps performed by this solver", type=int, default=1)
+parser.add_argument("-g", help="time dependence of manufactured solution", type=str, choices=('poly', 'tri', 'triAcc'), default='poly')
 args = parser.parse_args()
 participant_name = args.participantName
 
-fenics_dt = .01  # time step size
 # Error is bounded by coupling accuracy. In theory we would obtain the analytical solution.
 error_tol = args.error_tol
 
@@ -83,7 +83,15 @@ W = V_g.sub(0).collapse()
 # Define boundary conditions
 # create sympy expression of manufactured solution
 x_sp, y_sp, t_sp = sp.symbols(['x[0]', 'x[1]', 't'])
-u_D_sp = 1 + x_sp * x_sp + alpha * y_sp * y_sp + beta * t_sp
+
+if args.g == 'poly':  # polynomial term used in dissertation of Benjamin Rodenberg
+    g_sp = (1 + t_sp)
+elif args.g == 'tri':  # trigonometric term used in dissertation of Benjamin Rodenberg
+    g_sp = (1 + sp.sin(t_sp))
+elif args.g == 'triAcc':  # trigonometric term used in https://onlinelibrary.wiley.com/doi/epdf/10.1002/nme.6443
+    g_sp = sp.sin(t_sp)
+
+u_D_sp = 1 + g_sp * x_sp * x_sp + alpha * y_sp * y_sp + beta * t_sp
 u_D = Expression(sp.ccode(u_D_sp), degree=2, alpha=alpha, beta=beta, t=0)
 u_D_function = interpolate(u_D, V)
 
@@ -107,6 +115,7 @@ elif problem is ProblemType.NEUMANN:
     precice.initialize(coupling_boundary, read_function_space=W, write_object=u_D_function)
 
 precice_dt = precice.get_max_time_step_size()
+fenics_dt = precice_dt / args.substeps  # time step size
 dt = Constant(0)
 dt.assign(np.min([fenics_dt, precice_dt]))
 
