@@ -7,7 +7,8 @@ import os
 import uuid
 import argparse
 import sys
-
+import git
+import precice
 
 default_precice_config_params = {
     'max_used_iterations': 10,
@@ -60,10 +61,14 @@ def do_run(template_path, precice_config_params, participants):
     time_window_size = precice_config_params['time_window_size']
     summary = {"time window size": time_window_size}
     for name, participant in participants.items():
+        # store iterations
         df = pd.read_csv(participant['root'] / f"precice-{name}-iterations.log",delim_whitespace=True)
         summary[f"substeps {name}"] = participant['kwargs']['--substeps']
         summary[f"avg(iterations / window)"] = df["Iterations"].mean()
-        
+        # store errors
+        df = pd.read_csv(participant['root'] / f"errors-{name}.csv", comment="#")
+        summary[f"time step size {name}"] = time_window_size / participant['kwargs']['--substeps']
+        summary[f"error {name}"] = df["errors"].abs().max()
     print("Done.")
 
     return summary
@@ -152,9 +157,6 @@ if __name__ == "__main__":
     df = df.set_index(['time window size', 'substeps Dirichlet', 'substeps Neumann'])
     print(f"Write final output to {summary_file}")
 
-    import git
-    # import precice
-
     repo = git.Repo(__file__, search_parent_directories=True)
     chash = str(repo.head.commit)[:7]
     if repo.is_dirty():
@@ -163,8 +165,8 @@ if __name__ == "__main__":
     metadata = {
         "git repository": repo.remotes.origin.url,
         "git commit": chash,
-        # "precice.get_version_information()": precice.get_version_information(),
-        # "precice.__version__": precice.__version__,
+        "precice.get_version_information()": precice.get_version_information(),
+        "precice.__version__": precice.__version__,
         "run cmd": "python3 " + " ".join(sys.argv),
         "args": args,
         "precice_config_params": precice_config_params,

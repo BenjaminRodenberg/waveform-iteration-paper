@@ -74,8 +74,5 @@
       <time-windows-reused value="0" />
       <filter type="QR2" limit="1e-3" />
     </acceleration:IQN-ILS>
-    <!-- <acceleration:constant>
-      <relaxation value="0.5" />
-    </acceleration:constant> -->
   </coupling-scheme:serial-implicit>
 </precice-configuration>
