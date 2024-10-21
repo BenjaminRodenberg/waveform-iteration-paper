@@ -2,7 +2,7 @@
 Problem setup for partitioned-heat-conduction/fenics tutorial
 """
 
-from fenics import SubDomain, Point, RectangleMesh, near, Function, Expression
+from fenics import SubDomain, Point, RectangleMesh, near
 from my_enums import DomainPart
 
 
@@ -33,7 +33,7 @@ class StraightBoundary(SubDomain):
 
 
 def get_geometry(domain_part):
-    nx = ny = 11
+    nx = ny = 15
 
     if domain_part is DomainPart.LEFT:
         p0 = Point(x_left, y_bottom)

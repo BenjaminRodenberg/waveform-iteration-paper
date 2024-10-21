@@ -34,6 +34,13 @@ import argparse
 import numpy as np
 from problem_setup import get_geometry
 import sympy as sp
+import pandas as pd
+from pathlib import Path
+from enum import Enum
+
+
+class TimeSteppingSchemes(Enum):
+    IMPLICIT_EULER = "ImplicitEuler"
 
 
 def determine_gradient(V_g, u, flux):
@@ -55,8 +62,16 @@ def determine_gradient(V_g, u, flux):
 parser = argparse.ArgumentParser(description="Solving heat equation for simple or complex interface case")
 parser.add_argument("participantName", help="Name of the solver.", type=str, choices=[p.value for p in ProblemType])
 parser.add_argument("-e", "--error-tol", help="set error tolerance", type=float, default=10**-8)
+parser.add_argument(
+    "-ts",
+    "--time-stepping",
+    help="Time stepping scheme being used.",
+    type=str,
+    choices=[
+        s.value for s in TimeSteppingSchemes],
+    default=TimeSteppingSchemes.IMPLICIT_EULER.value)
 parser.add_argument("-s", "--substeps", help="number of substeps performed by this solver", type=int, default=1)
-parser.add_argument("-g", help="time dependence of manufactured solution", type=str, choices=('poly', 'tri', 'triAcc'), default='poly')
+parser.add_argument("-g", help="time dependence of manufactured solution", type=str, choices=('poly', 'poly0', 'poly1', 'poly2', 'tri', 'triAcc'), default='poly')
 args = parser.parse_args()
 participant_name = args.participantName
 
@@ -84,8 +99,12 @@ W = V_g.sub(0).collapse()
 # create sympy expression of manufactured solution
 x_sp, y_sp, t_sp = sp.symbols(['x[0]', 'x[1]', 't'])
 
-if args.g == 'poly':  # polynomial term used in dissertation of Benjamin Rodenberg
-    g_sp = (1 + t_sp)
+if args.g == 'poly0':  # polynomial term used in dissertation of Benjamin Rodenberg
+    g_sp = (1 + t_sp)**0
+elif args.g == 'poly' or args.g == 'poly1':  # polynomial term used in dissertation of Benjamin Rodenberg
+    g_sp = (1 + t_sp)**1
+elif args.g == 'poly2':  # polynomial term used in dissertation of Benjamin Rodenberg
+    g_sp = (1 + t_sp)**2
 elif args.g == 'tri':  # trigonometric term used in dissertation of Benjamin Rodenberg
     g_sp = (1 + sp.sin(t_sp))
 elif args.g == 'triAcc':  # trigonometric term used in https://onlinelibrary.wiley.com/doi/epdf/10.1002/nme.6443
@@ -115,6 +134,7 @@ elif problem is ProblemType.NEUMANN:
     precice.initialize(coupling_boundary, read_function_space=W, write_object=u_D_function)
 
 precice_dt = precice.get_max_time_step_size()
+window_dt = precice_dt  # store for later
 fenics_dt = precice_dt / args.substeps  # time step size
 dt = Constant(0)
 dt.assign(np.min([fenics_dt, precice_dt]))
@@ -123,7 +143,7 @@ dt.assign(np.min([fenics_dt, precice_dt]))
 u = TrialFunction(V)
 v = TestFunction(V)
 # du_dt-Laplace(u) = f
-f_sp = u_D_sp.diff(t_sp) - u_D_sp.diff(x_sp).diff(x_sp) - u_D_sp.diff(y_sp).diff(y_sp)
+f_sp = u_D_sp.diff(t_sp) - u_D_sp.diff(x_sp,2) - u_D_sp.diff(y_sp,2)
 f = Expression(sp.ccode(f_sp), degree=2, alpha=alpha, beta=beta, t=0)
 F = u * v / dt * dx + dot(grad(u), grad(v)) * dx - (u_n / dt + f) * v * dx
 
@@ -171,6 +191,8 @@ print("output u^%d and u_ref^%d" % (n, n))
 ranks << mesh_rank
 
 error_total, error_pointwise = compute_errors(u_n, u_ref, V)
+errors = []
+times = []
 
 # create buffer for output. We need this buffer, because we only want to
 # write the converged output at the end of the window, but we also want to
@@ -274,6 +296,8 @@ while precice.is_coupling_ongoing():
         u_ref.rename("reference", " ")
         error, error_pointwise = compute_errors(u_n, u_ref, V, total_error_tol=error_tol)
         print("n = %d, t = %.2f: L2 error on domain = %.3g" % (n, t, error))
+        errors.append(error)
+        times.append(t)
 
     # Update Dirichlet BC
     u_D.t = t + float(dt)
@@ -292,3 +316,18 @@ for sample in error_write:
 
 # Hold plot
 precice.finalize()
+
+df = pd.DataFrame()
+df["times"] = times
+df["errors"] = errors
+df = df.set_index('times')
+metadata = f'''# time_window_size: {window_dt}
+# time_step_size: {fenics_dt}
+'''
+
+errors_csv = Path(f"errors-{problem.value}.csv")
+errors_csv.unlink(missing_ok=True)
+
+with open(errors_csv, 'a') as f:
+    f.write(f"{metadata}")
+    df.to_csv(f)

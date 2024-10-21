@@ -42,6 +42,15 @@ from problem_setup import get_geometry
 import sympy as sp
 from utils.ButcherTableaux import *
 import utils.utils as utl
+import pandas as pd
+from pathlib import Path
+from enum import Enum
+
+
+class TimeSteppingSchemes(Enum):
+    GAUSS_LEGENDRE_2 = "GaussLegendre2"
+    GAUSS_LEGENDRE_8 = "GaussLegendre8"
+    LOBATTO_IIIC_3 = "LobattoIIIC3"
 
 
 def determine_gradient(V_g, u, flux):
@@ -63,11 +72,25 @@ def determine_gradient(V_g, u, flux):
 parser = argparse.ArgumentParser(description="Solving heat equation for simple or complex interface case")
 parser.add_argument("participantName", help="Name of the solver.", type=str, choices=[p.value for p in ProblemType])
 parser.add_argument("-e", "--error-tol", help="set error tolerance", type=float, default=10**-8,)
+parser.add_argument(
+    "-s",
+    "--substeps",
+    help="Number of substeps in one window for this participant",
+    type=int,
+    default=1)
+parser.add_argument("-g", help="time dependence of manufactured solution", type=str, choices=('poly', 'poly0', 'poly1', 'poly2', 'tri', 'triAcc'), default='poly')
+parser.add_argument(
+    "-ts",
+    "--time-stepping",
+    help="Time stepping scheme being used.",
+    type=str,
+    choices=[
+        s.value for s in TimeSteppingSchemes],
+    default=TimeSteppingSchemes.GAUSS_LEGENDRE_2.value)
 
 args = parser.parse_args()
 participant_name = args.participantName
 
-fenics_dt = .01  # time step size
 # Error is bounded by coupling accuracy. In theory we would obtain the analytical solution.
 error_tol = args.error_tol
 
@@ -90,15 +113,27 @@ W = V_g.sub(0).collapse()
 
 # Define boundary conditions
 # create sympy expression of manufactured solution
-g_degree = 0  # degree of time dependent term g(t). Determines how difficult it is to solve the problem
 x_sp, y_sp, t_sp = sp.symbols(['x[0]', 'x[1]', 't'])
-u_D_sp = 1 + x_sp * x_sp * (1 + t_sp)**g_degree + alpha * y_sp * y_sp + beta * t_sp
-u_D = Expression(sp.ccode(u_D_sp), degree=2, alpha=alpha, beta=beta, t=0)
+
+if args.g == 'poly0':  # polynomial term used in dissertation of Benjamin Rodenberg
+    g_sp = (1 + t_sp)**0
+elif args.g == 'poly' or args.g == 'poly1':  # polynomial term used in dissertation of Benjamin Rodenberg
+    g_sp = (1 + t_sp)**1
+elif args.g == 'poly2':  # polynomial term used in dissertation of Benjamin Rodenberg
+    g_sp = (1 + t_sp)**2
+elif args.g == 'tri':  # trigonometric term used in dissertation of Benjamin Rodenberg
+    g_sp = (1 + sp.sin(t_sp))
+elif args.g == 'triAcc':  # trigonometric term used in https://onlinelibrary.wiley.com/doi/epdf/10.1002/nme.6443
+    g_sp = sp.sin(t_sp)
+
+u_D_sp = 1 + g_sp * x_sp * x_sp + alpha * y_sp * y_sp + beta * t_sp
+u_D = Expression(sp.printing.ccode(u_D_sp), degree=2, t=0)
 u_D_function = interpolate(u_D, V)
 
 if problem is ProblemType.DIRICHLET:
     # Define flux in x direction
-    f_N = Expression(sp.ccode(u_D_sp.diff(x_sp)), degree=1, alpha=alpha, t=0)
+    f_N_sp = sp.diff(u_D_sp, x_sp)
+    f_N = Expression(sp.printing.ccode(f_N_sp), degree=1, t=0)
     f_N_function = interpolate(f_N, W)
 
 # Define initial value
@@ -106,8 +141,15 @@ u_n = interpolate(u_D, V)
 u_n.rename("Temperature", "")
 
 # time stepping setup
-# scheme
-tsm = GaussLegendre(2)
+if args.time_stepping == TimeSteppingSchemes.GAUSS_LEGENDRE_2.value:
+    tsm = GaussLegendre(2)
+elif args.time_stepping == TimeSteppingSchemes.GAUSS_LEGENDRE_8.value:
+    tsm = GaussLegendre(8)
+elif args.time_stepping == TimeSteppingSchemes.LOBATTO_IIIC_3.value:
+    tsm = LobattoIIIC(3)
+else:
+    raise Exception(f"Invalid time stepping scheme {args.time_stepping}. Please use one of {[ts.value for ts in TimeSteppingSchemes]}")
+
 # depending on tsm, we define the trial and test function space
 if tsm.num_stages == 1:
     Vbig = V
@@ -128,6 +170,8 @@ elif problem is ProblemType.NEUMANN:
 
 precice_dt = precice.get_max_time_step_size()
 dt = Constant(0)
+window_dt = precice_dt  # store for later
+fenics_dt = precice_dt / args.substeps  # use window size provided by preCICE as time step size
 dt.assign(np.min([fenics_dt, precice_dt]))
 
 # stage times of the time stepping scheme relative to the current time and dependent on the current dt
@@ -140,7 +184,7 @@ v = TestFunction(Vbig)
 # if dim(Vbig)>1, f needs to be stored in an array with different times,
 # because in each stage, of an RK method it is evaluated at a different time
 # du_dt-Laplace(u) = f
-f_sp = u_D_sp.diff(t_sp) - u_D_sp.diff(x_sp).diff(x_sp) - u_D_sp.diff(y_sp).diff(y_sp)
+f_sp = u_D_sp.diff(t_sp) - u_D_sp.diff(x_sp,2) - u_D_sp.diff(y_sp,2)
 # initial time assumed to be 0
 f = [Expression(sp.ccode(f_sp), degree=2, t=float(stage_times[i])) for i in range(tsm.num_stages)]
 # get variational form of the problem
@@ -204,34 +248,23 @@ else:
 mesh_rank.rename("myRank", "")
 
 # Generating output files
-temperature_out = File("output/%s.pvd" % precice.get_participant_name())
-ref_out = File("output/ref%s.pvd" % precice.get_participant_name())
-error_out = File("output/error%s.pvd" % precice.get_participant_name())
-ranks = File("output/ranks%s.pvd" % precice.get_participant_name())
+output_dir = Path("output")
+temperature_out = File(str(output_dir / f"{precice.get_participant_name()}.pvd"))
+ref_out = File(str(output_dir / f"ref{precice.get_participant_name()}.pvd"))
+error_out = File(str(output_dir / f"error{precice.get_participant_name()}.pvd"))
+ranks = File(str(output_dir / f"ranks{precice.get_participant_name()}.pvd"))
 
 # output solution and reference solution at t=0, n=0
 n = 0
 print("output u^%d and u_ref^%d" % (n, n))
+temperature_out << u_n
+ref_out << u_ref
 ranks << mesh_rank
 
 error_total, error_pointwise = compute_errors(u_n, u_ref, V)
-
-# create buffer for output. We need this buffer, because we only want to
-# write the converged output at the end of the window, but we also want to
-# write the samples that are resulting from substeps inside the window
-u_write = []
-ref_write = []
-error_write = []
-# copy data to buffer and rename
-uu = u_n.copy()
-uu.rename("u", "")
-u_write.append((uu, t))
-uu_ref = u_ref.copy()
-uu_ref.rename("u_ref", "")
-ref_write.append(uu_ref)
-err = error_pointwise.copy()
-err.rename("err", "")
-error_write.append(err)
+error_out << error_pointwise
+errors = []
+times = []
 
 if problem is ProblemType.DIRICHLET:
     flux = Function(V_g)
@@ -243,16 +276,6 @@ while precice.is_coupling_ongoing():
     if precice.requires_writing_checkpoint():
         precice.store_checkpoint(u_n, t, n)
 
-        # output solution and reference solution at t_n+1 and substeps (read from buffer)
-        print('output u^%d and u_ref^%d' % (n, n))
-        for sample in u_write:
-            temperature_out << sample
-
-        for sample in ref_write:
-            ref_out << sample
-
-        for sample in error_write:
-            error_out << error_pointwise
 
     precice_dt = precice.get_max_time_step_size()
     dt.assign(np.min([fenics_dt, precice_dt]))
@@ -329,30 +352,23 @@ while precice.is_coupling_ongoing():
         u_n.assign(u_cp)
         t = t_cp
         n = n_cp
-        # empty buffer if window has not converged
-        u_write = []
-        ref_write = []
-        error_write = []
     else:  # update solution
         u_n.assign(u_np1)
         t += float(dt)
         n += 1
-        # copy data to buffer and rename
-        uu = u_n.copy()
-        uu.rename("u", "")
-        u_write.append((uu, t))
-        uu_ref = u_ref.copy()
-        uu_ref.rename("u_ref", "")
-        ref_write.append(uu_ref)
-        err = error_pointwise.copy()
-        err.rename("err", "")
-        error_write.append(err)
 
     if precice.is_time_window_complete():
         u_ref = interpolate(u_D, V)
         u_ref.rename("reference", " ")
         error, error_pointwise = compute_errors(u_n, u_ref, V, total_error_tol=error_tol)
         print("n = %d, t = %.2f: L2 error on domain = %.3g" % (n, t, error))
+        # output solution and reference solution at t_n+1
+        print('output u^%d and u_ref^%d' % (n, n))
+        temperature_out << u_n
+        ref_out << u_ref
+        error_out << error_pointwise
+        errors.append(error)
+        times.append(t)
 
     # Update Dirichlet BC
     u_D.t = t + float(dt)
@@ -360,17 +376,20 @@ while precice.is_coupling_ongoing():
         f[i].t = t + float(stage_times[i])
         du_dt[i].t = t + float(stage_times[i])
 
-
-# output solution and reference solution at t_n+1 and substeps (read from buffer)
-print("output u^%d and u_ref^%d" % (n, n))
-for sample in u_write:
-    temperature_out << sample
-
-for sample in ref_write:
-    ref_out << sample
-
-for sample in error_write:
-    error_out << error_pointwise
-
 # Hold plot
 precice.finalize()
+
+df = pd.DataFrame()
+df["times"] = times
+df["errors"] = errors
+df = df.set_index('times')
+metadata = f'''# time_window_size: {window_dt}
+# time_step_size: {fenics_dt}
+'''
+
+errors_csv = Path(f"errors-{problem.value}.csv")
+errors_csv.unlink(missing_ok=True)
+
+with open(errors_csv, 'a') as f:
+    f.write(f"{metadata}")
+    df.to_csv(f)
