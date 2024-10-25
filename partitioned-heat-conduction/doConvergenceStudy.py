@@ -69,6 +69,12 @@ def do_run(template_path, precice_config_params, participants):
     time_window_size = precice_config_params['time_window_size']
     summary = {"time window size": time_window_size}
     for name, participant in participants.items():
+        # store iterations
+        df = pd.read_csv(participant['root'] / f"precice-{name}-iterations.log",delim_whitespace=True)
+        summary[f"substeps {name}"] = participant['kwargs']['--substeps']
+        summary[f"avg(iterations / window)"] = df["Iterations"].mean()
+        summary[f"max(iterations / window)"] = df["Iterations"].max()
+        # store errors
         df = pd.read_csv(participant['root'] / f"errors-{name}.csv", comment="#")
         summary[f"time step size {name}"] = time_window_size / participant['kwargs']['--substeps']
         summary[f"error {name}"] = df["errors"].abs().max()
