@@ -67,7 +67,7 @@
       substeps="{{substeps}}" />
     <relative-convergence-measure data="Heat-Flux" mesh="Dirichlet-Mesh" limit="1e-5" />
     <relative-convergence-measure data="Temperature" mesh="Neumann-Mesh" limit="1e-5" />
-    <acceleration:IQN-ILS reduced="true">
+    <acceleration:IQN-ILS reduced="false">
       <data name="Temperature" mesh="Neumann-Mesh" />
       <initial-relaxation value="0.1" />
       <max-used-iterations value="20" />

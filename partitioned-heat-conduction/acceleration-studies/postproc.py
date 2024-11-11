@@ -34,7 +34,10 @@ latex_code = ''
 dTs = df['time window size'].unique()
 dTs.sort()
 lines = []
-line = f'{acceleration_method} | $\\Delta t$ & '+' & '.join(map('${0:.2f}$'.format, dTs.tolist()[::-1]))
+line = '& \\multicolumn{6}{c}{$\\Delta t$}'
+line += '\\\\ \\cmidrule{2-7}'
+lines.append(line)
+line = '$\\mu$ & ' +' & '.join(map('${0:.2f}$'.format, dTs.tolist()[::-1]))
 line += '\\\\'
 line += ' \\midrule'
 lines.append(line)
@@ -42,7 +45,7 @@ lines.append(line)
 for s_dirichlet in [1,3,5]:
     for s_neumann in [1,3,5]:
         line = []
-        line.append(f"$\\text{{{coupling_method}}}\\left({s_dirichlet},{s_neumann};{waveform_degree}\\right)$")
+        line.append(f"${s_dirichlet} / {s_neumann}$")
         for dT in dTs[::-1]:
             line.append(f"${df[(df['substeps Dirichlet'] == s_dirichlet) & (df['substeps Neumann'] == s_neumann) & (df['time window size'] == dT)]['avg(iterations / window)'].max():.2f}$")
         line = ' & '.join(line)
