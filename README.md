@@ -4,5 +4,5 @@ This repository contains modified version of the tutorial cases from https://git
 
 Please consider citing the preCICE distribution[^1] or Benjamin Rodenberg's PhD thesis[^2] if you find these tutorial cases useful.
 
-[^1]: Chen, Jun; Chourdakis, Gerasimos; Desai, Ishaan; Homs-Pons, Carme; Rodenberg, Benjamin; Schneider, David; et al. 2024. preCICE Distribution Version v2404.0. DaRUS. https://doi.org/10.18419/darus-4167.
-[^2]: Rodenberg, Benjamin. 2025. Flexible and robust time stepping forpartitioned multiphysics. Technical University of Munich. https://doi.org/TODO (unpublished)
+[^1]: Chen, Jun; Chourdakis, Gerasimos; Desai, Ishaan; Homs-Pons, Carme; Rodenberg, Benjamin; Schneider, David; Simonis, Frédéric; Uekermann, Benjamin; Davis, Kyle; Jaust, Alexander; Kelm, Mathis; Kotarsky, Niklas; Kschidock, Helena; Mishra, Durganshu; Mühlhäußer, Markus; Schrader, Timo Pierre; Schulte, Miriam; Seitz, Valentin; Signorelli, Joseph; van Zwieten, Gertjan; Vinnitchenko, Niklas; Vladimirova, Tina; Willeke, Leonard; Zonta, Elia. *preCICE Distribution Version v2404.0*. DaRUS, 2024, V1. https://doi.org/10.18419/darus-4167.
+[^2]: Rodenberg, Benjamin. *Flexible and robust time stepping for partitioned multiphysics*. Technical University of Munich, 2025. Unpublished manuscript. Available at: https://doi.org/**TODO**.
