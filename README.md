@@ -1,6 +1,11 @@
 # Test cases from the dissertation of Benjamin Rodenberg
 
-This repository contains modified version of the tutorial cases from https://github.com/precice/tutorials/releases/tag/v202404.0. These tutorials acted as test cases for the PhD thesis "Flexible and robust time stepping forpartitioned multiphysics" of Benjamin Rodenberg.
+This repository contains modified versions of the tutorial cases from https://github.com/precice/tutorials/releases/tag/v202404.0. These tutorials acted as test cases for the PhD thesis "Flexible and robust time stepping forpartitioned multiphysics" of Benjamin Rodenberg in Chapter 6 "Test cases". The folders in this repository are related to the following (sub-)sections of the thesis:
+
+* `oscillator-overlap`: 6.1 Oscillator problem
+* `partitioned-heat-conduction`: 6.2 Partitioned heat conduction
+* `perpendicular-flap`: 6.3.1 Perpendicular flap
+* `turek-hron-fsi3`: 6.3.2 FSI3 benchmark
 
 Please consider citing the preCICE distribution[^1] or Benjamin Rodenberg's PhD thesis[^2] if you find these tutorial cases useful.
 
