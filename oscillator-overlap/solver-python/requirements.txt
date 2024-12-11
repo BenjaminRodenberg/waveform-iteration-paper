@@ -1,3 +1,7 @@
 numpy >1, <2
 pyprecice~=3.0
 scipy
+pandas
+prepesthel @ git+https://github.com/BenjaminRodenberg/precice-performance-study-helpers
+jinja2
+GitPython
