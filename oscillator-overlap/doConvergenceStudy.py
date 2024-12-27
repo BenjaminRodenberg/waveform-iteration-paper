@@ -116,18 +116,16 @@ if __name__ == "__main__":
                 experiment_setup['time window size'] = dt
                 i = 0
                 for p in participants.values():
-                    experiment_setup[f'time step size {p.name}'] = args.base_time_step_refinement[i]*args.time_step_refinement_factor[i]**refinement
+                    substeps = args.base_time_step_refinement[i]*args.time_step_refinement_factor[i]**refinement
+                    experiment_setup[f'time step size {p.name}'] = dt / substeps
                     i += 1
 
                 time_step_config.append(experiment_setup)
         
         time_step_config = pd.DataFrame(time_step_config)
-        print(time_step_config)
-        time_step_config = time_step_config.set_index(["time window size"] + [f"time step size {p.name}" for p in participants.values()])
-
-        time_step_config.to_csv('config.csv')  # output dt configuration to csv
-
-    print(time_step_config)
+        # (optional) output dt configuration to csv
+        # output_csv = time_step_config.set_index(["time window size"] + [f"time step size {p.name}" for p in participants.values()])
+        # output_csv.to_csv('config.csv')  
 
     results_file_path = root_folder
     if args.out_filename:  # use file name given by user
