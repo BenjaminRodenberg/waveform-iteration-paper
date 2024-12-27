@@ -6,6 +6,8 @@ from prepesthel.participant import Participant, Participants
 from prepesthel.runner import run, postproc
 from prepesthel.io import Results
 
+import pandas as pd
+
 
 if __name__ == "__main__":
     n_supported_participants = 2
@@ -16,11 +18,17 @@ if __name__ == "__main__":
         help="template for the preCICE configuration file",
         type=str)
     parser.add_argument(
+        "--config",
+        help="Path to a CSV defining the time window and time step sizes of the individual experiments",
+        type=str,
+        default=None)
+    parser.add_argument(
         "-T",
         "--max-time",
         help="Max simulation time",
         type=float,
         default=1.0)
+    ## parameters for defining time window size, time step size for the individual experiments (will be ignored, if --config is given)
     parser.add_argument(
         "-dt",
         "--base-time-window-size",
@@ -93,6 +101,34 @@ if __name__ == "__main__":
     if len(participants) != n_supported_participants:
         raise Exception(f"Currently only supports coupling of {n_supported_participants} participants")
 
+    if args.config:
+        # Use configuration provided in csv file
+        config_path = Path(args.config)
+        time_step_config = pd.read_csv(config_path, comment='#')
+    else:
+        # Create configuration from parameters
+        time_step_config = []
+
+        for dt in [args.base_time_window_size * 0.5**i for i in range(args.time_window_refinements)]:
+            for refinement in range(args.time_step_refinements):
+                experiment_setup = {}
+
+                experiment_setup['time window size'] = dt
+                i = 0
+                for p in participants.values():
+                    experiment_setup[f'time step size {p.name}'] = args.base_time_step_refinement[i]*args.time_step_refinement_factor[i]**refinement
+                    i += 1
+
+                time_step_config.append(experiment_setup)
+        
+        time_step_config = pd.DataFrame(time_step_config)
+        print(time_step_config)
+        time_step_config = time_step_config.set_index(["time window size"] + [f"time step size {p.name}" for p in participants.values()])
+
+        time_step_config.to_csv('config.csv')  # output dt configuration to csv
+
+    print(time_step_config)
+
     results_file_path = root_folder
     if args.out_filename:  # use file name given by user
         results_file_path = results_file_path / args.out_filename
@@ -101,18 +137,16 @@ if __name__ == "__main__":
 
     results = Results(results_file_path)
 
-    for dt in [args.base_time_window_size * 0.5**i for i in range(args.time_window_refinements)]:
-        for refinement in range(args.time_step_refinements):
-            precice_config_params['time_window_size'] = dt
-            i = 0
-            for p in participants.values():
-                p.kwargs['--n-substeps'] = args.base_time_step_refinement[i]*args.time_step_refinement_factor[i]**refinement
-                i += 1
+    for _, experiment_setup in time_step_config.iterrows():
+        precice_config_params['time_window_size'] = experiment_setup['time window size']
+        for name, p in participants.items():
+            substeps = round(experiment_setup['time window size'] / experiment_setup[f'time step size {name}'])
+            p.kwargs['--n-substeps'] = substeps 
 
-            run(participants, args.template_path, precice_config_params)
-            summary = postproc(participants, precice_config_params)
+        run(participants, args.template_path, precice_config_params)
+        summary = postproc(participants, precice_config_params)
 
-            results.append(summary)
-            results.output_preliminary()
+        results.append(summary)
+        results.output_preliminary()
     
     results.output_final(participants, args, precice_config_params)
