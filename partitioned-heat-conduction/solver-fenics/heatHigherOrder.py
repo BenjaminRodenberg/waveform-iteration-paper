@@ -46,6 +46,8 @@ import pandas as pd
 from pathlib import Path
 from enum import Enum
 
+from io import TextIOWrapper
+
 
 class TimeSteppingSchemes(Enum):
     GAUSS_LEGENDRE_2 = "GaussLegendre2"
@@ -387,9 +389,10 @@ metadata = f'''# time_window_size: {window_dt}
 # time_step_size: {fenics_dt}
 '''
 
-errors_csv = Path(f"errors-{problem.value}.csv")
+errors_csv = Path(f"output-{problem.value}.csv")
 errors_csv.unlink(missing_ok=True)
 
-with open(errors_csv, 'a') as f:
-    f.write(f"{metadata}")
-    df.to_csv(f)
+file: TextIOWrapper
+with open(errors_csv, 'a') as file:
+    file.write(f"{metadata}")
+    df.to_csv(file)

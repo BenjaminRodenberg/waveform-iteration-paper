@@ -34,13 +34,22 @@ import argparse
 import numpy as np
 from problem_setup import get_geometry
 import sympy as sp
+
 import pandas as pd
 from pathlib import Path
 from enum import Enum
 
+from io import TextIOWrapper
+
 
 class TimeSteppingSchemes(Enum):
     IMPLICIT_EULER = "ImplicitEuler"
+
+
+class TransientTerm(Enum):
+    POLYNOMIAL = 'poly'  # polynomial term g_poly
+    TRIGONOMETRIC = 'tri'  # trigonometric term g_tri
+    TRIGONOMETRICACC = 'triAcc'  # trigonometric term used in https://onlinelibrary.wiley.com/doi/epdf/10.1002/nme.6443
 
 
 def determine_gradient(V_g, u, flux):
@@ -67,11 +76,20 @@ parser.add_argument(
     "--time-stepping",
     help="Time stepping scheme being used.",
     type=str,
-    choices=[
-        s.value for s in TimeSteppingSchemes],
+    choices=[s.value for s in TimeSteppingSchemes],
     default=TimeSteppingSchemes.IMPLICIT_EULER.value)
-parser.add_argument("-s", "--substeps", help="number of substeps performed by this solver", type=int, default=1)
-parser.add_argument("-g", help="time dependence of manufactured solution", type=str, choices=('poly', 'poly0', 'poly1', 'poly2', 'tri', 'triAcc'), default='poly')
+parser.add_argument(
+    "-s",
+    "--substeps",
+    help="number of substeps performed by this solver",
+    type=int,
+    default=1)
+parser.add_argument(
+    "-g", 
+    help="time dependence of manufactured solution", 
+    type=str,
+    choices=[g.value for g in TransientTerm],
+    default=TransientTerm.POLYNOMIAL.value)
 args = parser.parse_args()
 participant_name = args.participantName
 
@@ -99,15 +117,11 @@ W = V_g.sub(0).collapse()
 # create sympy expression of manufactured solution
 x_sp, y_sp, t_sp = sp.symbols(['x[0]', 'x[1]', 't'])
 
-if args.g == 'poly0':  # polynomial term used in dissertation of Benjamin Rodenberg
-    g_sp = (1 + t_sp)**0
-elif args.g == 'poly' or args.g == 'poly1':  # polynomial term used in dissertation of Benjamin Rodenberg
+if args.g == TransientTerm.POLYNOMIAL.value:
     g_sp = (1 + t_sp)**1
-elif args.g == 'poly2':  # polynomial term used in dissertation of Benjamin Rodenberg
-    g_sp = (1 + t_sp)**2
-elif args.g == 'tri':  # trigonometric term used in dissertation of Benjamin Rodenberg
+elif args.g == TransientTerm.TRIGONOMETRIC.value:
     g_sp = (1 + sp.sin(t_sp))
-elif args.g == 'triAcc':  # trigonometric term used in https://onlinelibrary.wiley.com/doi/epdf/10.1002/nme.6443
+elif args.g == TransientTerm.TRIGONOMETRICACC.value:
     g_sp = sp.sin(t_sp)
 
 u_D_sp = 1 + g_sp * x_sp * x_sp + alpha * y_sp * y_sp + beta * t_sp
@@ -325,9 +339,10 @@ metadata = f'''# time_window_size: {window_dt}
 # time_step_size: {fenics_dt}
 '''
 
-errors_csv = Path(f"errors-{problem.value}.csv")
+errors_csv = Path(f"output-{problem.value}.csv")
 errors_csv.unlink(missing_ok=True)
 
-with open(errors_csv, 'a') as f:
-    f.write(f"{metadata}")
-    df.to_csv(f)
+file: TextIOWrapper
+with open(errors_csv, 'a') as file:
+    file.write(f"{metadata}")
+    df.to_csv(file)

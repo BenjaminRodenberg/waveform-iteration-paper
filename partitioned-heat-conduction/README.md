@@ -33,9 +33,15 @@ You can either couple a solver with itself or different solvers with each other.
 
 * FEniCS. Install [FEniCS](https://fenicsproject.org/download/) and the [FEniCS-adapter](https://github.com/precice/fenics-adapter). The code is largely based on this [fenics-tutorial](https://github.com/hplgit/fenics-tutorial/blob/master/pub/python/vol1/ft03_heat.py) from [1].
 
-* Nutils. Install [Nutils](https://nutils.org/install-nutils.html).
+The following version for FEniCS packages are recommended: 
 
-* OpenFOAM. This case uses the custom [heatTransfer](https://github.com/precice/tutorials/blob/master/partitioned-heat-conduction/solver-openfoam/heatTransfer.C) solver (find it in `solver-openfoam` and build with `wmake`). Read more details in the [OpenFOAM adapter](https://precice.org/adapter-openfoam-overview.html).
+```
+fenics-dijitso                                  2019.2.0.dev0
+fenics-dolfin                                   2019.2.0.64.dev0
+fenics-ffc                                      2019.2.0.dev0
+fenics-fiat                                     2019.2.0.dev0
+fenics-ufl-legacy                               2022.3.0
+```
 
 ## Running the simulation
 
