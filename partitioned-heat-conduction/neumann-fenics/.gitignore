@@ -1,0 +1,5 @@
+output-*.csv
+precice-*-iterations.log
+precice-*-convergence.log
+precice-profiling
+stdout*.log
