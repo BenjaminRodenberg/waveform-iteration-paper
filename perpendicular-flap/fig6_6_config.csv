@@ -1,0 +1,11 @@
+time window size,time step size Fluid,time step size Solid,max time,waveform degree,reduced,substeps,id
+0.01,0.01,0.01,5,1,true,false,ref
+0.1,0.01,0.01,5,1,true,false,SC_S10
+0.1,0.01,0.01,5,3,true,true,MC_S10_rQNWI
+0.1,0.01,0.01,5,3,false,true,MC_S10_QNWI
+1,0.01,0.01,5,1,true,false,SC_S100
+1,0.01,0.01,5,3,true,true,MC_S100_rQNWI
+1,0.01,0.01,5,3,false,true,MC_S100_QNWI
+5,0.01,0.01,5,1,true,false,SC_S500
+5,0.01,0.01,5,3,true,true,MC_S500_rQNWI
+5,0.01,0.01,5,3,false,true,MC_S500_QNWI

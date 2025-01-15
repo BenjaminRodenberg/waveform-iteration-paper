@@ -1,0 +1,7 @@
+time window size,time step size Fluid,time step size Solid,max time,waveform degree,reduced,substeps,id
+0.02,0.001,0.001,1,3,true,true,ref
+0.2,0.01,0.005,1,3,true,true,MC_20_40
+0.2,0.01,0.01,1,3,true,true,MC_20_20
+0.2,0.01,0.02,1,3,true,true,MC_20_10
+0.2,0.01,0.04,1,3,true,true,MC_20_5
+0.2,0.01,0.1,1,3,true,true,MC_20_2
