@@ -1,0 +1,5 @@
+time window size,time step size Fluid,time step size Solid,max time,waveform degree,reduced,substeps,id
+0.01,0.01,0.01,5,1,true,false,ref_precice_v3.1.2
+0.1,0.01,0.01,5,1,true,false,SC_S10_precice_v3.1.2
+1,0.01,0.01,5,1,true,false,SC_S100_precice_v3.1.2
+5,0.01,0.01,5,1,true,false,SC_S500_precice_v3.1.2
