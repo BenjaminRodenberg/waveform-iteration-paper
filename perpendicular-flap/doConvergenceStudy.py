@@ -31,6 +31,7 @@ def postproc(participants: Participants, precice_config_params=None):
         "substeps": precice_config_params['substeps'],
         "waveform degree": precice_config_params['waveform_degree'],
         "reduced": precice_config_params['reduced'],
+        "acceleration": precice_config_params['acceleration'],
     }
 
     for participant in participants.values():
@@ -110,6 +111,7 @@ if __name__ == "__main__":
         precice_config_params['waveform_degree'] = experiment_setup['waveform degree']
         precice_config_params['reduced'] = experiment_setup['reduced']
         precice_config_params['substeps'] = experiment_setup['substeps']
+        precice_config_params['acceleration'] = "qn"
         
         # Vary number of substeps for OpenFOAM Fluid participant by modifying fluid-openfoam/system/controlDict
         p = participants["Fluid"]
