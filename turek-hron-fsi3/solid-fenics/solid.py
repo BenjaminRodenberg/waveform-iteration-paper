@@ -7,6 +7,13 @@ import numpy as np
 from fenicsprecice import Adapter
 from enum import Enum
 
+from argparse import ArgumentParser
+
+parser = ArgumentParser()
+parser.add_argument('--legacy', default=False, action='store_true')
+
+args = parser.parse_args()
+
 # Beam geometry
 dim = 2  # number of dimensions
 L = 0.35  # length
@@ -203,9 +210,12 @@ while precice.is_coupling_ongoing():
     dt = Constant(np.min([precice_dt, fenics_dt]))
 
     # read data from preCICE and get a new coupling expression
-    # sample force F at $F(t_{n+1-\alpha_f})$ (see generalized alpha paper)
-    read_data = precice.read_data((1 - float(alpha_f)) * dt)
-    # read_data = precice.read_data(dt)  # <- should break around 1s according to Hertrich
+    if(args.legacy):
+        # should break around 1s according to Hertrich2019; actually breaks before 0.5 according to Rodenberg2025
+        read_data = precice.read_data(dt)
+    else:
+        # sample force F at $F(t_{n+1-\alpha_f})$ (see generalized alpha paper)
+        read_data = precice.read_data((1 - float(alpha_f)) * dt)
 
     # Update the point sources on the coupling boundary with the new read data
     Forces_x, Forces_y = precice.get_point_sources(read_data)
