@@ -49,7 +49,19 @@
     <max-iterations value="200" />
     <relative-convergence-measure data="Displacement-Left" mesh="Mass-Left-Mesh" limit="1e-10" />
     <relative-convergence-measure data="Displacement-Right" mesh="Mass-Left-Mesh" limit="1e-10" />
-    <exchange data="Displacement-Left" mesh="Mass-Left-Mesh" from="Mass-Left" to="Mass-Right" initialize="true" substeps="true" />
-    <exchange data="Displacement-Right" mesh="Mass-Left-Mesh" from="Mass-Right" to="Mass-Left" initialize="true" substeps="true" />
+    <exchange
+      data="Displacement-Left"
+      mesh="Mass-Left-Mesh"
+      from="Mass-Left"
+      to="Mass-Right"
+      initialize="true"
+      substeps="true" />
+    <exchange
+      data="Displacement-Right"
+      mesh="Mass-Left-Mesh"
+      from="Mass-Right"
+      to="Mass-Left"
+      initialize="true"
+      substeps="true" />
   </coupling-scheme:serial-implicit>
 </precice-configuration>

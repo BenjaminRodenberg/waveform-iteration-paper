@@ -5,5 +5,5 @@
       "coupling_mesh_name": "Solid-Mesh",
       "write_data_name": "Displacement",
       "read_data_name": "Force"
-    }
+  }
 }
