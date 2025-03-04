@@ -1,7 +1,9 @@
 numpy >1, <2
 pyprecice~=3.0
 scipy
+
+# For convergence studies
 pandas
-prepesthel @ git+https://github.com/BenjaminRodenberg/precice-performance-study-helpers
 jinja2
 GitPython
+prepesthel==0.1.1  # custom packages developed by Benjamin Rodenberg
