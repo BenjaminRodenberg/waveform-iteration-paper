@@ -1,6 +1,6 @@
 # Test cases from the dissertation of Benjamin Rodenberg
 
-This repository contains modified versions of the tutorial cases from https://github.com/precice/tutorials/releases/tag/v202404.0. These tutorials acted as test cases for the PhD thesis "Flexible and robust time stepping forpartitioned multiphysics" of Benjamin Rodenberg in Chapter 6 "Test cases". The folders in this repository are related to the following (sub-)sections of the thesis:
+This repository contains modified versions of the tutorial cases from https://github.com/precice/tutorials/releases/tag/v202404.0. These tutorials acted as test cases for the PhD thesis "Flexible and robust time stepping for partitioned multiphysics" of Benjamin Rodenberg in Chapter 6 "Test cases". The folders in this repository are related to the following (sub-)sections of the thesis:
 
 * `oscillator-overlap`: 6.1 Oscillator problem: 
     * Refer to `oscillator-overlap/convergence_studies.sh` for the experiments shown in Figures 6.1 and 6.2.
