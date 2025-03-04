@@ -14,6 +14,8 @@ This repository contains modified versions of the tutorial cases from https://gi
 
 Please consider citing the preCICE distribution[^1] or Benjamin Rodenberg's PhD thesis[^2] if you find these tutorial cases useful.
 
+You can use the workflows under `.github/workflows` to run the different tests cases via workflow dispatch.
+
 ## Dependencies
 
 The preCICE distribution version v2404.0 [^1] should provide a good basis for running the experiments provided in this repository. However, I suggest to use the latest versions of preCICE, respectively adapters. The experiments are known to run as expected on a system with the following specification:

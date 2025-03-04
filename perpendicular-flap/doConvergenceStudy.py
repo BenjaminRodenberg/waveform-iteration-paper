@@ -8,7 +8,7 @@ import datetime
 
 from prepesthel.participant import Participant, Participants
 from prepesthel.runner import run
-from prepesthel.io import Results
+from prepesthel.io import Results, Executors
 
 def render_control_dict(template_path, out, time_step_size):
     root = Path()
@@ -56,6 +56,16 @@ if __name__ == "__main__":
         "template_path",
         help="template for the preCICE configuration file",
         type=str)
+    parser.add_argument(
+        "--silent",
+        help="Deactivates result output to command line",
+        action='store_true')
+    parser.add_argument(
+        "--executor",
+        help="Define type of executor",
+        type=str,
+        choices=[e.value for e in Executors],
+        default=Executors.LOCAL.value)
     parser.add_argument(
         "time_config",
         help="Path to a CSV defining the time window and time step sizes of the individual experiments",
@@ -128,9 +138,9 @@ if __name__ == "__main__":
         summary = postproc(participants, precice_config_params)
 
         results.append(summary)
-        results.output_preliminary()
+        results.output_preliminary(silent=args.silent)
 
         # move watchpoint file to watchpoint folder; label with id given in experiment_setup
         (participants["Solid"].root / "precice-Solid-watchpoint-Flap-Tip.log").rename(watchpoint_folder / f"watchpoint_{experiment_setup['id']}")
     
-    results.output_final(participants, args, precice_config_params)
+    results.output_final(participants, args, precice_config_params, silent=args.silent, executor=args.executor)
