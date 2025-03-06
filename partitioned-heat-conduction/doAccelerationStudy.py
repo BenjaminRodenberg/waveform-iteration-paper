@@ -21,7 +21,7 @@ def postproc(participants: Participants, precice_config_params=None):
     summary = {"time window size": time_window_size}
     for participant in participants.values():
         # store iterations
-        df = pd.read_csv(participant.root / f"precice-{participant.name}-iterations.log",delim_whitespace=True)
+        df = pd.read_csv(participant.root / f"precice-{participant.name}-iterations.log",sep='\s+')
         summary[f"substeps {participant.name}"] = participant.kwargs['--substeps']
         summary[f"avg(iterations / window)"] = df["Iterations"].mean()
         summary[f"max(iterations / window)"] = df["Iterations"].max()
