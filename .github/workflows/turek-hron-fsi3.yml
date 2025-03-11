@@ -82,8 +82,8 @@ jobs:
         if: always()
         run: |
           cp ./studies/precice-Solid-watchpoint-Flap-Tip-${{ matrix.experiment.id }}.log ./studies/precice-Solid-watchpoint-Flap-Tip-${{ matrix.experiment.id }}-detail.log
-          sed -i '2,251d' precice-Solid-watchpoint-Flap-Tip-${{ matrix.experiment.id }}-detail.log
-          sed -i '103,$d' precice-Solid-watchpoint-Flap-Tip-${{ matrix.experiment.id }}-detail.log
+          sed -i '2,251d' ./studies/precice-Solid-watchpoint-Flap-Tip-${{ matrix.experiment.id }}-detail.log
+          sed -i '103,$d' ./studies/precice-Solid-watchpoint-Flap-Tip-${{ matrix.experiment.id }}-detail.log
       - name: Store results
         uses: actions/upload-artifact@v4
         with:
