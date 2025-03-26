@@ -6,6 +6,7 @@ SHELL ["/bin/bash", "-c"]
 
 # Install tooling
 RUN apt-get -qq update && \
+    apt-get -yy upgrade && \
     apt-get -qq install --no-install-recommends wget software-properties-common
     # rm -rf /var/lib/apt/lists/*
 
