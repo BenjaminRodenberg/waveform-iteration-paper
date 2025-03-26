@@ -2,6 +2,8 @@ FROM precice/precice:3.2.0rc1
 
 USER root
 
+SHELL ["/bin/bash", "-c"]
+
 # Install tooling
 RUN apt-get -qq update && \
     apt-get -qq install --no-install-recommends wget software-properties-common
@@ -16,7 +18,7 @@ RUN wget -q -O - https://dl.openfoam.com/add-debian-repo.sh | bash && \
     echo '. /usr/lib/openfoam/openfoam2412/etc/bashrc' >> /home/precice/.bashrc
 
 # Install FEniCS
-    RUN add-apt-repository -y ppa:fenics-packages/fenics && \
+RUN add-apt-repository -y ppa:fenics-packages/fenics && \
     apt-get -qq update && \
     apt-get -qq install --no-install-recommends fenics && \
     rm -rf /var/lib/apt/lists/*
