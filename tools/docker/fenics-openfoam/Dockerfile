@@ -9,6 +9,7 @@ RUN apt-get -qq update && \
 
 # Install OpenFOAM & add to bashrc
 RUN wget -q -O - https://dl.openfoam.com/add-debian-repo.sh | bash && \
+    apt-get -qq update && \
     apt-get -qq install openfoam2412-dev && \
     rm -rf /var/lib/apt/lists/* && \
     echo '. /usr/lib/openfoam/openfoam2412/etc/bashrc' >> /root/.bashrc && \
