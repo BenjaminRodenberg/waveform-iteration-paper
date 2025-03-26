@@ -1,4 +1,4 @@
-FROM precice/precice:nightly
+FROM precice/precice:3.2.0rc1
 
 USER root
 

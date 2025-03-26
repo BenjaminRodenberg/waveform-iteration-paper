@@ -39,7 +39,7 @@ jobs:
     defaults:
       run:
         working-directory: ./partitioned-heat-conduction
-    container: precice/precice:nightly
+    container: precice/precice:3.2.0rc1
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
