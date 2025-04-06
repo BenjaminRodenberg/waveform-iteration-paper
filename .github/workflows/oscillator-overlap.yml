@@ -33,7 +33,7 @@ jobs:
     defaults:
       run:
         working-directory: ./oscillator-overlap
-    container: precice/precice:3.2.0rc1
+    container: precice/precice:3.2.0
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4

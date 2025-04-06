@@ -12,19 +12,19 @@ jobs:
         - name: Figure 6.8 FEniCS-OpenFOAM legacy
           solid-participant: fenics
           solid-run: run_legacy.sh
-          container: benjaminrodenberg/fenics-openfoam:3.2.0rc1
+          container: benjaminrodenberg/fenics-openfoam:3.2.0
           id: legacy
           expects-error: true
         - name: Figure 6.8 FEniCS-OpenFOAM WI
           solid-participant: fenics
           solid-run: run_WI.sh
-          container: benjaminrodenberg/fenics-openfoam:3.2.0rc1
+          container: benjaminrodenberg/fenics-openfoam:3.2.0
           id: WI
           expects-error: false
         - name: Figure 6.8 deal.II-OpenFOAM nonlin
           solid-participant: dealii
           solid-run: run.sh -e=/dealii-adapter/elasticity
-          container: benjaminrodenberg/dealii-openfoam:3.2.0rc1
+          container: benjaminrodenberg/dealii-openfoam:3.2.0
           id: nonlin
           expects-error: false
     # runs-on: ubuntu-latest

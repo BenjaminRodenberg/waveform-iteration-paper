@@ -21,7 +21,7 @@ jobs:
         with:
           push: true
           file: "./tools/docker/dealii-openfoam/Dockerfile"
-          tags: ${{ env.docker_username }}/dealii-openfoam:3.2.0rc1
+          tags: ${{ env.docker_username }}/dealii-openfoam:3.2.0
   build_fenics_openfoam:
     name: "Build FEniCS-OpenFOAM"
     runs-on: ubuntu-latest
@@ -40,4 +40,4 @@ jobs:
         with:
           push: true
           file: "./tools/docker/fenics-openfoam/Dockerfile"
-          tags: ${{ env.docker_username }}/fenics-openfoam:3.2.0rc1
+          tags: ${{ env.docker_username }}/fenics-openfoam:3.2.0
