@@ -12,3 +12,5 @@ python3 doConvergenceStudy.py precice-config-template.xml -tss runge_kutta_4 gen
 python3 doConvergenceStudy.py precice-config-template.xml -tss runge_kutta_4 generalized_alpha -dt 0.2 -wd 3 -sb 4 64 -o convergence-studies/compensation_S_2_64.csv
 python3 doConvergenceStudy.py precice-config-template.xml -tss runge_kutta_4 generalized_alpha -dt 0.2 -wd 3 -sb 4 128 -o convergence-studies/compensation_S_2_128.csv
 python3 doConvergenceStudy.py precice-config-template.xml -tss runge_kutta_4 generalized_alpha -dt 0.2 -wd 3 -sb 4 256 -o convergence-studies/compensation_S_2_256.csv
+# optimal relationship of dts
+python3 doConvergenceStudy.py precice-config-template.xml --config optimal_dt.csv -tss runge_kutta_4 generalized_alpha -wd 3 -o convergence-studies/optimal_dt.csv

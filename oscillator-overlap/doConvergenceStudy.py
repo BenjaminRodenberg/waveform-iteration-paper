@@ -135,7 +135,7 @@ if __name__ == "__main__":
         time_step_config = pd.DataFrame(time_step_config)
         # (optional) output dt configuration to csv
         # output_csv = time_step_config.set_index(["time window size"] + [f"time step size {p.name}" for p in participants.values()])
-        # output_csv.to_csv('config.csv')  
+        # output_csv.to_csv('config.csv')
 
     results_file_path = root_folder
     if args.out_filename:  # use file name given by user
@@ -144,6 +144,9 @@ if __name__ == "__main__":
         results_file_path = results_file_path / "convergence-studies" / f"{uuid.uuid4()}.csv"
 
     results = Results(results_file_path)
+
+    study_folder = results_file_path.parent / results_file_path.stem  # use path without .csv as folder for watchpoints
+    study_folder.mkdir(parents=False, exist_ok=False)
 
     for _, experiment_setup in time_step_config.iterrows():
         precice_config_params['time_window_size'] = experiment_setup['time window size']
@@ -156,5 +159,15 @@ if __name__ == "__main__":
 
         results.append(summary)
         results.output_preliminary(silent=args.silent)
+
+        # move files with convergence information into experiment folder
+        exp_id = f"{experiment_setup['time window size']}_{experiment_setup['time step size Mass-Left']}_{experiment_setup['time step size Mass-Right']}"
+        experiment_folder = study_folder / exp_id
+        experiment_folder.mkdir(parents=False, exist_ok=False)
+        ## copy all relevant files
+        for f in [participants["Mass-Left"].root / "precice-Mass-Left-iterations.log", 
+                  participants["Mass-Right"].root / "precice-Mass-Right-convergence.log",
+                  participants["Mass-Right"].root / "precice-Mass-Right-iterations.log"]:
+            f.rename(experiment_folder / f.name)
     
     results.output_final(participants, args, precice_config_params, silent=args.silent, executor=args.executor)
