@@ -36,7 +36,7 @@ def postproc(participants: Participants, precice_config_params=None):
 
     for participant in participants.values():
         # store iterations
-        df = pd.read_csv(participant.root / f"precice-{participant.name}-iterations.log",sep='\s+')
+        df = pd.read_csv(participant.root / f"precice-{participant.name}-iterations.log",sep="\s+")
         summary[f"substeps {participant.name}"] = participant.substeps
         summary[f"time step size {participant.name}"] = time_window_size / participant.substeps
         summary["avg(iterations / window)"] = df["Iterations"].mean()
