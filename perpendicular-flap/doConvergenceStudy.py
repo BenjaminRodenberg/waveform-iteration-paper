@@ -142,5 +142,22 @@ if __name__ == "__main__":
 
         # move watchpoint file to watchpoint folder; label with id given in experiment_setup
         (participants["Solid"].root / "precice-Solid-watchpoint-Flap-Tip.log").rename(watchpoint_folder / f"watchpoint_{experiment_setup['id']}")
+
+        # move all iterations files to experiment folder
+        ## create some folders
+        experiment_folder = watchpoint_folder / experiment_setup['id']
+        experiment_folder.mkdir(parents=False, exists_ok=False)
+        solid_participant_folder = experiment_folder / "Solid"
+        solid_participant_folder.mkdir(parents=False, exists_ok=False)
+        fluid_participant_folder = experiment_folder / "Fluid"
+        fluid_participant_folder.mkdir(parents=False, exists_ok=False)
+        ## copy all relevant files
+        for name in ["precice-Solid-iterations.log", "precice-Solid-convergence.log"]:
+            f = participants["Solid"].root / name
+            f.rename(solid_participant_folder / name)
+
+        for name in ["precice-Fluid-iterations.log"]:
+            f = participants["Fluid"].root / name
+            f.rename(solid_participant_folder / name)
     
     results.output_final(participants, args, precice_config_params, silent=args.silent, executor=args.executor)
