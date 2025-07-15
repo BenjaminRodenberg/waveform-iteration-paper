@@ -1,8 +1,18 @@
 time window size,time step size Fluid,time step size Solid,max time,waveform degree,reduced,substeps,id
-0.01,0.01,0.01,5,1,true,false,ref
-0.1,0.01,0.01,5,1,true,false,SC_S10
-0.1,0.01,0.01,5,3,true,true,MC_S10_rQNWI
-1,0.01,0.01,5,1,true,false,SC_S100
-1,0.01,0.01,5,3,true,true,MC_S100_rQNWI
-5,0.01,0.01,5,1,true,false,SC_S500
-5,0.01,0.01,5,3,true,true,MC_S500_rQNWI
+0.01,0.01,0.01,10,1,true,false,ref
+0.03,0.01,0.01,10,1,true,false,SC_S3
+0.03,0.01,0.01,10,3,true,true,MC_S3_rQNWI
+0.05,0.01,0.01,10,1,true,false,SC_S5
+0.05,0.01,0.01,10,3,true,true,MC_S5_rQNWI
+0.1,0.01,0.01,10,1,true,false,SC_S10
+0.1,0.01,0.01,10,3,true,true,MC_S10_rQNWI
+0.25,0.01,0.01,10,1,true,false,SC_S25
+0.25,0.01,0.01,10,3,true,true,MC_S25_rQNWI
+0.5,0.01,0.01,10,1,true,false,SC_S50
+0.5,0.01,0.01,10,3,true,true,MC_S50_rQNWI
+1,0.01,0.01,10,1,true,false,SC_S100
+1,0.01,0.01,10,3,true,true,MC_S100_rQNWI
+2.5,0.01,0.01,10,1,true,false,SC_S250
+2.5,0.01,0.01,10,3,true,true,MC_S250_rQNWI
+5,0.01,0.01,10,1,true,false,SC_S500
+5,0.01,0.01,10,3,true,true,MC_S500_rQNWI
