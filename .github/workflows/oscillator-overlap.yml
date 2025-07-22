@@ -9,28 +9,12 @@ jobs:
     strategy:
       matrix:
         experiment:
-        # - name: Figure 6.1 RK4 GA
-        #   args: '-tss runge_kutta_4 generalized_alpha -wd 3 -dt 0.05 -sb 4 4 -s 8 -sf 1 2 -w 1 -o convergence-studies/subcycling_rk4_ga.csv'
-        # - name: Figure 6.1 RK4 RK4
-        #   args: '-tss runge_kutta_4 runge_kutta_4 -wd 3 -dt 0.05 -sb 4 4 -s 8 -sf 1 2 -w 1 -o convergence-studies/subcycling_rk4_rk4.csv'
-        # - name: Figure 6.2a
-        #   args: '--config fig6_2a_config.csv -tss runge_kutta_4 generalized_alpha -wd 3 -o convergence-studies/contour_data.csv'
-        # - name: Figure 6.2b S 2 4
-        #   args: '-tss runge_kutta_4 generalized_alpha -dt 0.2 -wd 3 -sb 4 4 -o convergence-studies/compensation_S_2_4.csv'
-        # - name: Figure 6.2b S 2 8
-        #   args: '-tss runge_kutta_4 generalized_alpha -dt 0.2 -wd 3 -sb 4 8 -o convergence-studies/compensation_S_2_8.csv'
-        # - name: Figure 6.2b S 2 16
-        #   args: '-tss runge_kutta_4 generalized_alpha -dt 0.2 -wd 3 -sb 4 16 -o convergence-studies/compensation_S_2_16.csv'
-        # - name: Figure 6.2b S 2 32
-        #   args: '-tss runge_kutta_4 generalized_alpha -dt 0.2 -wd 3 -sb 4 32 -o convergence-studies/compensation_S_2_32.csv'
-        # - name: Figure 6.2b S 2 64
-        #   args: '-tss runge_kutta_4 generalized_alpha -dt 0.2 -wd 3 -sb 4 64 -o convergence-studies/compensation_S_2_64.csv'
-        # - name: Figure 6.2b S 2 128
-        #   args: '-tss runge_kutta_4 generalized_alpha -dt 0.2 -wd 3 -sb 4 128 -o convergence-studies/compensation_S_2_128.csv'
-        # - name: Figure 6.2b S 2 256
-        #   args: '-tss runge_kutta_4 generalized_alpha -dt 0.2 -wd 3 -sb 4 256 -o convergence-studies/compensation_S_2_256.csv'
-        - name: Optimal dt relationship
-          args: '--config optimal_dt.csv -tss runge_kutta_4 generalized_alpha -wd 3 -o convergence-studies/optimal_dt.csv'
+        - name: Optimal dt relationship (FP)
+          args: 'precice-config-template-FP.xml --silent --executor Github --config optimal_dt.csv -tss runge_kutta_4 generalized_alpha -wd 3 -o convergence-studies/optimal_dt_FP.csv'
+        - name: Optimal dt relationship (rQN)
+          args: 'precice-config-template-rQN.xml --silent --executor Github --config optimal_dt.csv -tss runge_kutta_4 generalized_alpha -wd 3 -o convergence-studies/optimal_dt_rQN.csv'
+        - name: Optimal dt relationship (fQN)
+          args: 'precice-config-template-fQN.xml --silent --executor Github --config optimal_dt.csv -tss runge_kutta_4 generalized_alpha -wd 3 -o convergence-studies/optimal_dt_fQN.csv'
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -54,7 +38,7 @@ jobs:
           echo PATH=$PATH >> $GITHUB_ENV
       - name: Run tutorial
         run: |
-          python3 doConvergenceStudy.py precice-config-template.xml --silent --executor Github ${{matrix.experiment.args}}
+          python3 doConvergenceStudy.py ${{matrix.experiment.args}}
       - name: Store logs
         if: always()
         uses: actions/upload-artifact@v4
