@@ -55,14 +55,14 @@
       from="Mass-Left"
       to="Mass-Right"
       initialize="true"
-      substeps="true" />
+      substeps="{{substeps}}" />
     <exchange
       data="Displacement-Right"
       mesh="Mass-Left-Mesh"
       from="Mass-Right"
       to="Mass-Left"
       initialize="true"
-      substeps="true" />
+      substeps="{{substeps}}" />
     <acceleration:IQN-ILS reduced-time-grid="true">
       <data name="Displacement-Right" mesh="Mass-Left-Mesh" />
       <preconditioner type="residual-sum" update-on-threshold="false" />

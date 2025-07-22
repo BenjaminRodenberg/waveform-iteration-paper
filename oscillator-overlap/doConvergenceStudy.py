@@ -86,6 +86,11 @@ if __name__ == "__main__":
         type=int,
         default=1)
     parser.add_argument(
+        "-es",
+        "--exchange-substeps",
+        help="Turn exchange of substeps on/off.",
+        action="store_true")
+    parser.add_argument(
         "-o",
         "--out-filename",
         help="Provide a file name. If no file name is provided a UUID will be generated as name. Abort if file already exists.",
@@ -98,6 +103,7 @@ if __name__ == "__main__":
         'time_window_size': None,  # will be defined later
         'max_time': args.max_time,
         'waveform_degree': args.waveform_degree,
+        'substeps': args.exchange_substeps,
     }
 
     root_folder = Path(__file__).parent.absolute()

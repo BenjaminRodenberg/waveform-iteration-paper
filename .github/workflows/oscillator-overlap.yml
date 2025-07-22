@@ -10,11 +10,11 @@ jobs:
       matrix:
         experiment:
         - name: Optimal dt relationship (FP)
-          args: 'precice-config-template-FP.xml --silent --executor Github --config optimal_dt.csv -tss runge_kutta_4 generalized_alpha -wd 3 -o convergence-studies/optimal_dt_FP.csv'
+          args: 'precice-config-template-FP.xml --silent --executor Github --config optimal_dt.csv -tss runge_kutta_4 generalized_alpha -wd 3 --exchange-substeps -o convergence-studies/optimal_dt_FP.csv'
         - name: Optimal dt relationship (rQN)
-          args: 'precice-config-template-rQN.xml --silent --executor Github --config optimal_dt.csv -tss runge_kutta_4 generalized_alpha -wd 3 -o convergence-studies/optimal_dt_rQN.csv'
+          args: 'precice-config-template-rQN.xml --silent --executor Github --config optimal_dt.csv -tss runge_kutta_4 generalized_alpha -wd 3 --exchange-substeps -o convergence-studies/optimal_dt_rQN.csv'
         - name: Optimal dt relationship (fQN)
-          args: 'precice-config-template-fQN.xml --silent --executor Github --config optimal_dt.csv -tss runge_kutta_4 generalized_alpha -wd 3 -o convergence-studies/optimal_dt_fQN.csv'
+          args: 'precice-config-template-fQN.xml --silent --executor Github --config optimal_dt.csv -tss runge_kutta_4 generalized_alpha -wd 3 --exchange-substeps -o convergence-studies/optimal_dt_fQN.csv'
     runs-on: ubuntu-latest
     defaults:
       run:
