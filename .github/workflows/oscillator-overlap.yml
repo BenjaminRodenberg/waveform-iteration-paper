@@ -24,7 +24,7 @@ jobs:
         - name: Fig 1d) B-spline Interpolation
           args: 'precice-config-template-FP.xml --silent --executor Github --config fig1_dts.csv -tss runge_kutta_4 generalized_alpha -wd 3 --exchange-substeps -o convergence-studies/fig1d.csv'
         - name: Figure 12
-          args: '--config fig12.csv -tss runge_kutta_4 generalized_alpha -wd 3 -o convergence-studies/contour_data.csv'
+          args: 'precice-config-template-FP.xml --silent --executor Github --config fig12.csv -tss runge_kutta_4 generalized_alpha -wd 3 --exchange-substeps -o convergence-studies/contour_data.csv'
     runs-on: ubuntu-latest
     defaults:
       run:
