@@ -54,6 +54,7 @@ class TimeSteppingSchemes(Enum):
     GAUSS_LEGENDRE_3 = "GaussLegendre3"
     GAUSS_LEGENDRE_8 = "GaussLegendre8"
     LOBATTO_IIIC_3 = "LobattoIIIC3"
+    LOBATTO_IIIC_4 = "LobattoIIIC4"
 
 
 class TransientTerm(Enum):
@@ -171,10 +172,14 @@ u_n.rename("Temperature", "")
 # time stepping setup
 if args.time_stepping == TimeSteppingSchemes.GAUSS_LEGENDRE_2.value:
     tsm = GaussLegendre(2)
+elif args.time_stepping == TimeSteppingSchemes.GAUSS_LEGENDRE_3.value:
+    tsm = GaussLegendre(3)
 elif args.time_stepping == TimeSteppingSchemes.GAUSS_LEGENDRE_8.value:
     tsm = GaussLegendre(8)
 elif args.time_stepping == TimeSteppingSchemes.LOBATTO_IIIC_3.value:
     tsm = LobattoIIIC(3)
+elif args.time_stepping == TimeSteppingSchemes.LOBATTO_IIIC_4.value:
+    tsm = LobattoIIIC(4)
 else:
     raise Exception(f"Invalid time stepping scheme {args.time_stepping}. Please use one of {[ts.value for ts in TimeSteppingSchemes]}")
 
