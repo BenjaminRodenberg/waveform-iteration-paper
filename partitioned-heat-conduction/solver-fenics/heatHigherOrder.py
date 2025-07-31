@@ -52,6 +52,7 @@ from io import TextIOWrapper
 class TimeSteppingSchemes(Enum):
     GAUSS_LEGENDRE_2 = "GaussLegendre2"
     GAUSS_LEGENDRE_3 = "GaussLegendre3"
+    GAUSS_LEGENDRE_4 = "GaussLegendre4"
     GAUSS_LEGENDRE_8 = "GaussLegendre8"
     LOBATTO_IIIC_3 = "LobattoIIIC3"
     LOBATTO_IIIC_4 = "LobattoIIIC4"
@@ -174,6 +175,8 @@ if args.time_stepping == TimeSteppingSchemes.GAUSS_LEGENDRE_2.value:
     tsm = GaussLegendre(2)
 elif args.time_stepping == TimeSteppingSchemes.GAUSS_LEGENDRE_3.value:
     tsm = GaussLegendre(3)
+elif args.time_stepping == TimeSteppingSchemes.GAUSS_LEGENDRE_4.value:
+    tsm = GaussLegendre(4)
 elif args.time_stepping == TimeSteppingSchemes.GAUSS_LEGENDRE_8.value:
     tsm = GaussLegendre(8)
 elif args.time_stepping == TimeSteppingSchemes.LOBATTO_IIIC_3.value:
