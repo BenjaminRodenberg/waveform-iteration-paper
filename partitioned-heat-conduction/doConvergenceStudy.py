@@ -18,7 +18,11 @@ default_precice_config_params = {
 
 class Experiments(Enum):
     POLYNOMIAL = 'poly'
+    POLYNOMIAL2 = 'poly2'
+    POLYNOMIAL3 = 'poly3'
+    POLYNOMIAL4 = 'poly4'
     TRIGONOMETRIC = 'tri'
+    SINCOS = 'sincos'
 
 
 def postproc(participants: Participants, precice_config_params=None):

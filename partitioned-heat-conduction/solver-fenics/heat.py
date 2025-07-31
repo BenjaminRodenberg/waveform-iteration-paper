@@ -49,6 +49,7 @@ class TimeSteppingSchemes(Enum):
 class TransientTerm(Enum):
     POLYNOMIAL = 'poly'  # polynomial term g_poly
     TRIGONOMETRIC = 'tri'  # trigonometric term g_tri
+    SINCOS = 'sincos'  # trigonometric term sin+cos to have even and uneven polynomial terms
     TRIGONOMETRICACC = 'triAcc'  # trigonometric term used in https://onlinelibrary.wiley.com/doi/epdf/10.1002/nme.6443
 
 
@@ -123,6 +124,10 @@ elif args.g == TransientTerm.TRIGONOMETRIC.value:
     g_sp = (1 + sp.sin(t_sp))
 elif args.g == TransientTerm.TRIGONOMETRICACC.value:
     g_sp = sp.sin(t_sp)
+elif args.g == TransientTerm.SINCOS.value:
+    g_sp = sp.sin(t_sp) + sp.cos(t_sp)
+else:
+    raise Exception(f'Unknown right-hand side term {args.g}')
 
 u_D_sp = 1 + g_sp * x_sp * x_sp + alpha * y_sp * y_sp + beta * t_sp
 u_D = Expression(sp.ccode(u_D_sp), degree=2, alpha=alpha, beta=beta, t=0)

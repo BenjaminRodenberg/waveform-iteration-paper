@@ -51,8 +51,21 @@ from io import TextIOWrapper
 
 class TimeSteppingSchemes(Enum):
     GAUSS_LEGENDRE_2 = "GaussLegendre2"
+    GAUSS_LEGENDRE_3 = "GaussLegendre3"
     GAUSS_LEGENDRE_8 = "GaussLegendre8"
     LOBATTO_IIIC_3 = "LobattoIIIC3"
+
+
+class TransientTerm(Enum):
+    POLYNOMIAL0 = 'poly0'       # polynomial term g_poly of degree p = 0
+    POLYNOMIAL = 'poly'         # polynomial term g_poly of degree p = 1
+    POLYNOMIAL1 = 'poly1'       # polynomial term g_poly of degree p = 1
+    POLYNOMIAL2 = 'poly2'       # polynomial term g_poly of degree p = 2
+    POLYNOMIAL3 = 'poly3'       # polynomial term g_poly of degree p = 3
+    POLYNOMIAL4 = 'poly4'       # polynomial term g_poly of degree p = 4
+    TRIGONOMETRIC = 'tri'       # trigonometric term g_tri
+    TRIGONOMETRICACC = 'triAcc' # trigonometric term sin+cos to have even and uneven polynomial terms
+    SINCOS = 'sincos'           # trigonometric term used in https://onlinelibrary.wiley.com/doi/epdf/10.1002/nme.
 
 
 def determine_gradient(V_g, u, flux):
@@ -80,7 +93,12 @@ parser.add_argument(
     help="Number of substeps in one window for this participant",
     type=int,
     default=1)
-parser.add_argument("-g", help="time dependence of manufactured solution", type=str, choices=('poly', 'poly0', 'poly1', 'poly2', 'tri', 'triAcc'), default='poly')
+parser.add_argument(
+    "-g",
+    help="time dependence of manufactured solution",
+    type=str,
+    choices=[g.value for g in TransientTerm],
+    default=TransientTerm.POLYNOMIAL.value)
 parser.add_argument(
     "-ts",
     "--time-stepping",
@@ -117,16 +135,24 @@ W = V_g.sub(0).collapse()
 # create sympy expression of manufactured solution
 x_sp, y_sp, t_sp = sp.symbols(['x[0]', 'x[1]', 't'])
 
-if args.g == 'poly0':  # polynomial term used in dissertation of Benjamin Rodenberg
+if args.g == TransientTerm.POLYNOMIAL0.value:  # polynomial term used in dissertation of Benjamin Rodenberg
     g_sp = (1 + t_sp)**0
-elif args.g == 'poly' or args.g == 'poly1':  # polynomial term used in dissertation of Benjamin Rodenberg
+elif args.g == TransientTerm.POLYNOMIAL.value or args.g == TransientTerm.POLYNOMIAL1.value:  # polynomial term used in dissertation of Benjamin Rodenberg
     g_sp = (1 + t_sp)**1
-elif args.g == 'poly2':  # polynomial term used in dissertation of Benjamin Rodenberg
+elif args.g == TransientTerm.POLYNOMIAL2.value:  # polynomial term used in dissertation of Benjamin Rodenberg
     g_sp = (1 + t_sp)**2
-elif args.g == 'tri':  # trigonometric term used in dissertation of Benjamin Rodenberg
+elif args.g == TransientTerm.POLYNOMIAL3.value:  # polynomial term used in dissertation of Benjamin Rodenberg
+    g_sp = (1 + t_sp)**3
+elif args.g == TransientTerm.POLYNOMIAL4.value:  # polynomial term used in dissertation of Benjamin Rodenberg
+    g_sp = (1 + t_sp)**4
+elif args.g == TransientTerm.TRIGONOMETRIC.value:  # trigonometric term used in dissertation of Benjamin Rodenberg
     g_sp = (1 + sp.sin(t_sp))
-elif args.g == 'triAcc':  # trigonometric term used in https://onlinelibrary.wiley.com/doi/epdf/10.1002/nme.6443
+elif args.g == TransientTerm.TRIGONOMETRICACC.value:  # trigonometric term used in https://onlinelibrary.wiley.com/doi/epdf/10.1002/nme.6443
     g_sp = sp.sin(t_sp)
+elif args.g == TransientTerm.SINCOS.value:  # trigonometric term with even and uneven monomials
+    g_sp = sp.sin(t_sp) + sp.cos(t_sp)
+else:
+    raise Exception(f"Unexpected {args.g=}")
 
 u_D_sp = 1 + g_sp * x_sp * x_sp + alpha * y_sp * y_sp + beta * t_sp
 u_D = Expression(sp.printing.ccode(u_D_sp), degree=2, t=0)
