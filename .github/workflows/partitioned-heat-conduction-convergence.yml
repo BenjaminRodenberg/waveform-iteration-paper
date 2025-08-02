@@ -12,7 +12,7 @@ jobs:
         - name: Figure 14 IE 3
           args: '--experiment sincos -w 6 -s 1 -wd 3 -sb 5 5 -dt 1 -tss BackwardEuler BackwardEuler --exchange-substeps -o convergence-studies/fig14_IE_3.csv'
         - name: Figure 14 IE 5
-          args: '--experiment sincos -w 6 -s 1 -wd 5 -sb 5 5 -dt 1 -tss BackwardEuler BackwardEuler --exchange-substeps -o convergence-studies/fig14_IE_3.csv'
+          args: '--experiment sincos -w 6 -s 1 -wd 5 -sb 5 5 -dt 1 -tss BackwardEuler BackwardEuler --exchange-substeps -o convergence-studies/fig14_IE_5.csv'
         - name: Figure 14 GL2 3
           args: '--experiment sincos -w 6 -s 1 -wd 3 -sb 5 5 -dt 1 -tss GaussLegendre2 GaussLegendre2 --exchange-substeps -o convergence-studies/fig14_GL2_3.csv'
         - name: Figure 14 GL2 5
