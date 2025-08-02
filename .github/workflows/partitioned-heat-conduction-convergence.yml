@@ -62,9 +62,60 @@ jobs:
           path: |
             # working directory is ignored by actions/upload-artifact
             ./partitioned-heat-conduction/convergence-studies
+
+  run_experiments:
+    strategy:
+      matrix:
+        experiment:
+        - name: Figure 14 IE mono
+          args: '--experiment sincos -tss BackwardEuler -o convergence-studies/fig14_IE_mono.csv'
+        - name: Figure 14 GL2 mono
+          args: '--experiment sincos -tss GaussLegendre2 -o convergence-studies/fig14_GL2_mono.csv'
+        - name: Figure 14 GL3 mono
+          args: '--experiment sincos -tss GaussLegendre3 -o convergence-studies/fig14_GL3_mono.csv'
+        - name: Figure 14 GL4 mono
+          args: '--experiment sincos -tss GaussLegendre3 -o convergence-studies/fig14_GL3_mono.csv'
+        - name: Figure 14 LIIIC3 mono
+          args: '--experiment sincos -tss LobattoIIIC3 -o convergence-studies/fig14_LIIIC3_mono.csv'
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./partitioned-heat-conduction
+    container: precice/precice:3.2.0
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      - name: Install Dependencies
+        run: |
+          apt-get -qq update
+          apt-get -qq install software-properties-common python3-dev python3-pip python3.12-venv git apt-utils pkg-config
+          add-apt-repository -y ppa:fenics-packages/fenics
+          apt-get -qq install --no-install-recommends fenics
+          rm -rf /var/lib/apt/lists/*
+      - name: Create venv
+        run: |
+          ./make-venv.sh
+      - name: Activate venv
+        # see https://stackoverflow.com/a/74669486
+        run: |
+          . .venv/bin/activate
+          echo PATH=$PATH >> $GITHUB_ENV
+      - name: Run tutorial
+        run: |
+          python3 doConvergenceStudyMonolithic.py --silent --executor Github ${{matrix.experiment.args}}
+      - name: Store results
+        uses: actions/upload-artifact@v4
+        with:
+          name: partitioned-heat-conduction-convergence ${{ matrix.experiment.name }}
+          path: |
+            # working directory is ignored by actions/upload-artifact
+            ./partitioned-heat-conduction/convergence-studies
+
   merge:
     runs-on: ubuntu-latest
-    needs: run_experiments
+    needs: 
+      - run_experiments
+      - run_experiments_monolithic
     steps:
       - name: Merge results
         uses: actions/upload-artifact/merge@v4

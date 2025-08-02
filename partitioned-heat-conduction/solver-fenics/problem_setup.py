@@ -32,6 +32,12 @@ class StraightBoundary(SubDomain):
             return False
 
 
+class AllBoundary(SubDomain):
+    def inside(self, x, on_boundary):
+        if on_boundary:
+            return True
+
+
 def get_geometry(domain_part):
     nx = ny = 15  # We require a finer resolution here? https://github.com/precice/precice/issues/1610
 
@@ -41,11 +47,22 @@ def get_geometry(domain_part):
     elif domain_part is DomainPart.RIGHT:
         p0 = Point(x_coupling, y_bottom)
         p1 = Point(x_right, y_top)
+    elif domain_part is DomainPart.COMPLETE:
+        p0 = Point(x_left, y_bottom)
+        p1 = Point(x_right, y_top)
+        nx = ny = 29
     else:
         raise Exception("invalid domain_part: {}".format(domain_part))
 
     mesh = RectangleMesh(p0, p1, nx, ny, diagonal="left")
-    coupling_boundary = StraightBoundary()
-    remaining_boundary = ExcludeStraightBoundary()
+
+    if domain_part is DomainPart.LEFT or domain_part is DomainPart.RIGHT:
+        coupling_boundary = StraightBoundary()
+        remaining_boundary = ExcludeStraightBoundary()
+    elif domain_part is DomainPart.COMPLETE:
+        coupling_boundary = None
+        remaining_boundary = AllBoundary()
+    else:
+        raise Exception("invalid domain_part: {}".format(domain_part))
 
     return mesh, coupling_boundary, remaining_boundary
