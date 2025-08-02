@@ -63,7 +63,7 @@ jobs:
             # working directory is ignored by actions/upload-artifact
             ./partitioned-heat-conduction/convergence-studies
 
-  run_experiments:
+  run_experiments_monolithic:
     strategy:
       matrix:
         experiment:
