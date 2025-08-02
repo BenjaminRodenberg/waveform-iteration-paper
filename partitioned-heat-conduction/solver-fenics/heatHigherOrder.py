@@ -50,6 +50,7 @@ from io import TextIOWrapper
 
 
 class TimeSteppingSchemes(Enum):
+    BACKWARD_EULER = "BackwardEuler"
     GAUSS_LEGENDRE_2 = "GaussLegendre2"
     GAUSS_LEGENDRE_3 = "GaussLegendre3"
     GAUSS_LEGENDRE_4 = "GaussLegendre4"
@@ -183,6 +184,8 @@ elif args.time_stepping == TimeSteppingSchemes.LOBATTO_IIIC_3.value:
     tsm = LobattoIIIC(3)
 elif args.time_stepping == TimeSteppingSchemes.LOBATTO_IIIC_4.value:
     tsm = LobattoIIIC(4)
+elif args.time_stepping == TimeSteppingSchemes.BACKWARD_EULER.value:
+    tsm = BackwardEuler()
 else:
     raise Exception(f"Invalid time stepping scheme {args.time_stepping}. Please use one of {[ts.value for ts in TimeSteppingSchemes]}")
 

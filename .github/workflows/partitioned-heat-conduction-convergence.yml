@@ -9,6 +9,10 @@ jobs:
     strategy:
       matrix:
         experiment:
+        - name: Figure 14 IE 3
+          args: '--experiment sincos -w 6 -s 1 -wd 3 -sb 5 5 -dt 1 -tss BackwardEuler BackwardEuler --exchange-substeps -o convergence-studies/fig14_IE_3.csv'
+        - name: Figure 14 IE 5
+          args: '--experiment sincos -w 6 -s 1 -wd 5 -sb 5 5 -dt 1 -tss BackwardEuler BackwardEuler --exchange-substeps -o convergence-studies/fig14_IE_3.csv'
         - name: Figure 14 GL2 3
           args: '--experiment sincos -w 6 -s 1 -wd 3 -sb 5 5 -dt 1 -tss GaussLegendre2 GaussLegendre2 --exchange-substeps -o convergence-studies/fig14_GL2_3.csv'
         - name: Figure 14 GL2 5
@@ -17,18 +21,10 @@ jobs:
           args: '--experiment sincos -w 6 -s 1 -wd 3 -sb 5 5 -dt 1 -tss GaussLegendre3 GaussLegendre3 --exchange-substeps -o convergence-studies/fig14_GL3_3.csv'
         - name: Figure 14 GL3 5
           args: '--experiment sincos -w 6 -s 1 -wd 5 -sb 5 5 -dt 1 -tss GaussLegendre3 GaussLegendre3 --exchange-substeps -o convergence-studies/fig14_GL3_5.csv'
-        - name: Figure 14 GL4 3
-          args: '--experiment sincos -w 6 -s 1 -wd 3 -sb 5 5 -dt 1 -tss GaussLegendre4 GaussLegendre4 --exchange-substeps -o convergence-studies/fig14_GL4_3.csv'
-        - name: Figure 14 GL4 5
-          args: '--experiment sincos -w 6 -s 1 -wd 5 -sb 5 5 -dt 1 -tss GaussLegendre4 GaussLegendre4 --exchange-substeps -o convergence-studies/fig14_GL4_5.csv'
         - name: Figure 14 LIIIC3 3
           args: '--experiment sincos -w 6 -s 1 -wd 3 -sb 5 5 -dt 1 -tss LobattoIIIC3 LobattoIIIC3 --exchange-substeps -o convergence-studies/fig14_LIIIC3_3.csv'
         - name: Figure 14 LIIIC3 5
           args: '--experiment sincos -w 6 -s 1 -wd 5 -sb 5 5 -dt 1 -tss LobattoIIIC3 LobattoIIIC3 --exchange-substeps -o convergence-studies/fig14_LIIIC3_5.csv'
-        # - name: Figure 14 LIIIC4 3
-        #   args: '--experiment sincos -w 6 -s 1 -wd 3 -sb 5 5 -dt 1 -tss LobattoIIIC4 LobattoIIIC4 --exchange-substeps -o convergence-studies/fig14_LIIIC4_3.csv'
-        # - name: Figure 14 LIIIC4 5
-        #   args: '--experiment sincos -w 6 -s 1 -wd 5 -sb 5 5 -dt 1 -tss LobattoIIIC4 LobattoIIIC4 --exchange-substeps -o convergence-studies/fig14_LIIIC4_5.csv'
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -68,15 +64,13 @@ jobs:
       matrix:
         experiment:
         - name: Figure 14 IE mono
-          args: '--experiment sincos -tss BackwardEuler -o convergence-studies/fig14_IE_mono.csv'
+          args: '--experiment sincos -s 6 -dt 0.2 -tss BackwardEuler -o convergence-studies/fig14_IE_mono.csv'
         - name: Figure 14 GL2 mono
-          args: '--experiment sincos -tss GaussLegendre2 -o convergence-studies/fig14_GL2_mono.csv'
+          args: '--experiment sincos -s 6 -dt 0.2 -tss GaussLegendre2 -o convergence-studies/fig14_GL2_mono.csv'
         - name: Figure 14 GL3 mono
-          args: '--experiment sincos -tss GaussLegendre3 -o convergence-studies/fig14_GL3_mono.csv'
-        - name: Figure 14 GL4 mono
-          args: '--experiment sincos -tss GaussLegendre3 -o convergence-studies/fig14_GL3_mono.csv'
+          args: '--experiment sincos -s 6 -dt 0.2 -tss GaussLegendre3 -o convergence-studies/fig14_GL3_mono.csv'
         - name: Figure 14 LIIIC3 mono
-          args: '--experiment sincos -tss LobattoIIIC3 -o convergence-studies/fig14_LIIIC3_mono.csv'
+          args: '--experiment sincos -s 6 -dt 0.2 -tss LobattoIIIC3 -o convergence-studies/fig14_LIIIC3_mono.csv'
     runs-on: ubuntu-latest
     defaults:
       run:
