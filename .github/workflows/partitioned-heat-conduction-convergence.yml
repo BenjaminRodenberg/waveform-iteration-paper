@@ -1,4 +1,4 @@
-name: Run partitioned-heat-conduction experiments
+name: Run partitioned-heat-conduction convergence experiments
 on:
   release:
     types: [published]

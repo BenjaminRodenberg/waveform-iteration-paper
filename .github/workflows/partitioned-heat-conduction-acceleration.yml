@@ -1,4 +1,4 @@
-name: Run partitioned-heat-acceleration experiments
+name: Run partitioned-heat-conduction acceleration experiments
 on:
   release:
     types: [published]
