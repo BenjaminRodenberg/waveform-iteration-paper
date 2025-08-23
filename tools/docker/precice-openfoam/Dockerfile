@@ -1,7 +1,7 @@
 # Based on https://github.com/precice/precice/blob/625092d2c2f23f021708e8d74228d523742d1e1f/tools/releasing/packaging/docker/release.dockerfile
 
 # Use OpenFOAM docker container as basis.
-FROM opencfd/openfoam-run:2412
+FROM opencfd/openfoam-dev:2412
 # Remove OpenFOAM PPA
 RUN rm /etc/apt/sources.list.d/openfoam.list
 # Add the precice user
