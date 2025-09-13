@@ -6,7 +6,7 @@ on:
   pull_request:
 
 jobs:
-  experiment:
+  section_4_1:
     strategy:
       matrix:
         experiment:
@@ -60,7 +60,7 @@ jobs:
             ./oscillator-overlap/results
   merge:
     runs-on: ubuntu-latest
-    needs: run_experiments
+    needs: section_4_1
     steps:
       - name: Merge results
         uses: actions/upload-artifact/merge@v4
