@@ -147,7 +147,7 @@ if __name__ == "__main__":
     if args.out_filename:  # use file name given by user
         results_file_path = results_file_path / args.out_filename
     else:  # no file name is given. Create UUID for file name
-        results_file_path = results_file_path / "convergence-studies" / f"{uuid.uuid4()}.csv"
+        results_file_path = results_file_path / "results" / f"{uuid.uuid4()}.csv"
 
     results = Results(results_file_path)
 

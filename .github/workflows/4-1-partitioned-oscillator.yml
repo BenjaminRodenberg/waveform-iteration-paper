@@ -11,21 +11,21 @@ jobs:
       matrix:
         experiment:
         - name: Figure 10 constant
-          args: 'precice-config-template-FP.xml --silent --executor Github --config fig1_dts.csv -tss runge_kutta_4 generalized_alpha -wd 0 -o results/Fig10/data/constant.csv'
+          args: 'configs/precice-config-template-FP.xml --silent --executor Github --config configs/fig10_dts.csv -tss runge_kutta_4 generalized_alpha -wd 0 -o results/Fig10/data/constant.csv'
         - name: Figure 10 linear
-          args: 'precice-config-template-FP.xml --silent --executor Github --config fig1_dts.csv -tss runge_kutta_4 generalized_alpha -wd 1 -o convergence-studies/Fig10/data/linear.csv'
+          args: 'configs/precice-config-template-FP.xml --silent --executor Github --config configs/fig10_dts.csv -tss runge_kutta_4 generalized_alpha -wd 1 -o results/Fig10/data/linear.csv'
         - name: Figure 10 piecewise linear
-          args: 'precice-config-template-FP.xml --silent --executor Github --config fig1_dts.csv -tss runge_kutta_4 generalized_alpha -wd 1 --exchange-substeps -o convergence-studies/Fig10/data/piecewise_linear.csv'
+          args: 'configs/precice-config-template-FP.xml --silent --executor Github --config configs/fig10_dts.csv -tss runge_kutta_4 generalized_alpha -wd 1 --exchange-substeps -o results/Fig10/data/piecewise_linear.csv'
         - name: Figure 10 third-order B-spline
-          args: 'precice-config-template-FP.xml --silent --executor Github --config fig1_dts.csv -tss runge_kutta_4 generalized_alpha -wd 3 --exchange-substeps -o convergence-studies/Fig10/data/third_order_b-spline.csv'
+          args: 'configs/precice-config-template-FP.xml --silent --executor Github --config configs/fig10_dts.csv -tss runge_kutta_4 generalized_alpha -wd 3 --exchange-substeps -o results/Fig10/data/third_degree_b-spline.csv'
         - name: Figure 11
-          args: 'precice-config-template-FP.xml --silent --executor Github --config fig12.csv -tss runge_kutta_4 generalized_alpha -wd 3 --exchange-substeps -o convergence-studies/Fig11/data/contour_data.csv'
+          args: 'configs/precice-config-template-FP.xml --silent --executor Github --config configs/fig11_dts.csv -tss runge_kutta_4 generalized_alpha -wd 3 --exchange-substeps -o results/Fig11/data/contour_data.csv'
         - name: Table 1 fixed-point (shown)
-          args: 'precice-config-template-FP.xml --silent --executor Github --config optimal_dt.csv -tss runge_kutta_4 generalized_alpha -wd 3 --exchange-substeps -o convergence-studies/Tab1/data/FP.csv'
+          args: 'configs/precice-config-template-FP.xml --silent --executor Github --config configs/tab1_dts.csv -tss runge_kutta_4 generalized_alpha -wd 3 --exchange-substeps -o results/Tab1/data/FP.csv'
         - name: Table 1 reduced quasi-Newton (not shown)
-          args: 'precice-config-template-rQN.xml --silent --executor Github --config optimal_dt.csv -tss runge_kutta_4 generalized_alpha -wd 3 --exchange-substeps -o convergence-studies/Tab1/data/rQN.csv'
+          args: 'configs/precice-config-template-rQN.xml --silent --executor Github --config configs/tab1_dts.csv -tss runge_kutta_4 generalized_alpha -wd 3 --exchange-substeps -o results/Tab1/data/rQN.csv'
         - name: Table 1 full quasi-Newton (not shown)
-          args: 'precice-config-template-fQN.xml --silent --executor Github --config optimal_dt.csv -tss runge_kutta_4 generalized_alpha -wd 3 --exchange-substeps -o convergence-studies/Tab1/data/fQN.csv'
+          args: 'configs/precice-config-template-fQN.xml --silent --executor Github --config configs/tab1_dts.csv -tss runge_kutta_4 generalized_alpha -wd 3 --exchange-substeps -o results/Tab1/data/fQN.csv'
     runs-on: ubuntu-latest
     defaults:
       run:
