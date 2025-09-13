@@ -1,0 +1,42 @@
+\begin{tikzpicture}[
+ mark options={solid}
+ ]
+\begin{loglogaxis}[
+ height=.4\textwidth,
+ width=.6\textwidth,
+ tuftelike,
+ legend cell align=left,
+ xlabel={$\Delta t = 5 \, \delta t_A = 100 \, \delta t_B$},
+ x label style={at={(axis description cs:0.5,-0.1)},anchor=north},
+ ylabel={$e_A$},
+ y label style={at={(axis description cs:-0.025,0.5)},anchor=south},
+ align=center,
+ legend style={at={(1.1,.5)},anchor=west, draw=none, align=left},
+ xmin=0.0125,
+ xmax=0.2,
+ ymax=40,
+ ymin=5e-8,
+    % ymin=0.001,
+ xtick = {0.2, 0.1, 0.05, 0.025, 0.0125},
+ xticklabels = {$\frac{1}{5}$,$\frac{1}{10}$, $\frac{1}{20}$, $\frac{1}{40}$, $\frac{1}{80}$},
+ ]
+    \addplot[mark=*, color=red] table[x=time window size, y=error Mass-Left, col sep=comma]{data/constant.csv};
+    \addlegendentry{constant};
+
+    \addplot[mark=square,color=pblue] table[x=time window size , y=error Mass-Left, col sep=comma]{data/linear.csv};
+    \addlegendentry{linear};
+
+    \addplot[mark=square*,color=pblue] table[x=time window size , y=error Mass-Left, col sep=comma]{data/piecewise_linear.csv};
+    \addlegendentry{piecewise linear};
+
+    \addplot[mark=pentagon*,color=porange] table[x=time window size , y=error Mass-Left, col sep=comma]{data/third_degree_b-spline.csv};
+    \addlegendentry{third-degree B-spline};
+
+    \draw[] ([yshift=+0.75em]axis cs:0.025,0.5) -- node[above]{$\mathcal{O}(\delta t)$} ([yshift=+0.75em]axis cs:0.0125,0.25);
+    \draw[] ([yshift=-0.5em]axis cs:0.2,0.0499905460271616) -- node[below,xshift=+.05cm]{$\mathcal{O}(\delta t^2)$} ([yshift=-0.5em]axis cs:0.0125,0.0001952755704186);
+    \draw[] ([yshift=-0.5em]axis cs:0.025,5.257798539659574e-06) -- node[below,xshift=+.05cm]{$\mathcal{O}(\delta t^2)$} ([yshift=-0.5em]axis cs:0.0125,1.3144496349148935e-06);
+   %  \draw[] (axis cs:0.1,0.000002) -- node[above,xshift=-.5cm]{$\mathcal{O}(\delta t^3)$} (axis cs:0.001,0.000000000002);
+    \draw[] ([yshift=-0.5em]axis cs:0.2,0.0044) -- node[below,xshift=+.5em]{$\mathcal{O}(\delta t^4)$} ([yshift=-0.5em]axis cs:0.1,0.000275);
+
+    \end{loglogaxis}
+    \end{tikzpicture}

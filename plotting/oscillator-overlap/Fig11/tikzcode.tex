@@ -1,0 +1,78 @@
+\pgfmathdeclarefunction{lg10}{1}{%
+    \pgfmathparse{ln(#1)/ln(10)}%
+}
+
+\begin{tikzpicture}[mark options={solid}, use Hobby shortcut]
+    \begin{loglogaxis}[
+    tuftelike,
+    % clip = false,
+    % xlabel={$m_B$ uses {GA} with $\delta t_B = \Delta t / S_B,\, S_B\in\left\lbrace 4,8,16,\ldots,2048\right\rbrace$},
+    xlabel={$m_B$ uses {GA} with $\delta t_B$},
+    x label style={at={(axis description cs:0.5,-0.1)},anchor=north},
+    % ylabel={$m_A$ uses {RK4} with $\delta t_A = \Delta t / 4$},
+    ylabel={$m_A$ uses {RK4} with $\delta t_A$},
+    y label style={at={(axis description cs:-0.025,0.5)},anchor=south},
+    width=.8\textwidth,
+    % height=.4\textwidth,
+    xmax=2e-2,
+    xmin=1e-5,
+    xtick={1e-5,1e-4,1e-3,1e-2,1e-1},
+    xticklabels={$10^{-5}$, $10^{-4}$,$10^{-3}$, $10^{-2}$,},
+    ymin=1e-3,
+    ymax=3e-2,
+    ytick={1e-3,1e-2,1e-1},
+    yticklabels={$10^{-3}$, $10^{-2}$,},
+    axis equal image,
+    colormap name=viridis,
+    point meta max =-3,
+    point meta min =-8,
+    colorbar,
+    colorbar style={
+        % title=,
+        title={$\max(e_A,e_B)$},
+        ymax = -3,
+        ymin = -8,
+        ytick={-3,-4,-5,-6,-7,-8},
+        yticklabels={$10^{-3}$,$10^{-4}$,$10^{-5}$,$10^{-6}$,$10^{-7}$,$10^{-8}$},
+    }
+    ]
+    % Removed all data with \delta t_A < 10e-3 in times_reduced.csv
+    \addplot[scatter,only marks, scatter src=explicit] table[x=x, y=y, meta=z, meta expr=lg10(\thisrow{z}), col sep=semicolon]{data/times_reduced.csv};
+
+    \begin{pgfonlayer}{fg}
+        \addplot[draw]
+        table[x=c_line_x , y=c_line_y, col sep=semicolon]{data/contour_0.001.csv};
+        \addplot[draw]
+        table[x=c_line_x , y=c_line_y, col sep=semicolon]{data/contour_0.0001.csv};
+        \addplot[draw]
+        table[x=c_line_x , y=c_line_y, col sep=semicolon]{data/contour_1e-05.csv};
+        \addplot[draw]
+        table[x=c_line_x , y=c_line_y, col sep=semicolon]{data/contour_1e-06.csv};
+        \addplot[draw]
+        table[x=c_line_x , y=c_line_y, col sep=semicolon]{data/contour_1e-07.csv};
+    \end{pgfonlayer}
+
+
+    \begin{pgfonlayer}{bg}
+        \begin{scope}[opacity=1,transparency group]
+            \clip (axis cs:1e-5,1e-3) rectangle (1e-2,3e-2);
+            \draw[fill=gray!25, draw=none](axis cs:2e-3,3e-2) -- (axis cs:0.6e-6,0.6e-3) -- (axis cs:0.4e-5,0.6e-3) -- (axis cs:1e-2,3e-2) node(foropt){};
+        \end{scope}
+        \draw[<-](axis cs:2e-4,4.5e-2) -- node[above]{more expensive, same error}  ++ (3,0);
+        \draw[->](axis cs:5e-3,1.5e-2) -- ++ (0,-2);
+    \end{pgfonlayer}
+    \begin{pgfonlayer}{fg}
+    % \node[above = of foropt, yshift=-1cm,xshift=-1cm]{$\delta t_A / \delta t_B$ optimal};
+    \node [above right, xshift=-2.3cm] at (axis cs:  6.068944139550695e-05, 0.027359409978889637) {$\max(e_A, e_B) = 10^{-3}$};
+    \node [above right,xshift=0.2cm] at (axis cs:  3.434755181220991e-05, 0.01613664376285744) {$10^{-4}$};
+    \node [above right,xshift=0.15cm] at (axis cs:  1.9894938316598997e-05, 0.009153784888423784) {$10^{-5}$};
+    \node [above right,xshift=0.15cm] at (axis cs:  1.2889114879713652e-05, 0.005140781873633584) {$10^{-6}$};
+    \node [above right,xshift=-0.15cm] at (axis cs:  1.288911487971365e-05, 0.002836777910752072) {$10^{-7}$};
+    \end{pgfonlayer}
+
+    \begin{pgfonlayer}{fg}
+        \addplot[mark=square*, fill=gray, draw=black, only marks]table[x=time step size Mass-Right, y=time step size Mass-Left, col sep=comma]{data/sweet_spot.csv};
+    \end{pgfonlayer}{fg}
+
+\end{loglogaxis}
+\end{tikzpicture}
