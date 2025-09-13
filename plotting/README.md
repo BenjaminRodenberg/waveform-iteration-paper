@@ -14,7 +14,7 @@ Each of these folders contains subfolders names `FigX` or `TabX` for the respect
 
 * `*.tex` files with the LaTeX sources
 * `data` folder with the results produced by the respective test case. For convenience the data is already provided here. If you want to compute this data on your own, please refer to the `README.md` in the root folder of this.
-* A `Makefile` that to create a PDF file with the respective figure.
+* A `Makefile` to create a PDF file with the respective figure.
 
 ## Prerequisites
 
