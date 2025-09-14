@@ -83,9 +83,12 @@ jobs:
           name: oscillator-overlap
       - name: Replace pre-computed results with newly computed ones
         run: |
-          mv -rf oscillator-overlap/results/Fig10/data plotting/oscillator-overlap/Fig10/data
-          # mv -rf oscillator-overlap/results/Fig11/data plotting/oscillator-overlap/Fig10/data
-          # mv -rf oscillator-overlap/results/Tab1/data plotting/oscillator-overlap/Tab1/data
+          rm -r plotting/oscillator-overlap/Fig10/data
+          mv oscillator-overlap/results/Fig10/data plotting/oscillator-overlap/Fig10/data
+          # rm -r plotting/oscillator-overlap/Fig11/data
+          # mv oscillator-overlap/results/Fig11/data plotting/oscillator-overlap/Fig11/data
+          # rm -r plotting/oscillator-overlap/Tab1/data
+          # mv oscillator-overlap/results/Tab1/data plotting/oscillator-overlap/Tab1/data
       - name: Install Python dependencies
         uses: py-actions/py-dependency-install@v4
         with:
