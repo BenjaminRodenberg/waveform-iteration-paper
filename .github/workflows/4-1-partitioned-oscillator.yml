@@ -78,7 +78,7 @@ jobs:
       image: benjaminrodenberg/latex:wi-paper
     steps:
       - name: Download results from stage "experiment"
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v5
         with:
           name: oscillator-overlap
       - name: Replace pre-computed results with newly computed ones
