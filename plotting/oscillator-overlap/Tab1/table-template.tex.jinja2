@@ -1,0 +1,23 @@
+\documentclass[preview]{standalone}
+
+\usepackage{amsmath}
+\usepackage{booktabs}
+\begin{document}
+\begin{tabular}{ {%- for n in range(columns|length) -%}c{%- endfor -%} }
+\multicolumn{ {{ columns|length }} }{c}{\bfseries Acceleration scheme {{ acc_scheme }}}\\[2pt]
+{% set colsep = joiner(" & ") %}
+{%- for column in columns -%}
+{{ colsep() }}{{ column }}
+{%- endfor -%}
+\\
+\midrule
+{%- set rowsep = joiner(" \\\\") %}
+{%- for row in data -%}
+{{ rowsep() }}
+{%- set colsep = joiner(" & ") %}
+{% for value in row -%}
+{{ colsep() }}{{ value }}
+{%- endfor -%}
+{% endfor %}
+\end{tabular}
+\end{document}
