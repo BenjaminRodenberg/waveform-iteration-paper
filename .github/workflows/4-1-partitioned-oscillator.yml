@@ -7,6 +7,7 @@ on:
 
 jobs:
   section_4_1:
+    name: Perform experiments from Section 4.1
     strategy:
       matrix:
         experiment:
@@ -18,14 +19,14 @@ jobs:
           args: 'configs/precice-config-template-FP.xml --silent --executor Github --config configs/fig10_dts.csv -tss runge_kutta_4 generalized_alpha -wd 1 --exchange-substeps -o results/Fig10/data/piecewise_linear.csv'
         - name: Figure 10 third-order B-spline
           args: 'configs/precice-config-template-FP.xml --silent --executor Github --config configs/fig10_dts.csv -tss runge_kutta_4 generalized_alpha -wd 3 --exchange-substeps -o results/Fig10/data/third_degree_b-spline.csv'
-        - name: Figure 11
-          args: 'configs/precice-config-template-FP.xml --silent --executor Github --config configs/fig11_dts.csv -tss runge_kutta_4 generalized_alpha -wd 3 --exchange-substeps -o results/Fig11/data/contour_data.csv'
-        - name: Table 1 fixed-point (shown)
-          args: 'configs/precice-config-template-FP.xml --silent --executor Github --config configs/tab1_dts.csv -tss runge_kutta_4 generalized_alpha -wd 3 --exchange-substeps -o results/Tab1/data/FP.csv'
-        - name: Table 1 reduced quasi-Newton (not shown)
-          args: 'configs/precice-config-template-rQN.xml --silent --executor Github --config configs/tab1_dts.csv -tss runge_kutta_4 generalized_alpha -wd 3 --exchange-substeps -o results/Tab1/data/rQN.csv'
-        - name: Table 1 full quasi-Newton (not shown)
-          args: 'configs/precice-config-template-fQN.xml --silent --executor Github --config configs/tab1_dts.csv -tss runge_kutta_4 generalized_alpha -wd 3 --exchange-substeps -o results/Tab1/data/fQN.csv'
+        # - name: Figure 11
+        #   args: 'configs/precice-config-template-FP.xml --silent --executor Github --config configs/fig11_dts.csv -tss runge_kutta_4 generalized_alpha -wd 3 --exchange-substeps -o results/Fig11/data/contour_data.csv'
+        # - name: Table 1 fixed-point (shown)
+        #   args: 'configs/precice-config-template-FP.xml --silent --executor Github --config configs/tab1_dts.csv -tss runge_kutta_4 generalized_alpha -wd 3 --exchange-substeps -o results/Tab1/data/FP.csv'
+        # - name: Table 1 reduced quasi-Newton (not shown)
+        #   args: 'configs/precice-config-template-rQN.xml --silent --executor Github --config configs/tab1_dts.csv -tss runge_kutta_4 generalized_alpha -wd 3 --exchange-substeps -o results/Tab1/data/rQN.csv'
+        # - name: Table 1 full quasi-Newton (not shown)
+        #   args: 'configs/precice-config-template-fQN.xml --silent --executor Github --config configs/tab1_dts.csv -tss runge_kutta_4 generalized_alpha -wd 3 --exchange-substeps -o results/Tab1/data/fQN.csv'
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -58,7 +59,9 @@ jobs:
           path: |
             # working directory is ignored by actions/upload-artifact
             ./oscillator-overlap/results
+ 
   merge:
+    name: Merge output artifacts
     runs-on: ubuntu-latest
     needs: section_4_1
     steps:
@@ -66,3 +69,36 @@ jobs:
         uses: actions/upload-artifact/merge@v4
         with:
           name: oscillator-overlap
+
+  visualize:
+    name: Create plots and tables to visualize experiments from Section 4.1
+    needs: merge
+    runs-on: ubuntu-latest
+    container: 
+      image: benjaminrodenberg/latex:wi-paper
+    steps:
+      - name: Download results from stage "experiment"
+        uses: actions/download-artifact@v3
+        with:
+          name: oscillator-overlap
+      - name: Replace pre-computed results with newly computed ones
+        run: |
+          mv -rf oscillator-overlap/results/Fig10/data plotting/oscillator-overlap/Fig10/data
+          # mv -rf oscillator-overlap/results/Fig11/data plotting/oscillator-overlap/Fig10/data
+          # mv -rf oscillator-overlap/results/Tab1/data plotting/oscillator-overlap/Tab1/data
+      - name: Install Python dependencies
+        uses: py-actions/py-dependency-install@v4
+        with:
+          path: plotting/requirements.txt
+      - name: Create visualizations
+        working-directory: plotting
+        run: make
+      - name: Store results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: visualizations
+          path: |
+            plotting/oscillator-overlap/Fig10/main.pdf
+            # plotting/oscillator-overlap/Fig11/main.pdf
+            # plotting/oscillator-overlap/Tab1/main.pdf
