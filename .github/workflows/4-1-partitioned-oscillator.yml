@@ -77,6 +77,8 @@ jobs:
     container: 
       image: benjaminrodenberg/latex:wi-paper
     steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
       - name: Download results from stage "experiment"
         uses: actions/download-artifact@v5
         with:
