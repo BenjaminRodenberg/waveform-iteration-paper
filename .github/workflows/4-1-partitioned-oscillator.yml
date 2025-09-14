@@ -92,9 +92,7 @@ jobs:
           rm -r plotting/oscillator-overlap/Tab1/data
           mv oscillator-overlap/results/Tab1/data plotting/oscillator-overlap/Tab1/data
       - name: Install Python dependencies
-        uses: py-actions/py-dependency-install@v4
-        with:
-          path: plotting/requirements.txt
+        run: pip install --break-system-packages -r requirements.txt
       - name: Create visualizations
         working-directory: plotting
         run: make
