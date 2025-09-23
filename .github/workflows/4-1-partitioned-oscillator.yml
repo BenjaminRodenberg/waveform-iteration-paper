@@ -60,19 +60,9 @@ jobs:
             # working directory is ignored by actions/upload-artifact
             ./oscillator-overlap/results
  
-  merge:
-    name: Merge output artifacts
-    runs-on: ubuntu-latest
-    needs: section_4_1
-    steps:
-      - name: Merge results
-        uses: actions/upload-artifact/merge@v4
-        with:
-          name: oscillator-overlap
-
   visualize:
     name: Create plots and tables to visualize experiments from Section 4.1
-    needs: merge
+    needs: section_4_1
     runs-on: ubuntu-latest
     container: 
       image: benjaminrodenberg/latex:wi-paper
@@ -82,15 +72,20 @@ jobs:
       - name: Download results from stage "experiment"
         uses: actions/download-artifact@v5
         with:
-          name: oscillator-overlap
+          pattern: oscillator-overlap*
+          merge-multiple: true
+          path: artifacts
+      - name: Show structure for debugging
+        run: |
+          ls -R artifacts
       - name: Replace pre-computed results with newly computed ones
         run: |
           rm -r plotting/oscillator-overlap/Fig10/data
-          mv oscillator-overlap/results/Fig10/data plotting/oscillator-overlap/Fig10/data
+          mv artifacts/oscillator-overlap/results/Fig10/data plotting/oscillator-overlap/Fig10/data
           # rm -r plotting/oscillator-overlap/Fig11/data
-          # mv oscillator-overlap/results/Fig11/data plotting/oscillator-overlap/Fig11/data
+          # mv artifacts/oscillator-overlap/results/Fig11/data plotting/oscillator-overlap/Fig11/data
           rm -r plotting/oscillator-overlap/Tab1/data
-          mv oscillator-overlap/results/Tab1/data plotting/oscillator-overlap/Tab1/data
+          mv artifacts/oscillator-overlap/results/Tab1/data plotting/oscillator-overlap/Tab1/data
       - name: Install Python dependencies
         working-directory: plotting
         run: pip install --break-system-packages -r requirements.txt
