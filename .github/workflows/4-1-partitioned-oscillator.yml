@@ -100,7 +100,9 @@ jobs:
           path: |
             plotting/oscillator-overlap/Fig10/main.pdf
             # plotting/oscillator-overlap/Fig11/main.pdf
-            plotting/oscillator-overlap/Tab1/main.pdf
+            plotting/oscillator-overlap/Tab1/FP.pdf
+            plotting/oscillator-overlap/Tab1/fQN.pdf
+            plotting/oscillator-overlap/Tab1/rQN.pdf
 
   merge:
     name: Merge output artifacts
