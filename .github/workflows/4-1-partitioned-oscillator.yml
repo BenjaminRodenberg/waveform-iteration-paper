@@ -81,11 +81,11 @@ jobs:
       - name: Replace pre-computed results with newly computed ones
         run: |
           rm -r plotting/oscillator-overlap/Fig10/data
-          mv artifacts/oscillator-overlap/results/Fig10/data plotting/oscillator-overlap/Fig10/data
+          mv artifacts/Fig10/data plotting/oscillator-overlap/Fig10/data
           # rm -r plotting/oscillator-overlap/Fig11/data
-          # mv artifacts/oscillator-overlap/results/Fig11/data plotting/oscillator-overlap/Fig11/data
+          # mv artifacts/Fig11/data plotting/oscillator-overlap/Fig11/data
           rm -r plotting/oscillator-overlap/Tab1/data
-          mv artifacts/oscillator-overlap/results/Tab1/data plotting/oscillator-overlap/Tab1/data
+          mv artifacts/Tab1/data plotting/oscillator-overlap/Tab1/data
       - name: Install Python dependencies
         working-directory: plotting
         run: pip install --break-system-packages -r requirements.txt
@@ -101,3 +101,13 @@ jobs:
             plotting/oscillator-overlap/Fig10/main.pdf
             # plotting/oscillator-overlap/Fig11/main.pdf
             plotting/oscillator-overlap/Tab1/main.pdf
+
+  merge:
+    name: Merge output artifacts
+    runs-on: ubuntu-latest
+    needs: section_4_1
+    steps:
+      - name: Merge results
+        uses: actions/upload-artifact/merge@v4
+        with:
+          name: oscillator-overlap
