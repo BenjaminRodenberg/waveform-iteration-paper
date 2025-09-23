@@ -90,7 +90,7 @@ jobs:
         working-directory: plotting
         run: pip install --break-system-packages -r requirements.txt
       - name: Create visualizations
-        working-directory: plotting
+        working-directory: plotting/oscillator-overlap
         run: make
       - name: Store results
         if: always()
