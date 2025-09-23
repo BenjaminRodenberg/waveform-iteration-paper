@@ -18,7 +18,7 @@ Each of these folders contains subfolders names `FigX` or `TabX` for the respect
 
 ## Prerequisites
 
-For creating the figures and tables you need a working LaTeX installation and Python with the packages `scipy`, `pandas`, and `matplotlib`.
+For creating the figures and tables you need a working LaTeX installation and Python with the packages `scipy`, `pandas`, `jinja2`, and `matplotlib`.
 
 ### Use docker
 
@@ -44,7 +44,7 @@ apt install python3 python3-pip
 Please install additional Python packages either via your package manager by running
 
 ```sh
-apt install python3-pygments python3-pandas python3-scipy
+apt install python3-pygments python3-pandas python3-scipy python3-jinja2
 ```
 
 or you can also use virtual environment by first installing `python3-venv` and then installing the packages given in the `requirements.txt` from this folder:
