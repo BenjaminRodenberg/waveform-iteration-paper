@@ -1,0 +1,11 @@
+# participants version:{'Monolithic': {'url': 'BenjaminRodenberg/test-cases-dissertation', 'repo': 'refs/heads/waveform-iteration-precice-paper', 'chash': '6b3f5832124364d6f49ea5823f135120bb3b2eb4'}}
+# participants:{'Monolithic': <prepesthel.participant.Participant object at 0x7fec736f6f30>}
+# run cmd:python3 doConvergenceStudyMonolithic.py --silent --executor Github --experiment sincos -s 6 -dt 0.2 -tss GaussLegendre2 -o convergence-studies/fig14_GL2_mono.csv
+# args:Namespace(silent=True, executor='Github', max_time=1.0, base_time_step_size=0.2, time_step_refinements=6, time_step_refinement_factor=[2], experiment='sincos', time_stepping_scheme=['GaussLegendre2'], out_filename='convergence-studies/fig14_GL2_mono.csv')
+time step size Monolithic,error Monolithic
+0.2,2.210814983713733e-06
+0.1,1.5250089525188077e-07
+0.05,1.0345489477658526e-08
+0.025,6.696252292736297e-10
+0.0125,4.2284555826563795e-11
+0.00625,2.5674779399076682e-12

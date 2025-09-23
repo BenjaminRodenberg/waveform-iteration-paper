@@ -1,0 +1,14 @@
+# participants version:{'Dirichlet': {'url': 'BenjaminRodenberg/test-cases-dissertation', 'repo': 'refs/heads/waveform-iteration-precice-paper', 'chash': '6b3f5832124364d6f49ea5823f135120bb3b2eb4'}, 'Neumann': {'url': 'BenjaminRodenberg/test-cases-dissertation', 'repo': 'refs/heads/waveform-iteration-precice-paper', 'chash': '6b3f5832124364d6f49ea5823f135120bb3b2eb4'}}
+# participants:{'Dirichlet': <prepesthel.participant.Participant object at 0x7fc4ebb4aa50>, 'Neumann': <prepesthel.participant.Participant object at 0x7fc4ea839820>}
+# run cmd:python3 doConvergenceStudy.py precice-config-template.xml --silent --executor Github --experiment sincos -w 6 -s 1 -wd 3 -sb 5 5 -dt 1 -tss BackwardEuler BackwardEuler --exchange-substeps -o convergence-studies/fig14_IE_3.csv
+# args:Namespace(template_path='precice-config-template.xml', silent=True, executor='Github', max_time=1.0, base_time_window_size=1.0, time_window_refinements=6, base_time_step_refinement=[5, 5], time_step_refinements=1, time_step_refinement_factor=[2, 2], experiment='sincos', time_stepping_scheme=['BackwardEuler', 'BackwardEuler'], waveform_degree=3, exchange_substeps=True, out_filename='convergence-studies/fig14_IE_3.csv')
+# precice.get_version_information():b'3.2.0;no-info [git failed to run];PRECICE_FEATURE_MPI_COMMUNICATION=Y;PRECICE_FEATURE_PETSC_MAPPING=Y;PRECICE_FEATURE_GINKGO_MAPPING=N;PRECICE_FEATURE_PYTHON_ACTIONS=Y;PRECICE_BINDINGS_C=Y;PRECICE_BINDINGS_FORTRAN=Y;CXX=GNU;CXXFLAGS= -O3 -DNDEBUG;LDFLAGS='
+# precice.__version__:3.2.1
+# precice_config_params:{'time_window_size': 0.03125, 'max_time': 1.0, 'waveform_degree': 3, 'substeps': True}
+time window size,time step size Dirichlet,time step size Neumann,substeps Dirichlet,avg(iterations / window),max(iterations / window),error Dirichlet,substeps Neumann,error Neumann
+1.0,0.2,0.2,5,24.0,24,0.0246440592744771,5,0.0478496830310836
+0.5,0.1,0.1,5,24.5,28,0.0122229137278284,5,0.0238235136413221
+0.25,0.05,0.05,5,26.5,29,0.0060861143149774,5,0.0118867931302802
+0.125,0.025,0.025,5,27.75,36,0.0030365623792157,5,0.0059372334145093
+0.0625,0.0125,0.0125,5,26.5625,35,0.0015166292459694,5,0.0029670886455921
+0.03125,0.00625,0.00625,5,26.40625,33,0.0007578978454205,5,0.0014831639693883

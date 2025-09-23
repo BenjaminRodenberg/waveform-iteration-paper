@@ -1,0 +1,56 @@
+\begin{tikzpicture}[
+   mark options={solid}
+]
+\begin{loglogaxis}[
+ tuftelike,
+ height=0.5\textwidth,
+ width=0.65\textwidth,
+ legend cell align=left,
+ xlabel={$\delta t_A = \delta t_B = \Delta t / 5$},
+ x label style={at={(axis description cs:0.5,-0.1)},anchor=north},
+ ylabel={$e_A$},
+ y label style={at={(axis description cs:-0.025,0.5)},anchor=south},
+ align=center,
+ legend style={at={(1.05,0.5)},anchor=west, draw=none, align=left},
+ xmin=0.00625,
+ ymax=0.1,
+ ymin=1e-13,
+% ymin=0.001,
+ xtick = {0.2, 0.1, 0.05, 0.025, 0.0125, 0.00625},
+ xticklabels = {$\frac{1}{5}$, $\frac{1}{10}$, $\frac{1}{20}$, $\frac{1}{40}$, $\frac{1}{80}$, $\frac{1}{160}$},
+]
+    \addplot[dashed, color=red] table[x=time step size Monolithic, y=error Monolithic, col sep=comma]{data/IE_mono.csv};
+    \addlegendentry{{IE}, mono}
+
+    \addplot[mark=pentagon, color=red] table[x=time step size Dirichlet, y=error Dirichlet, col sep=comma]{data/IE_3.csv};
+    \addlegendentry{{IE}, $p=3$}
+
+    \addplot[dashed, color=pblue] table[x=time step size Monolithic, y=error Monolithic, col sep=comma]{data/GL2_mono.csv};
+    \addlegendentry{{GL(2)}, mono}
+
+    \addplot[mark=o, dotted, color=pblue] table[x=time step size Dirichlet, y=error Dirichlet, col sep=comma]{data/GL2_2.csv};
+    \addlegendentry{{GL(2)}, $p=2$}
+
+    \addplot[mark=o, color=pblue] table[x=time step size Dirichlet, y=error Dirichlet, col sep=comma]{data/GL2_3.csv};
+    \addlegendentry{{GL(2)}, $p=3$}
+
+    \addplot[mark=*,color=pblue] table[x=time step size Dirichlet , y=error Dirichlet, col sep=comma]{data/GL2_5.csv};
+    \addlegendentry{{GL(2)}, $p=5$}
+
+   \addplot[dashed, color=gray] table[x=time step size Monolithic, y=error Monolithic, col sep=comma]{data/GL3_mono.csv};
+   \addlegendentry{{GL(3)}, mono}
+
+    \addplot[mark=triangle, color=gray] table[x=time step size Dirichlet, y=error Dirichlet, col sep=comma]{data/GL3_3.csv};
+    \addlegendentry{{GL(3)}, $p=3$}
+
+    \addplot[mark=triangle*, color=gray] table[x=time step size Dirichlet , y=error Dirichlet, col sep=comma]{data/GL3_5.csv};
+    \addlegendentry{{GL(3)}, $p=5$}
+
+    \draw[] ([yshift=+0.2em]axis cs:0.05,0.012) -- node[above]{$\mathcal{O}(\delta t)$} ([yshift=+0.2em]axis cs:0.00625,0.0015);
+    \draw[] ([yshift=+0.4em]axis cs:0.05,1.2224e-06) -- node[above]{$\mathcal{O}(\delta t^2)$} ([yshift=+0.4em]axis cs:0.00625,1.91e-8);
+    \draw[] ([yshift=+0.3em]axis cs:0.1,6.461244243297452e-07) -- node[above,pos=0.8,xshift=-.1cm]{$\mathcal{O}(\delta t^3)$} ([yshift=+0.3em]axis cs:0.00625,1.577452207836292e-10);
+    \draw[] ([yshift=-0.5em]axis cs:0.1,2.3046058578483483e-07) -- node[below,xshift=+.25cm]{$\mathcal{O}(\delta t^4)$} ([yshift=-0.5em]axis cs:0.00625,3.5165494657109807e-12);
+   \draw[] ([yshift=-0.4em]axis cs:0.2,1.0241990258728702e-08) -- node[below,xshift=+.35cm]{$\mathcal{O}(\delta t^5)$} ([yshift=-0.4em]axis cs:0.025,3.1256073787624213e-13);
+
+    \end{loglogaxis}
+    \end{tikzpicture}

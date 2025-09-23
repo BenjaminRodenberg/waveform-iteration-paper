@@ -1,0 +1,59 @@
+\documentclass{standalone}
+
+\usepackage{amsmath}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage{tikz}
+\usetikzlibrary{calc, intersections, positioning, hobby, fit, patterns}
+
+\pgfdeclarelayer{bg}    % declare background layer
+\pgfdeclarelayer{fg}    % declare foreground layer
+\pgfsetlayers{bg,main,fg}  % set the order of the layers (main is the standard layer)
+
+%%% see https://tex.stackexchange.com/a/20426 and https://tex.stackexchange.com/a/419123
+\makeatletter
+\pgfkeys{%
+  /tikz/on layer/.code={
+    \pgfonlayer{#1}\begingroup
+    \aftergroup\endpgfonlayer
+    \aftergroup\endgroup
+  },
+  /tikz/node on layer/.code={
+    \gdef\node@@on@layer{%
+      \setbox\tikz@tempbox=\hbox\bgroup\pgfonlayer{#1}\unhbox\tikz@tempbox\endpgfonlayer\egroup}
+    \aftergroup\node@on@layer
+  },
+  /tikz/end node on layer/.code={
+    \endpgfonlayer\endgroup\endgroup
+  }
+}
+\def\node@on@layer{\aftergroup\node@@on@layer}
+\makeatother
+%%%
+
+%%% Define tuftelike pgfplots style
+% see https://tex.stackexchange.com/questions/155194/tufte-like-axis-with-pgfplots
+
+\pgfkeys{/pgfplots/tuftelike/.style={
+  semithick,
+  tick style={major tick length=4pt,semithick,black},
+  separate axis lines,
+  axis x line*=bottom,
+  axis x line shift=10pt,
+  axis y line*=left,
+  axis y line shift=10pt,
+  enlarge x limits=false,
+  enlarge y limits=false
+  }}
+
+%%% END
+
+\definecolor{pblue}{RGB}{0,102,189}  % precice blue
+\definecolor{porange}{RGB}{243,98,33}  % precice orange
+
+\tikzstyle{sample}=[circle,draw,inner sep=1.5pt,thick,fill=white]
+\tikzstyle{stample}=[circle,inner sep=1.5pt,fill]
+
+\begin{document}
+\input{tikzcode.tex}
+\end{document}

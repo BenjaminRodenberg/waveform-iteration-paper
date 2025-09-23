@@ -1,0 +1,14 @@
+# participants version:{'Dirichlet': {'url': 'BenjaminRodenberg/test-cases-dissertation', 'repo': 'refs/heads/waveform-iteration-precice-paper', 'chash': '6b3f5832124364d6f49ea5823f135120bb3b2eb4'}, 'Neumann': {'url': 'BenjaminRodenberg/test-cases-dissertation', 'repo': 'refs/heads/waveform-iteration-precice-paper', 'chash': '6b3f5832124364d6f49ea5823f135120bb3b2eb4'}}
+# participants:{'Dirichlet': <prepesthel.participant.Participant object at 0x7f8a9ca59160>, 'Neumann': <prepesthel.participant.Participant object at 0x7f8a9b0c4650>}
+# run cmd:python3 doConvergenceStudy.py precice-config-template.xml --silent --executor Github --experiment sincos -w 6 -s 1 -wd 5 -sb 5 5 -dt 1 -tss GaussLegendre3 GaussLegendre3 --exchange-substeps -o convergence-studies/fig14_GL3_5.csv
+# args:Namespace(template_path='precice-config-template.xml', silent=True, executor='Github', max_time=1.0, base_time_window_size=1.0, time_window_refinements=6, base_time_step_refinement=[5, 5], time_step_refinements=1, time_step_refinement_factor=[2, 2], experiment='sincos', time_stepping_scheme=['GaussLegendre3', 'GaussLegendre3'], waveform_degree=5, exchange_substeps=True, out_filename='convergence-studies/fig14_GL3_5.csv')
+# precice.get_version_information():b'3.2.0;no-info [git failed to run];PRECICE_FEATURE_MPI_COMMUNICATION=Y;PRECICE_FEATURE_PETSC_MAPPING=Y;PRECICE_FEATURE_GINKGO_MAPPING=N;PRECICE_FEATURE_PYTHON_ACTIONS=Y;PRECICE_BINDINGS_C=Y;PRECICE_BINDINGS_FORTRAN=Y;CXX=GNU;CXXFLAGS= -O3 -DNDEBUG;LDFLAGS='
+# precice.__version__:3.2.1
+# precice_config_params:{'time_window_size': 0.03125, 'max_time': 1.0, 'waveform_degree': 5, 'substeps': True}
+time window size,time step size Dirichlet,time step size Neumann,substeps Dirichlet,avg(iterations / window),max(iterations / window),error Dirichlet,substeps Neumann,error Neumann
+1.0,0.2,0.2,5,20.0,20,7.128777370208952e-08,5,1.2246048820845836e-08
+0.5,0.1,0.1,5,21.5,23,7.603161218489335e-10,5,8.17996969904548e-10
+0.25,0.05,0.05,5,22.25,25,5.2172739260097454e-11,5,4.526550861550131e-11
+0.125,0.025,0.025,5,21.25,22,3.058365875908418e-12,5,2.064829662180848e-12
+0.0625,0.0125,0.0125,5,15.6875,18,4.447185801449569e-13,5,2.382934260039674e-13
+0.03125,0.00625,0.00625,5,15.28125,18,6.701254685593229e-13,5,5.418633134245625e-13
