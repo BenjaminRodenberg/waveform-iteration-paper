@@ -134,6 +134,8 @@ jobs:
         run: |
           rm -r plotting/partitioned-heat-conduction/Fig13/data
           mv artifacts/Fig13/data plotting/partitioned-heat-conduction/Fig13/data
+          rm -r plotting/partitioned-heat-conduction/Fig13extra/data
+          mv artifacts/Fig13extra/data plotting/partitioned-heat-conduction/Fig13extra/data
       - name: Install Python dependencies
         working-directory: plotting
         run: pip install --break-system-packages -r requirements.txt
