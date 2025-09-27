@@ -70,9 +70,10 @@
     \node [above right,xshift=-0.15cm] at (axis cs:  1.288911487971365e-05, 0.002836777910752072) {$10^{-7}$};
     \end{pgfonlayer}
 
-    \begin{pgfonlayer}{fg}
-        \addplot[mark=square*, fill=gray, draw=black, only marks]table[x=time step size Mass-Right, y=time step size Mass-Left, col sep=comma]{data/sweet_spot.csv};
-    \end{pgfonlayer}
+    % Comment out - has to be created manually
+    % \begin{pgfonlayer}{fg}
+    %     \addplot[mark=square*, fill=gray, draw=black, only marks]table[x=time step size Mass-Right, y=time step size Mass-Left, col sep=comma]{data/sweet_spot.csv};
+    % \end{pgfonlayer}
 
 \end{loglogaxis}
 \end{tikzpicture}
