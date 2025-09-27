@@ -8,10 +8,10 @@
     % clip = false,
     % xlabel={$m_B$ uses {GA} with $\delta t_B = \Delta t / S_B,\, S_B\in\left\lbrace 4,8,16,\ldots,2048\right\rbrace$},
     xlabel={$m_B$ uses {GA} with $\delta t_B$},
-    x label style={at={(axis description cs:0.5,-0.1)},anchor=north},
+    x label style={at={(axis description cs:0.5,-0.25)},anchor=north},
     % ylabel={$m_A$ uses {RK4} with $\delta t_A = \Delta t / 4$},
     ylabel={$m_A$ uses {RK4} with $\delta t_A$},
-    y label style={at={(axis description cs:-0.025,0.5)},anchor=south},
+    y label style={at={(axis description cs:-0.15,0.5)},anchor=south},
     width=.8\textwidth,
     % height=.4\textwidth,
     xmax=2e-2,
@@ -58,8 +58,8 @@
             \clip (axis cs:1e-5,1e-3) rectangle (1e-2,3e-2);
             \draw[fill=gray!25, draw=none](axis cs:2e-3,3e-2) -- (axis cs:0.6e-6,0.6e-3) -- (axis cs:0.4e-5,0.6e-3) -- (axis cs:1e-2,3e-2) node(foropt){};
         \end{scope}
-        \draw[<-](axis cs:2e-4,4.5e-2) -- node[above]{more expensive, same error}  ++ (3,0);
-        \draw[->](axis cs:5e-3,1.5e-2) -- ++ (0,-2);
+        \draw[<-](axis cs:2e-4,4.5e-2) -- node[above]{more expensive, same error}  ([xshift=3cm]axis cs:2e-4,4.5e-2);
+        \draw[->](axis cs:5e-3,1.5e-2) -- ([yshift=-2cm]axis cs:5e-3,1.5e-2);
     \end{pgfonlayer}
     \begin{pgfonlayer}{fg}
     % \node[above = of foropt, yshift=-1cm,xshift=-1cm]{$\delta t_A / \delta t_B$ optimal};

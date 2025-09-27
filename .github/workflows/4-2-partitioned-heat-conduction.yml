@@ -149,6 +149,7 @@ jobs:
           name: visualizations
           path: |
             plotting/partitioned-heat-conduction/Fig13/main.pdf
+            plotting/partitioned-heat-conduction/Fig13extra/main.pdf
 
   merge:
     name: Merge output artifacts
