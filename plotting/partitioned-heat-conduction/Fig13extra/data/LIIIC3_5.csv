@@ -1,0 +1,14 @@
+# participants version:{'Dirichlet': {'url': 'BenjaminRodenberg/test-cases-dissertation', 'repo': 'refs/pull/7/merge', 'chash': 'c0213e93b4a110ffb1158de4de01220b85cfea53'}, 'Neumann': {'url': 'BenjaminRodenberg/test-cases-dissertation', 'repo': 'refs/pull/7/merge', 'chash': 'c0213e93b4a110ffb1158de4de01220b85cfea53'}}
+# participants:{'Dirichlet': <prepesthel.participant.Participant object at 0x7f333610e210>, 'Neumann': <prepesthel.participant.Participant object at 0x7f3339280380>}
+# run cmd:python3 doConvergenceStudy.py precice-config-template.xml --silent --executor Github --experiment sincos -w 6 -s 1 -wd 5 -sb 5 5 -dt 1 -tss LobattoIIIC3 LobattoIIIC3 --exchange-substeps -o results/Fig13extra/data/LIIIC3_5.csv
+# args:Namespace(template_path='precice-config-template.xml', silent=True, executor='Github', max_time=1.0, base_time_window_size=1.0, time_window_refinements=6, base_time_step_refinement=[5, 5], time_step_refinements=1, time_step_refinement_factor=[2, 2], experiment='sincos', time_stepping_scheme=['LobattoIIIC3', 'LobattoIIIC3'], waveform_degree=5, exchange_substeps=True, out_filename='results/Fig13extra/data/LIIIC3_5.csv')
+# precice.get_version_information():b'3.2.0;no-info [git failed to run];PRECICE_FEATURE_MPI_COMMUNICATION=Y;PRECICE_FEATURE_PETSC_MAPPING=Y;PRECICE_FEATURE_GINKGO_MAPPING=N;PRECICE_FEATURE_PYTHON_ACTIONS=Y;PRECICE_BINDINGS_C=Y;PRECICE_BINDINGS_FORTRAN=Y;CXX=GNU;CXXFLAGS= -O3 -DNDEBUG;LDFLAGS='
+# precice.__version__:3.2.1
+# precice_config_params:{'time_window_size': 0.03125, 'max_time': 1.0, 'waveform_degree': 5, 'substeps': True}
+time window size,time step size Dirichlet,time step size Neumann,substeps Dirichlet,avg(iterations / window),max(iterations / window),error Dirichlet,substeps Neumann,error Neumann
+1.0,0.2,0.2,5,18.0,18,5.23115300096288e-07,5,3.750056928196948e-07
+0.5,0.1,0.1,5,18.0,18,1.3355284086313513e-07,5,8.542054873444491e-08
+0.25,0.05,0.05,5,18.25,20,2.1732006020650426e-08,5,1.1714892326759248e-08
+0.125,0.025,0.025,5,20.5,23,2.0190416926975373e-09,5,9.825698033175472e-10
+0.0625,0.0125,0.0125,5,18.1875,24,1.7369189993630312e-10,5,7.791703698251051e-11
+0.03125,0.00625,0.00625,5,16.8125,24,1.4948683497967582e-11,5,6.510204998279854e-12

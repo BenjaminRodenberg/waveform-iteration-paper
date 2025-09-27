@@ -1,0 +1,11 @@
+# participants version:{'Monolithic': {'repo': 'git@github.com:BenjaminRodenberg/test-cases-dissertation.git', 'chash': '53071d2-dirty'}}
+# participants:{'Monolithic': <prepesthel.participant.Participant object at 0x72a03c571610>}
+# run cmd:python3 doConvergenceStudyMonolithic.py --experiment sincos -s 6 -dt 0.2 -tss LobattoIIIC3 -o results/Fig13extra/data/LIIIC3_mono.csv
+# args:Namespace(silent=False, executor='Local', max_time=1.0, base_time_step_size=0.2, time_step_refinements=6, time_step_refinement_factor=[2], experiment='sincos', time_stepping_scheme=['LobattoIIIC3'], out_filename='results/Fig13extra/data/LIIIC3_mono.csv')
+time step size Monolithic,error Monolithic
+0.2,1.5716179592100165e-06
+0.1,1.340447393427532e-07
+0.05,1.0505622626825962e-08
+0.025,7.526827558027851e-10
+0.0125,5.175953348067664e-11
+0.00625,3.5165494657109807e-12
