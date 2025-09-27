@@ -75,7 +75,7 @@ jobs:
         - name: Figure 13 GL(3), mono
           args: '--experiment sincos -s 6 -dt 0.2 -tss GaussLegendre3 -o results/Fig13/data/GL3_mono.csv'
         - name: Figure 13 LIIIC(3), mono
-          args: '--experiment sincos -s 6 -dt 0.2 -tss GaussLegendre3 -o results/Fig13extra/data/LIIIC3_mono.csv'
+          args: '--experiment sincos -s 6 -dt 0.2 -tss LobattoIIIC3 -o results/Fig13extra/data/LIIIC3_mono.csv'
     runs-on: ubuntu-latest
     defaults:
       run:
