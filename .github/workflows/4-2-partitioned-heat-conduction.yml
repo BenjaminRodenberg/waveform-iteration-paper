@@ -23,6 +23,12 @@ jobs:
           args: '--experiment sincos -w 6 -s 1 -wd 3 -sb 5 5 -dt 1 -tss GaussLegendre3 GaussLegendre3 --exchange-substeps -o results/Fig13/data/GL3_3.csv'
         - name: Figure 13 GL(3), p=5
           args: '--experiment sincos -w 6 -s 1 -wd 5 -sb 5 5 -dt 1 -tss GaussLegendre3 GaussLegendre3 --exchange-substeps -o results/Fig13/data/GL3_5.csv'
+        - name: Figure 13 LIIIC(3), p=2
+          args: '--experiment sincos -w 6 -s 1 -wd 2 -sb 5 5 -dt 1 -tss LobattoIIIC3 LobattoIIIC3 --exchange-substeps -o results/Fig13extra/data/LIIIC3_2.csv'
+        - name: Figure 13 LIIIC(3), p=3
+          args: '--experiment sincos -w 6 -s 1 -wd 3 -sb 5 5 -dt 1 -tss LobattoIIIC3 LobattoIIIC3 --exchange-substeps -o results/Fig13extra/data/LIIIC3_3.csv'
+        - name: Figure 13 LIIIC(3), p=5
+          args: '--experiment sincos -w 6 -s 1 -wd 5 -sb 5 5 -dt 1 -tss LobattoIIIC3 LobattoIIIC3 --exchange-substeps -o results/Fig13extra/data/LIIIC3_5.csv'
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -68,6 +74,8 @@ jobs:
           args: '--experiment sincos -s 6 -dt 0.2 -tss GaussLegendre2 -o results/Fig13/data/GL2_mono.csv'
         - name: Figure 13 GL(3), mono
           args: '--experiment sincos -s 6 -dt 0.2 -tss GaussLegendre3 -o results/Fig13/data/GL3_mono.csv'
+        - name: Figure 13 LIIIC(3), mono
+          args: '--experiment sincos -s 6 -dt 0.2 -tss GaussLegendre3 -o results/Fig13extra/data/LIIIC3_mono.csv'
     runs-on: ubuntu-latest
     defaults:
       run:
