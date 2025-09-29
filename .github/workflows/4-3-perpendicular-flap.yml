@@ -3,6 +3,7 @@ on:
   release:
     types: [published]
   workflow_dispatch:
+  pull_request:
 
 jobs:
   section_4_3:
