@@ -39,7 +39,6 @@
         \node[anchor=west] at (axis cs:1.05,0.1){
             \small
             \begin{tabular}{ {%- for n in range(columns|length) -%}c{%- endfor -%} }
-            \multicolumn{ {{ columns|length }} }{c}{\bfseries Acceleration scheme {{ acc_scheme }}}\\[2pt]
             {% set colsep = joiner(" & ") %}
             {%- for column in columns -%}
             {{ colsep() }}{{ column }}
