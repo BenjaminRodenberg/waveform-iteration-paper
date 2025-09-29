@@ -1,0 +1,60 @@
+\begin{tikzpicture}
+    \begin{axis}[
+        tuftelike,
+        xlabel={$t$},
+        ylabel={$d_x$},
+        align=center,
+        width=.45\textwidth,
+        height=.25\textwidth,
+        xmin=0,
+        xmax=1,
+        ymin=0,
+        ymax=0.2,
+        yticklabel style={
+            /pgf/number format/fixed,
+            /pgf/number format/precision=2,
+        },
+        clip=false,
+        ytick={0,0.2},
+        xtick={0,1},
+        % xticklabels={$0$,$1$},
+        legend columns=2,
+        legend cell align={left},
+        legend style={
+            at={(1,0.2)},
+            anchor=east,
+            draw=none,
+            /tikz/column 2/.style={
+                column sep=5pt,
+            },
+        },
+        ]
+        \addplot[color=black, dotted] table[x=Time, y=Displacement0, col sep=space]{data/result/watchpoint_ref}; \label{plot:REF}
+        \addplot[color=black, mark=o, only marks] table[x=Time, y=Displacement0, col sep=space]{data/result/watchpoint_MC_20_40}; \label{plot:MC_20_40}
+        \addplot[color=brown, mark=-, only marks, mark size=3] table[x=Time, y=Displacement0, col sep=space]{data/result/watchpoint_MC_20_20}; \label{plot:MC_20_20}
+        \addplot[color=blue, mark=|, only marks, mark size=3] table[x=Time, y=Displacement0, col sep=space]{data/result/watchpoint_MC_20_10}; \label{plot:MC_20_10}
+        \addplot[color=red, mark=triangle, only marks, mark size=3] table[x=Time, y=Displacement0, col sep=space]{data/result/watchpoint_MC_20_5}; \label{plot:MC_20_5}
+        \addplot[color=black, mark=star, only marks] table[x=Time, y=Displacement0, col sep=space]{data/result/watchpoint_MC_20_2}; \label{plot:MC_20_2}
+
+        \node[anchor=west] at (axis cs:1.05,0.1){
+            \small
+            \begin{tabular}{ {%- for n in range(columns|length) -%}c{%- endfor -%} }
+            \multicolumn{ {{ columns|length }} }{c}{\bfseries Acceleration scheme {{ acc_scheme }}}\\[2pt]
+            {% set colsep = joiner(" & ") %}
+            {%- for column in columns -%}
+            {{ colsep() }}{{ column }}
+            {%- endfor -%}
+            \\
+            \midrule
+            {%- set rowsep = joiner(" \\\\") %}
+            {%- for row in data -%}
+            {{ rowsep() }}
+            {%- set colsep = joiner(" & ") %}
+            {% for value in row -%}
+            {{ colsep() }}{{ value }}
+            {%- endfor -%}
+            {% endfor %}
+            \end{tabular}
+        };
+    \end{axis}
+\end{tikzpicture}

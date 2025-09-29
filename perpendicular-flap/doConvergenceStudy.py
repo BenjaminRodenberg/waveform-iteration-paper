@@ -41,7 +41,7 @@ def postproc(participants: Participants, precice_config_params=None):
         summary[f"time step size {participant.name}"] = time_window_size / participant.substeps
         summary["avg(iterations / window)"] = df["Iterations"].mean()
         summary["max(iterations / window)"] = df["Iterations"].max()
-        summary["#QN"] = df["Iterations"].sum()
+        summary["no. QN"] = df["Iterations"].sum()
 
     print(f"{datetime.datetime.now()}: Done.")
 
