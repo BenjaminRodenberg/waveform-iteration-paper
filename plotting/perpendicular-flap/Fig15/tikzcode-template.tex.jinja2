@@ -1,0 +1,58 @@
+\begin{tikzpicture}
+    \begin{axis}[
+        tuftelike,
+        xlabel={$t$},
+        ylabel={$d_x$},
+        align=center,
+        width=.45\textwidth,
+        height=.35\textwidth,
+        xmin=0,
+        xmax=5,
+        ymin=-0.2,
+        ymax=0.4,
+        xtick={0,5},
+        % xticklabels={$0$,$5$},
+        ytick={-0.2,0,0.2,0.4},
+        yticklabel style={
+            /pgf/number format/fixed,
+            /pgf/number format/precision=2,
+        },
+        % scaled ticks=false,
+        clip=false,
+        legend style={at={(1.1,0.5)},anchor=west, draw=none},
+        ]
+        \addplot[color=black, dotted] table[x=Time, y=Displacement0, col sep=space,restrict expr to domain={\thisrow{Time}}{0:5}]{data/result/watchpoint_ref};
+        \label{plot:REF}
+        \addplot[color=red, mark=-, only marks] table[x=Time, y=Displacement0, col sep=space,restrict expr to domain={\thisrow{Time}}{0:5}]{data/result/watchpoint_MC_S10_rQNWI};
+        \label{plot:MC_S10_rQNWI}
+        \addplot[color=blue, mark=|, only marks] table[x=Time, y=Displacement0, col sep=space,restrict expr to domain={\thisrow{Time}}{0:5}]{data/result/watchpoint_SC_S10};
+        \label{plot:SC_S10}
+        \addplot[color=red, mark=otimes, only marks] table[x=Time, y=Displacement0, col sep=space,restrict expr to domain={\thisrow{Time}}{0:5}]{data/result/watchpoint_MC_S100_rQNWI};
+        \label{plot:MC_S100_rQNWI}
+        \addplot[color=blue, mark=oplus, only marks] table[x=Time, y=Displacement0, col sep=space,restrict expr to domain={\thisrow{Time}}{0:5}]{data/result/watchpoint_SC_S100};
+        \label{plot:SC_S100}
+        \addplot[color=red, mark=square, only marks, mark size=3] table[x=Time, y=Displacement0, col sep=space,restrict expr to domain={\thisrow{Time}}{0:5}]{data/result/watchpoint_MC_S500_rQNWI};
+        \label{plot:MC_S500_rQNWI}
+        \addplot[color=blue, mark=o, only marks, mark size=3] table[x=Time, y=Displacement0, col sep=space,restrict expr to domain={\thisrow{Time}}{0:5}]{data/result/watchpoint_SC_S500};
+        \label{plot:SC_S500}
+
+        \node[anchor=west] at (axis cs:5.5,0.1){
+            \small
+            \begin{tabular}{r|cc|cc}
+            $\Delta t$ & \multicolumn{2}{c|}{linear} & \multicolumn{2}{c}{WI}   \\
+            \midrule
+            {% for line in data -%}
+            ${{line.dt}}$   & 
+            {% if line.linear_ref in valid_refs %}
+            \ref{plot:{{line.linear_ref}}} 
+            {% endif %}
+            & {{line.linear_its}} & 
+            {% if line.wi_ref in valid_refs %}
+            \ref{plot:{{line.wi_ref}}} 
+            {% endif %}
+            & {{line.wi_its}} \\
+            {% endfor -%}
+            \end{tabular}
+        };
+    \end{axis}
+\end{tikzpicture}
