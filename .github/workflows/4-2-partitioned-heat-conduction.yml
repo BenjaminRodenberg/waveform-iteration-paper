@@ -32,7 +32,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./partitioned-heat-conduction
+        working-directory: experiments/partitioned-heat-conduction
     container: precice/precice:3.2.0
     steps:
       - name: Checkout Repository
@@ -61,7 +61,7 @@ jobs:
           name: partitioned-heat-conduction-convergence ${{ matrix.experiment.name }}
           path: |
             # working directory is ignored by actions/upload-artifact
-            ./partitioned-heat-conduction/results
+            experiments/partitioned-heat-conduction/results
 
   section_4_2_monolithic:
     name: Perform experiments from Section 4.2 (monolithic)
@@ -79,7 +79,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./partitioned-heat-conduction
+        working-directory: experiments/partitioned-heat-conduction
     container: precice/precice:3.2.0
     steps:
       - name: Checkout Repository
@@ -108,7 +108,7 @@ jobs:
           name: partitioned-heat-conduction ${{ matrix.experiment.name }}
           path: |
             # working directory is ignored by actions/upload-artifact
-            ./partitioned-heat-conduction/results
+            experiments/partitioned-heat-conduction/results
 
   visualize:
     name: Create plots to visualize experiments from Section 4.2

@@ -30,7 +30,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./experiments/oscillator-overlap
+        working-directory: experiments/oscillator-overlap
     container: precice/precice:3.2.0
     steps:
       - name: Checkout Repository
@@ -58,7 +58,7 @@ jobs:
           name: oscillator-overlap ${{ matrix.experiment.name }}
           path: |
             # working directory is ignored by actions/upload-artifact
-            ./experiments/oscillator-overlap/results
+            experiments/oscillator-overlap/results
  
   visualize:
     name: Create plots and tables to visualize experiments from Section 4.1

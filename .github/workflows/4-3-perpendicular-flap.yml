@@ -19,7 +19,7 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: ./perpendicular-flap
+        working-directory: experiments/perpendicular-flap
     # built using tools/docker/fenics-openfoam/Dockerfile
     container: benjaminrodenberg/fenics-openfoam:3.2.0
     steps:
@@ -67,7 +67,7 @@ jobs:
           name: perpendicular-flap ${{ matrix.experiment.name }}
           path: |
             # working directory is ignored by actions/upload-artifact
-            ./perpendicular-flap/results
+            experiments/perpendicular-flap/results
 
   visualize:
     name: Create plots to visualize experiments from Section 4.3
