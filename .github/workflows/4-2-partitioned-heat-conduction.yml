@@ -162,3 +162,29 @@ jobs:
         uses: actions/upload-artifact/merge@v4
         with:
           name: partitioned-heat-conduction
+
+  publish-pages:
+    needs: 
+      - merge
+      - visualize
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download merge output
+        uses: actions/download-artifact@v3
+        with:
+          name: merge-output
+          path: pages/partitioned-heat-conduction/results
+
+      - name: Download visualizations
+        uses: actions/download-artifact@v3
+        with:
+          name: visualizations
+          path: pages/partitioned-heat-conduction/visualizations
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: pages/partitioned-heat-conduction/

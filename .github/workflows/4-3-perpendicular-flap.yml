@@ -118,3 +118,29 @@ jobs:
         uses: actions/upload-artifact/merge@v4
         with:
           name: perpendicular-flap
+
+  publish-pages:
+    needs: 
+      - merge
+      - visualize
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download merge output
+        uses: actions/download-artifact@v3
+        with:
+          name: merge-output
+          path: pages/perpendicular-flap/results
+
+      - name: Download visualizations
+        uses: actions/download-artifact@v3
+        with:
+          name: visualizations
+          path: pages/perpendicular-flap/visualizations
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: pages/perpendicular-flap/
