@@ -120,6 +120,8 @@ jobs:
           name: results
 
   publish-pages:
+    permissions:
+      contents: write
     needs: 
       - merge
       - visualize
