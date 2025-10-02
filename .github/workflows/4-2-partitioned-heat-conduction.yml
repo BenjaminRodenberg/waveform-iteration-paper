@@ -161,7 +161,7 @@ jobs:
       - name: Merge results
         uses: actions/upload-artifact/merge@v4
         with:
-          name: partitioned-heat-conduction
+          name: results
 
   publish-pages:
     needs: 
@@ -174,7 +174,7 @@ jobs:
       - name: Download merge output
         uses: actions/download-artifact@v4
         with:
-          name: merge-output
+          name: results
           path: pages/partitioned-heat-conduction/results
 
       - name: Download visualizations
