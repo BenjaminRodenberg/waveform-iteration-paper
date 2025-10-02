@@ -1,4 +1,4 @@
-DIRS := Fig16
+DIRS := Fig15 Fig16
 
 .PHONY: all $(MAKECMDGOALS) $(DIRS)
 $(MAKECMDGOALS) all: $(DIRS)

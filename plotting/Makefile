@@ -1,4 +1,4 @@
-DIRS := oscillator-overlap partitioned-heat-conduction
+DIRS := oscillator-overlap partitioned-heat-conduction perpendicular-flap
 
 .PHONY: all $(MAKECMDGOALS) $(DIRS)
 $(MAKECMDGOALS) all: $(DIRS)

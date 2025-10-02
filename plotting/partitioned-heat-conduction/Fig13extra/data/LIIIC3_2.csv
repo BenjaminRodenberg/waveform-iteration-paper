@@ -1,14 +1,14 @@
-# participants version:{'Dirichlet': {'url': 'BenjaminRodenberg/test-cases-dissertation', 'repo': 'refs/pull/7/merge', 'chash': 'c0213e93b4a110ffb1158de4de01220b85cfea53'}, 'Neumann': {'url': 'BenjaminRodenberg/test-cases-dissertation', 'repo': 'refs/pull/7/merge', 'chash': 'c0213e93b4a110ffb1158de4de01220b85cfea53'}}
-# participants:{'Dirichlet': <prepesthel.participant.Participant object at 0x7fc87a40da60>, 'Neumann': <prepesthel.participant.Participant object at 0x7fc87936b170>}
+# participants version:{'Dirichlet': {'url': 'BenjaminRodenberg/test-cases-dissertation', 'repo': 'refs/pull/7/merge', 'chash': '4c031f00c705d9847942442c9c62ac413c142825'}, 'Neumann': {'url': 'BenjaminRodenberg/test-cases-dissertation', 'repo': 'refs/pull/7/merge', 'chash': '4c031f00c705d9847942442c9c62ac413c142825'}}
+# participants:{'Dirichlet': <prepesthel.participant.Participant object at 0x7f5d399480e0>, 'Neumann': <prepesthel.participant.Participant object at 0x7f5d3a57de20>}
 # run cmd:python3 doConvergenceStudy.py precice-config-template.xml --silent --executor Github --experiment sincos -w 6 -s 1 -wd 2 -sb 5 5 -dt 1 -tss LobattoIIIC3 LobattoIIIC3 --exchange-substeps -o results/Fig13extra/data/LIIIC3_2.csv
 # args:Namespace(template_path='precice-config-template.xml', silent=True, executor='Github', max_time=1.0, base_time_window_size=1.0, time_window_refinements=6, base_time_step_refinement=[5, 5], time_step_refinements=1, time_step_refinement_factor=[2, 2], experiment='sincos', time_stepping_scheme=['LobattoIIIC3', 'LobattoIIIC3'], waveform_degree=2, exchange_substeps=True, out_filename='results/Fig13extra/data/LIIIC3_2.csv')
 # precice.get_version_information():b'3.2.0;no-info [git failed to run];PRECICE_FEATURE_MPI_COMMUNICATION=Y;PRECICE_FEATURE_PETSC_MAPPING=Y;PRECICE_FEATURE_GINKGO_MAPPING=N;PRECICE_FEATURE_PYTHON_ACTIONS=Y;PRECICE_BINDINGS_C=Y;PRECICE_BINDINGS_FORTRAN=Y;CXX=GNU;CXXFLAGS= -O3 -DNDEBUG;LDFLAGS='
 # precice.__version__:3.2.1
 # precice_config_params:{'time_window_size': 0.03125, 'max_time': 1.0, 'waveform_degree': 2, 'substeps': True}
 time window size,time step size Dirichlet,time step size Neumann,substeps Dirichlet,avg(iterations / window),max(iterations / window),error Dirichlet,substeps Neumann,error Neumann
-1.0,0.2,0.2,5,20.0,20,2.650312403755403e-05,5,2.167629650609195e-05
-0.5,0.1,0.1,5,20.5,22,6.616161948533587e-06,5,6.0223744241932265e-06
-0.25,0.05,0.05,5,21.5,24,1.7506360630060905e-06,5,1.511031779176908e-06
-0.125,0.025,0.025,5,22.125,25,4.435795866355591e-07,5,3.758136440030367e-07
-0.0625,0.0125,0.0125,5,20.9375,27,1.1162669095917338e-07,5,9.400242146765949e-08
-0.03125,0.00625,0.00625,5,15.90625,24,2.7965547183064716e-08,5,2.349354644967709e-08
+1.0,0.2,0.2,5,20.0,20,2.6503124034032543e-05,5,2.16762965037276e-05
+0.5,0.1,0.1,5,20.5,22,6.616161935858534e-06,5,6.0223744253648425e-06
+0.25,0.05,0.05,5,22.25,24,1.7506360620267076e-06,5,1.5110317796544812e-06
+0.125,0.025,0.025,5,21.375,23,4.435795575355814e-07,5,3.758136205006619e-07
+0.0625,0.0125,0.0125,5,21.0,25,1.1162667296028925e-07,5,9.400241077178193e-08
+0.03125,0.00625,0.00625,5,19.4375,25,2.7965615603932043e-08,5,2.3493575671760058e-08

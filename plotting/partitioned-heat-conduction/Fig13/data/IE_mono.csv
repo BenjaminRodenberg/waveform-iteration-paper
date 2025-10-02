@@ -1,7 +1,7 @@
-# participants version:{'Monolithic': {'url': 'BenjaminRodenberg/test-cases-dissertation', 'repo': 'refs/heads/waveform-iteration-precice-paper', 'chash': '6b3f5832124364d6f49ea5823f135120bb3b2eb4'}}
-# participants:{'Monolithic': <prepesthel.participant.Participant object at 0x7f0ae1945940>}
-# run cmd:python3 doConvergenceStudyMonolithic.py --silent --executor Github --experiment sincos -s 6 -dt 0.2 -tss BackwardEuler -o convergence-studies/fig14_IE_mono.csv
-# args:Namespace(silent=True, executor='Github', max_time=1.0, base_time_step_size=0.2, time_step_refinements=6, time_step_refinement_factor=[2], experiment='sincos', time_stepping_scheme=['BackwardEuler'], out_filename='convergence-studies/fig14_IE_mono.csv')
+# participants version:{'Monolithic': {'url': 'BenjaminRodenberg/test-cases-dissertation', 'repo': 'refs/pull/7/merge', 'chash': '4c031f00c705d9847942442c9c62ac413c142825'}}
+# participants:{'Monolithic': <prepesthel.participant.Participant object at 0x7fd705b96b70>}
+# run cmd:python3 doConvergenceStudyMonolithic.py --silent --executor Github --experiment sincos -s 6 -dt 0.2 -tss BackwardEuler -o results/Fig13/data/IE_mono.csv
+# args:Namespace(silent=True, executor='Github', max_time=1.0, base_time_step_size=0.2, time_step_refinements=6, time_step_refinement_factor=[2], experiment='sincos', time_stepping_scheme=['BackwardEuler'], out_filename='results/Fig13/data/IE_mono.csv')
 time step size Monolithic,error Monolithic
 0.2,0.0188586681384243
 0.1,0.0101050464677201
