@@ -98,7 +98,7 @@ if __name__ == "__main__":
     )
     args = parser.parse_args()
 
-    # Define values that will be inserted into precice-config-template.xml here
+    # Define values that will be inserted into precice-config.xml.jinja2 here
     precice_config_params = {
         'time_window_size': None,  # will be defined later
         'max_time': args.max_time,

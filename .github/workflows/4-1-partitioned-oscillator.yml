@@ -12,25 +12,25 @@ jobs:
       matrix:
         experiment:
         - name: Figure 10 constant
-          args: 'configs/precice-config-template-FP.xml --silent --executor Github --config configs/fig10_dts.csv -tss runge_kutta_4 generalized_alpha -wd 0 -o results/Fig10/data/constant.csv'
+          args: 'precice-config-FP.xml.jinja2 --silent --executor Github --config configs/fig10_dts.csv -tss runge_kutta_4 generalized_alpha -wd 0 -o results/Fig10/data/constant.csv'
         - name: Figure 10 linear
-          args: 'configs/precice-config-template-FP.xml --silent --executor Github --config configs/fig10_dts.csv -tss runge_kutta_4 generalized_alpha -wd 1 -o results/Fig10/data/linear.csv'
+          args: 'precice-config-FP.xml.jinja2 --silent --executor Github --config configs/fig10_dts.csv -tss runge_kutta_4 generalized_alpha -wd 1 -o results/Fig10/data/linear.csv'
         - name: Figure 10 piecewise linear
-          args: 'configs/precice-config-template-FP.xml --silent --executor Github --config configs/fig10_dts.csv -tss runge_kutta_4 generalized_alpha -wd 1 --exchange-substeps -o results/Fig10/data/piecewise_linear.csv'
+          args: 'precice-config-FP.xml.jinja2 --silent --executor Github --config configs/fig10_dts.csv -tss runge_kutta_4 generalized_alpha -wd 1 --exchange-substeps -o results/Fig10/data/piecewise_linear.csv'
         - name: Figure 10 third-order B-spline
-          args: 'configs/precice-config-template-FP.xml --silent --executor Github --config configs/fig10_dts.csv -tss runge_kutta_4 generalized_alpha -wd 3 --exchange-substeps -o results/Fig10/data/third_degree_b-spline.csv'
+          args: 'precice-config-FP.xml.jinja2 --silent --executor Github --config configs/fig10_dts.csv -tss runge_kutta_4 generalized_alpha -wd 3 --exchange-substeps -o results/Fig10/data/third_degree_b-spline.csv'
         - name: Figure 11
-          args: 'configs/precice-config-template-FP.xml --silent --executor Github --config configs/fig11_dts.csv -tss runge_kutta_4 generalized_alpha -wd 3 --exchange-substeps -o results/Fig11/data/contour_data.csv'
+          args: 'precice-config-FP.xml.jinja2 --silent --executor Github --config configs/fig11_dts.csv -tss runge_kutta_4 generalized_alpha -wd 3 --exchange-substeps -o results/Fig11/data/contour_data.csv'
         - name: Table 1 fixed-point (shown)
-          args: 'configs/precice-config-template-FP.xml --silent --executor Github --config configs/tab1_dts.csv -tss runge_kutta_4 generalized_alpha -wd 3 --exchange-substeps -o results/Tab1/data/FP.csv'
+          args: 'precice-config-FP.xml.jinja2 --silent --executor Github --config configs/tab1_dts.csv -tss runge_kutta_4 generalized_alpha -wd 3 --exchange-substeps -o results/Tab1/data/FP.csv'
         - name: Table 1 reduced quasi-Newton (not shown)
-          args: 'configs/precice-config-template-rQN.xml --silent --executor Github --config configs/tab1_dts.csv -tss runge_kutta_4 generalized_alpha -wd 3 --exchange-substeps -o results/Tab1/data/rQN.csv'
+          args: 'precice-config-rQN.xml.jinja2 --silent --executor Github --config configs/tab1_dts.csv -tss runge_kutta_4 generalized_alpha -wd 3 --exchange-substeps -o results/Tab1/data/rQN.csv'
         - name: Table 1 full quasi-Newton (not shown)
-          args: 'configs/precice-config-template-fQN.xml --silent --executor Github --config configs/tab1_dts.csv -tss runge_kutta_4 generalized_alpha -wd 3 --exchange-substeps -o results/Tab1/data/fQN.csv'
+          args: 'precice-config-fQN.xml.jinja2 --silent --executor Github --config configs/tab1_dts.csv -tss runge_kutta_4 generalized_alpha -wd 3 --exchange-substeps -o results/Tab1/data/fQN.csv'
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./oscillator-overlap
+        working-directory: ./experiments/oscillator-overlap
     container: precice/precice:3.2.0
     steps:
       - name: Checkout Repository
@@ -58,7 +58,7 @@ jobs:
           name: oscillator-overlap ${{ matrix.experiment.name }}
           path: |
             # working directory is ignored by actions/upload-artifact
-            ./oscillator-overlap/results
+            ./experiments/oscillator-overlap/results
  
   visualize:
     name: Create plots and tables to visualize experiments from Section 4.1

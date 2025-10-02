@@ -125,7 +125,7 @@ if __name__ == "__main__":
         
         # Vary number of substeps for OpenFOAM Fluid participant by modifying fluid-openfoam/system/controlDict
         p = participants["Fluid"]
-        render_control_dict(p.root / 'system' / 'controlDict-template', p.root / 'system' / 'controlDict',  experiment_setup[f'time step size {p.name}'])
+        render_control_dict(p.root / 'system' / 'controlDict.jinja2', p.root / 'system' / 'controlDict',  experiment_setup[f'time step size {p.name}'])
         substeps = round(experiment_setup['time window size'] / experiment_setup[f'time step size {p.name}'])
         p.substeps = substeps  # store substeps here for postprocessing
         # Vary number of substeps for FEniCS Solid participant via kwargs

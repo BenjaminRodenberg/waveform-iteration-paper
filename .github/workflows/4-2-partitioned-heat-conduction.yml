@@ -54,7 +54,7 @@ jobs:
           echo PATH=$PATH >> $GITHUB_ENV
       - name: Run tutorial
         run: |
-          python3 doConvergenceStudy.py precice-config-template.xml --silent --executor Github ${{matrix.experiment.args}}
+          python3 doConvergenceStudy.py precice-config.xml.jinja2 --silent --executor Github ${{matrix.experiment.args}}
       - name: Store results
         uses: actions/upload-artifact@v4
         with:
