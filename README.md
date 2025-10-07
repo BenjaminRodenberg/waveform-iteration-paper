@@ -7,11 +7,11 @@ It is a fork of https://github.com/BenjaminRodenberg/test-cases-dissertation wit
 This repository contains the following folders:
 
 * `experiments`: The definition of the setups and scripts to execute the experiments. The structure of this folder closely follows https://github.com/precice/tutorials/releases/tag/v202404.0.
-* `plotting`: Scripts for creating plots from the data produced by the experiments. This folder also contains pre-computed data obtained by running the scenarios from `experiments`
+* `plotting`: Scripts for creating plots from the data produced by the experiments. This folder also contains pre-computed data obtained by running the scenarios from `experiments`.
 * `tools`: Miscellaneous files for tooling and automation
-* `.github/workflows`: Definition of pipelines that allow to perform the experiments using [GitHub Actions](https://github.com/features/actions). You can fork this repository to run the experiments and create the plots with github actions. Alternatively, you can also find the artifacts created by the GitHub Actions pipeline on the branch [`gh-pages`](https://github.com/BenjaminRodenberg/test-cases-dissertation/tree/gh-pages).
+* `.github/workflows`: Definition of pipelines that allow to perform the experiments using [GitHub Actions](https://github.com/features/actions). You can fork this repository to run the experiments and create the plots with GitHub Actions. Alternatively, you can also find the artifacts created by the GitHub Actions pipeline on the branch [`gh-pages`](https://github.com/BenjaminRodenberg/test-cases-dissertation/tree/gh-pages).
 
-The folders `experiments` and `plotting` contain subfolders corresponding to the following subsections of the results section of[^Rodenberg2025]:
+The folders `experiments` and `plotting` contain subfolders corresponding to the following subsections of the results section of Rodenberg [^Rodenberg2025]:
 
 * `oscillator-overlap`: 4.1 Oscillator problem 
 * `partitioned-heat-conduction`: 4.2 Partitioned heat conduction
