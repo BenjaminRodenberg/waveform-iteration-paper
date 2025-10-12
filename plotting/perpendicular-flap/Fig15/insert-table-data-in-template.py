@@ -89,9 +89,9 @@ for dt in wi_dts:
 
 print(data)
 
-latex_code = template.render(data=data, 
-                             valid_refs=['REF'] + 
-                             [f'MC_S{it}_rQNWI' for it in [10,100,500]] + 
+latex_code = template.render(data=data,
+                             valid_refs=['REF'] +
+                             [f'MC_S{it}_rQNWI' for it in [10,100,500]] +
                              [f'SC_S{it}' for it in [10,100,500]])
 
 # Write the LaTeX code to file
