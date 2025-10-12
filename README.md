@@ -22,8 +22,8 @@ The preCICE distribution version v2404.0 [^1] should provide a good basis for ru
 
 ### preCICE components
 
-* preCICE [`8b5115e`](https://github.com/precice/precice/commit/8b5115ee689a71f4d8f473cbe633a3ff8d642050) (temporary version, features will be released in upcoming `v3.2.0` of preCICE); built with default CMake configuration.
-* pyprecice [`3.1.2`](https://github.com/precice/python-bindings/releases/tag/v3.1.2) (automatically installed via `requirements.txt` of the respective case)
+* preCICE [`3.2.0`](https://github.com/precice/precice/releases/tag/v3.2.0)
+* pyprecice [`3.2.1`](https://github.com/precice/python-bindings/releases/tag/v3.2.1) (automatically installed via `requirements.txt` of the respective case)
 * FEniCS adapter [`2.2.0`](https://github.com/precice/fenics-adapter/releases/tag/v2.2.0) (automatically installed via `requirements.txt` of the respective case)
 * OpenFOAM adapter [`1.3.1`](https://github.com/precice/openfoam-adapter/releases/tag/v1.3.1)
 * deal.II adapter [`4c6d092`](https://github.com/precice/dealii-adapter/commit/4c6d092c60c750478b08cfac25da1ff174c2d6f5)
@@ -37,4 +37,4 @@ The preCICE distribution version v2404.0 [^1] should provide a good basis for ru
 * deal.II `9.5.1` (from https://launchpad.net/ubuntu/+source/deal.ii/9.5.1-2build3)
 
 [^1]: Chen, Jun; Chourdakis, Gerasimos; Desai, Ishaan; Homs-Pons, Carme; Rodenberg, Benjamin; Schneider, David; Simonis, Frédéric; Uekermann, Benjamin; Davis, Kyle; Jaust, Alexander; Kelm, Mathis; Kotarsky, Niklas; Kschidock, Helena; Mishra, Durganshu; Mühlhäußer, Markus; Schrader, Timo Pierre; Schulte, Miriam; Seitz, Valentin; Signorelli, Joseph; van Zwieten, Gertjan; Vinnitchenko, Niklas; Vladimirova, Tina; Willeke, Leonard; Zonta, Elia. *preCICE Distribution Version v2404.0*. DaRUS, 2024, V1. https://doi.org/10.18419/darus-4167.
-[^2]: Rodenberg, Benjamin. *Flexible and robust time stepping for partitioned multiphysics*. Technical University of Munich, 2025.
+[^2]: Rodenberg, Benjamin. *Flexible and robust time stepping for partitioned multiphysics*. Technical University of Munich, 2025. https://nbn-resolving.org/urn:nbn:de:bvb:91-diss-20250424-1763172-0-4.
