@@ -71,7 +71,7 @@ If you installed the prerequesites as described above on your own system please 
 If you are using docker, instead of running `make` use the following command to run the `make` command in the docker container and write the output back to your file system:
 
 ```sh
-docker run --rm -v "$PWD":/doc -w /doc siam-pdflatex make
+docker run --rm -v "$PWD":/doc -w /doc waveform-plotting make
 ```
 
 This procedure also works for individual figures and tables if you run it from the respective folder.
