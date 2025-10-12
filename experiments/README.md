@@ -20,7 +20,6 @@ The preCICE distribution version v2404.0 [^Chen2024] should provide a good basis
 * pyprecice [`3.2.1`](https://github.com/precice/python-bindings/releases/tag/v3.2.1) (automatically installed via `requirements.txt` of the respective case)
 * FEniCS adapter [`2.2.0`](https://github.com/precice/fenics-adapter/releases/tag/v2.2.0) (automatically installed via `requirements.txt` of the respective case)
 * OpenFOAM adapter [`1.3.1`](https://github.com/precice/openfoam-adapter/releases/tag/v1.3.1)
-* deal.II adapter [`4c6d092`](https://github.com/precice/dealii-adapter/commit/4c6d092c60c750478b08cfac25da1ff174c2d6f5)
 
 ### OS and other dependencies
 
@@ -28,7 +27,6 @@ The preCICE distribution version v2404.0 [^Chen2024] should provide a good basis
 * Additional python packages (automatically installed via `requirements.txt` of the respective case)
 * FEniCS `2019.2.0.64.dev0` (installed from FEniCS PPA https://launchpad.net/~fenics-packages/+archive/ubuntu/fenics; compare version provided by `python3 -c "import dolfin;print(dolfin.__version__)`")
 * OpenFOAM `2412`
-* deal.II `9.5.1` (from https://launchpad.net/ubuntu/+source/deal.ii/9.5.1-2build3)
 
 ## Running the cases
 
