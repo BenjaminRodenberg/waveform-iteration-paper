@@ -83,7 +83,6 @@ The following steps will install the required dependencies on Ubuntu 24.04:
     wget https://github.com/precice/openfoam-adapter/releases/download/v1.3.1/openfoam-adapter-v1.3.1-OpenFOAMv1812-v2406-newer.tar.gz
     tar -xzf openfoam-adapter-v1.3.1-OpenFOAMv1812-v2406-newer.tar.gz
     cd openefoam-adapter-v1.3.1-master
-    export FOAM_USER_LIBBIN=$FOAM_LIBBIN
     ./Allwmake
     ```
 
