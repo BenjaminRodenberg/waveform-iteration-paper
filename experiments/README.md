@@ -27,7 +27,7 @@ In contrast to the preCICE distribution version v2404.0 a more recent version of
 
 ### OS and other dependencies
 
-* Ubuntu (recommended `24.04`) or other Linux-based system
+* Recommended OS: Ubuntu `24.04`, but the workflow should work similarly for other Ubuntu versions or Linux-based systems
 * The Python package [prepesthel](https://pypi.org/project/prepesthel/) for automation of preCICE runs (automatically installed via `requirements.txt` of the respective case)
 * Additional python packages (automatically installed via `requirements.txt` of the respective case)
 * FEniCS `2019.2.0.64.dev0` (installed from FEniCS PPA https://launchpad.net/~fenics-packages/+archive/ubuntu/fenics; compare version provided by `python3 -c "import dolfin;print(dolfin.__version__)"` or run `fenics-version`)
@@ -35,7 +35,7 @@ In contrast to the preCICE distribution version v2404.0 a more recent version of
 
 ### Installing the required dependencies
 
-The following steps will install the required dependencies on Ubuntu 24.04:
+The following steps will install the required dependencies:
 
 1. **preCICE**: Download the Debian package (`.deb`) of preCICE 3.2.0 from [here](https://github.com/precice/precice/releases/tag/v3.2.0) and install it on your system by running the command
 

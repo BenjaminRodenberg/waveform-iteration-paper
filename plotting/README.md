@@ -24,13 +24,13 @@ The subfolders corresponding to the test cases contain subfolders named `FigX` o
 
 ## Prerequisites
 
-For creating the figures and tables you need a working LaTeX installation and Python with the packages `scipy`, `pandas`, `jinja2`, and `matplotlib`.
+For creating the figures and tables you need a working LaTeX installation and Python with the packages `scipy`, `pandas`, `jinja2`, and `matplotlib`. It is recommended to use Ubuntu 24.04. But the workflow should be similar for other Ubuntu versions or Linux-based systems.
 
 ### Use docker
 
 The `Dockerfile` in this folder allows you to create a docker container with all the required dependencies. Please install Docker on your operating system by following the instructions given on https://docs.docker.com/engine/install/.
 
-On Ubuntu you can then build the docker container by running the following command from this folder:
+You can then build the docker container by running the following command from this folder:
 
 ```sh
 docker build -t waveform-plotting .
@@ -40,7 +40,7 @@ You can also use a name of your choice instead of `waveform-plotting`.
 
 ### Use your own system
 
-You need a working LaTeX installation and some Python packages on your system. On Ubuntu you can install all required packages by running
+You need a working LaTeX installation and some Python packages on your system. Please install all required packages by running
 
 ```sh
 sudo apt install -y texlive-full
