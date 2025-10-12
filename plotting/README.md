@@ -2,19 +2,25 @@
 
 This folder `plotting` contains the LaTeX sources and auxiliary scripts to create figures and tables.
 
-## Structure
+## Overview
 
-The subfolders refer to the test cases provided in Section 4 Results and follow the naming convention of the three test cases at the root level of this repository:
+The subfolders refer to the test cases provided in *Section 4* Results and follow the naming convention of the three test cases at the root level of this repository:
 
 * `plotting/oscillator-overlap` corresponds to *Section 4.1 Partitioned oscillator*
 * `plotting/partitioned-heat-conduction` corresponds to *Section 4.2 Partitioned heat conduction*
 * `plotting/perpendicular-flap` corresponds to *Section 4.3 Perpendicular flap*
 
-Each of these folders contains subfolders names `FigX` or `TabX` for the respective figures and tables from the sections. These folders contain:
+Additionally, there are the following files for automation of the plotting:
 
-* `*.tex` files with the LaTeX sources
-* `data` folder with the results produced by the respective test case. For convenience the data is already provided here. If you want to compute this data on your own, please refer to the `README.md` in the root folder of this.
-* A `Makefile` to create a PDF file with the respective figure.
+* A `Dockerfile` to setup the runtime environment in Docker (see below)
+* A `requirements.txt` to define the Python dependencies needed for plotting
+* A `Makefile` that allows to automatically perform preprocessing steps and create the plots for all cases
+
+The subfolders corresponding to the test cases contain subfolders named `FigX` or `TabX` for the respective figures and tables from *Section 4 Results*. These folders contain:
+
+* `*.tex` files with the LaTeX sources or (for more complex plots) `*.tex.jinja2` templates that will be filled with data using a Python script and Jinja2 to create a `*.tex` file in a preprocessing step.
+* `data` folder with the results produced by the respective test case. For convenience the data is already provided here. If you want to compute this data on your own, please refer to the `experiments/README.md`.
+* A `Makefile` to create PDF files with the respective figures or tables.
 
 ## Prerequisites
 
@@ -37,20 +43,20 @@ You can also use a name of your choice instead of `waveform-plotting`.
 You need a working LaTeX installation and some Python packages on your system. On Ubuntu you can install all required packages by running
 
 ```sh
-apt install texlive-full
-apt install python3 python3-pip
+sudo apt install -y texlive-full
+sudo apt install -y python3 python3-pip
 ```
 
 Please install additional Python packages either via your package manager by running
 
 ```sh
-apt install python3-pygments python3-pandas python3-scipy python3-jinja2
+sudo apt install -y python3-pygments python3-pandas python3-scipy python3-jinja2
 ```
 
-or you can also use virtual environment by first installing `python3-venv` and then installing the packages given in the `requirements.txt` from this folder:
+alternatively, you can use a virtual environment. This will require installing `python3-venv` and then the packages given in the `requirements.txt` from this folder:
 
 ```sh
-apt install python3-venv
+sudo apt install -y python3-venv
 python3 -m venv .venv
 source .venv/bin/activate
 pip3 install -r requirements.txt
@@ -69,3 +75,25 @@ docker run --rm -v "$PWD":/doc -w /doc siam-pdflatex make
 ```
 
 This procedure also works for individual figures and tables if you run it from the respective folder.
+
+### Example: Create Figure 11
+
+If you, for example, only want to create Figure 11, please navigate to the respective folder and execute `make`:
+
+```sh
+cd oscillator-overlap/Fig11
+make
+```
+
+This should create the file `main.pdf` with Figure 11 using the precomputed data from `plotting/oscillator-overlap/Fig11/data`.
+
+If you want to start from scratch and use data that you computed on your own system, please delete the folder `plotting/oscillator-overlap/Fig11/data` and copy the data from `experiments/oscillator-overlap/results/Fig11/data` to the correct location (see `experiments/README.md` for instructions how to create this data):
+
+```sh
+rm -r oscillator-overlap/Fig11/data
+cp -r ../experiments/oscillator-overlap/results/Fig11/data oscillator-overlap/Fig11/data
+cd oscillator-overlap/Fig11
+make
+```
+
+This should again result in a file `main.pdf` with Figure 11.
