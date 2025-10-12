@@ -32,7 +32,7 @@ The preCICE distribution version v2404.0 [^1] should provide a good basis for ru
 
 * Ubuntu `24.04`
 * Additional python packages (automatically installed via `requirements.txt` of the respective case)
-* FEniCS `2019.2.0.64.dev0` (installed from FEniCS PPA https://launchpad.net/~fenics-packages/+archive/ubuntu/fenics; compare version provided by `python3 -c "import dolfin;print(dolfin.__version__)`")
+* FEniCS `2019.2.0.64.dev0` (installed from FEniCS PPA https://launchpad.net/~fenics-packages/+archive/ubuntu/fenics; `python3 -c "import dolfin;print(dolfin.__version__)"` or run `fenics-version` from the terminal)
 * OpenFOAM `2412`
 * deal.II `9.5.1` (from https://launchpad.net/ubuntu/+source/deal.ii/9.5.1-2build3)
 
