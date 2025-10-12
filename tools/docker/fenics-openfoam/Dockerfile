@@ -1,4 +1,4 @@
-FROM benjaminrodenberg/precice-openfoam:3.2.0
+FROM benjaminrodenberg/precice-openfoam:3.3.0
 
 USER root
 
@@ -6,7 +6,7 @@ USER root
 RUN apt-get -qq update && \
     apt-get -qq install --no-install-recommends wget software-properties-common
 
-# OpenFOAM.com does not work; OpenFOAM installation already provided in benjaminrodenberg/precice-openfoam:3.2.0
+# OpenFOAM.com does not work; OpenFOAM installation already provided in benjaminrodenberg/precice-openfoam:3.3.0
 # # Install OpenFOAM
 # RUN wget -q -O - https://dl.openfoam.com/add-debian-repo.sh | bash && \
 #     apt-get -qq install openfoam2412-dev && \
@@ -19,7 +19,7 @@ RUN add-apt-repository -y ppa:fenics-packages/fenics && \
     apt-get -qq update && \
     apt-get -qq install --no-install-recommends fenics && \
     rm -rf /var/lib/apt/lists/*
-  
+
 # Install OpenFOAM adapter (Overwrite FOAM_USER_LIBBIN to install globally)
 RUN wget https://github.com/precice/openfoam-adapter/releases/download/v1.3.1/openfoam-adapter-v1.3.1-OpenFOAMv1812-v2406-newer.tar.gz && \
     tar -xzf openfoam-adapter-v1.3.1-OpenFOAMv1812-v2406-newer.tar.gz && \

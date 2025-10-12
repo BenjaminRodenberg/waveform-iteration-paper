@@ -21,7 +21,7 @@ jobs:
         shell: bash
         working-directory: experiments/perpendicular-flap
     # built using tools/docker/fenics-openfoam/Dockerfile
-    container: benjaminrodenberg/fenics-openfoam:3.2.0
+    container: benjaminrodenberg/fenics-openfoam:3.3.0
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -71,10 +71,10 @@ jobs:
 
   visualize:
     name: Create plots to visualize experiments from Section 4.3
-    needs: 
+    needs:
       - section_4_3
     runs-on: ubuntu-latest
-    container: 
+    container:
       image: benjaminrodenberg/latex:wi-paper
     steps:
       - name: Checkout Repository
@@ -122,7 +122,7 @@ jobs:
   publish-pages:
     permissions:
       contents: write
-    needs: 
+    needs:
       - merge
       - visualize
     runs-on: ubuntu-latest

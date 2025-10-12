@@ -4,7 +4,7 @@ on:
 
 jobs:
   build_precice_openfoam:
-    name: "Build preCICE 3.2.0 on top of opencfd/openfoam-dev:2412"
+    name: "Build preCICE 3.3.0 on top of opencfd/openfoam-dev:2412"
     runs-on: ubuntu-latest
     env:
         docker_username: benjaminrodenberg
@@ -21,7 +21,7 @@ jobs:
         with:
           push: true
           file: "./tools/docker/precice-openfoam/Dockerfile"
-          tags: ${{ env.docker_username }}/precice-openfoam:3.2.0  
+          tags: ${{ env.docker_username }}/precice-openfoam:3.3.0
   build_fenics_openfoam:
     name: "Build FEniCS-OpenFOAM"
     needs: build_precice_openfoam
@@ -41,4 +41,4 @@ jobs:
         with:
           push: true
           file: "./tools/docker/fenics-openfoam/Dockerfile"
-          tags: ${{ env.docker_username }}/fenics-openfoam:3.2.0
+          tags: ${{ env.docker_username }}/fenics-openfoam:3.3.0
