@@ -66,7 +66,7 @@ for r in df.to_dict(orient='records'):
 
 # Load the Jinja2 template from the file system
 env = Environment(loader=FileSystemLoader('.'))
-template = env.get_template('tikzcode-template.tex.jinja2')
+template = env.get_template('tikzcode.tex.jinja2')
 
 df = pd.DataFrame(data)
 
