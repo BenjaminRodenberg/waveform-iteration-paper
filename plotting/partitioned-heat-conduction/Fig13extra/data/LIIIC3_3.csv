@@ -1,14 +1,14 @@
-# participants version:{'Dirichlet': {'url': 'BenjaminRodenberg/test-cases-dissertation', 'repo': 'refs/pull/7/merge', 'chash': '4c031f00c705d9847942442c9c62ac413c142825'}, 'Neumann': {'url': 'BenjaminRodenberg/test-cases-dissertation', 'repo': 'refs/pull/7/merge', 'chash': '4c031f00c705d9847942442c9c62ac413c142825'}}
-# participants:{'Dirichlet': <prepesthel.participant.Participant object at 0x7fc0be239250>, 'Neumann': <prepesthel.participant.Participant object at 0x7fc0beb02240>}
-# run cmd:python3 doConvergenceStudy.py precice-config-template.xml --silent --executor Github --experiment sincos -w 6 -s 1 -wd 3 -sb 5 5 -dt 1 -tss LobattoIIIC3 LobattoIIIC3 --exchange-substeps -o results/Fig13extra/data/LIIIC3_3.csv
-# args:Namespace(template_path='precice-config-template.xml', silent=True, executor='Github', max_time=1.0, base_time_window_size=1.0, time_window_refinements=6, base_time_step_refinement=[5, 5], time_step_refinements=1, time_step_refinement_factor=[2, 2], experiment='sincos', time_stepping_scheme=['LobattoIIIC3', 'LobattoIIIC3'], waveform_degree=3, exchange_substeps=True, out_filename='results/Fig13extra/data/LIIIC3_3.csv')
-# precice.get_version_information():b'3.2.0;no-info [git failed to run];PRECICE_FEATURE_MPI_COMMUNICATION=Y;PRECICE_FEATURE_PETSC_MAPPING=Y;PRECICE_FEATURE_GINKGO_MAPPING=N;PRECICE_FEATURE_PYTHON_ACTIONS=Y;PRECICE_BINDINGS_C=Y;PRECICE_BINDINGS_FORTRAN=Y;CXX=GNU;CXXFLAGS= -O3 -DNDEBUG;LDFLAGS='
+# participants version:{'Dirichlet': {'url': 'BenjaminRodenberg/test-cases-dissertation', 'repo': 'refs/pull/8/merge', 'chash': '3202eb513f485596bf76ab992ea7ac77fea1d47d'}, 'Neumann': {'url': 'BenjaminRodenberg/test-cases-dissertation', 'repo': 'refs/pull/8/merge', 'chash': '3202eb513f485596bf76ab992ea7ac77fea1d47d'}}
+# participants:{'Dirichlet': <prepesthel.participant.Participant object at 0x7f4b54039be0>, 'Neumann': <prepesthel.participant.Participant object at 0x7f4b5227aba0>}
+# run cmd:python3 doConvergenceStudy.py precice-config.xml.jinja2 --silent --executor Github --experiment sincos -w 6 -s 1 -wd 3 -sb 5 5 -dt 1 -tss LobattoIIIC3 LobattoIIIC3 --exchange-substeps -o results/Fig13extra/data/LIIIC3_3.csv
+# args:Namespace(template_path='precice-config.xml.jinja2', silent=True, executor='Github', max_time=1.0, base_time_window_size=1.0, time_window_refinements=6, base_time_step_refinement=[5, 5], time_step_refinements=1, time_step_refinement_factor=[2, 2], experiment='sincos', time_stepping_scheme=['LobattoIIIC3', 'LobattoIIIC3'], waveform_degree=3, exchange_substeps=True, out_filename='results/Fig13extra/data/LIIIC3_3.csv')
+# precice.get_version_information():b'3.3.0;no-info [git failed to run];PRECICE_FEATURE_MPI_COMMUNICATION=Y;PRECICE_FEATURE_PETSC_MAPPING=Y;PRECICE_FEATURE_GINKGO_MAPPING=N;PRECICE_FEATURE_PYTHON_ACTIONS=Y;PRECICE_BINDINGS_C=Y;PRECICE_BINDINGS_FORTRAN=Y;CXX=GNU;CXXFLAGS= -O3 -DNDEBUG;LDFLAGS='
 # precice.__version__:3.2.1
 # precice_config_params:{'time_window_size': 0.03125, 'max_time': 1.0, 'waveform_degree': 3, 'substeps': True}
 time window size,time step size Dirichlet,time step size Neumann,substeps Dirichlet,avg(iterations / window),max(iterations / window),error Dirichlet,substeps Neumann,error Neumann
-1.0,0.2,0.2,5,18.0,18,2.981600118978861e-06,5,8.163472328314331e-07
-0.5,0.1,0.1,5,19.5,21,3.752574014962723e-07,5,9.617954383648265e-08
-0.25,0.05,0.05,5,19.75,21,3.5597453278116624e-08,5,1.2734453680993648e-08
-0.125,0.025,0.025,5,18.25,21,2.8518998513104754e-09,5,1.1131893926072486e-09
-0.0625,0.0125,0.0125,5,19.1875,24,2.39188487394981e-10,5,8.984640456121587e-11
-0.03125,0.00625,0.00625,5,15.15625,17,2.0157053538939518e-11,5,7.03374230772496e-12
+1.0,0.2,0.2,5,18.0,18,2.9816001182359984e-06,5,8.163472327116251e-07
+0.5,0.1,0.1,5,19.5,21,3.75257401958948e-07,5,9.617954398413165e-08
+0.25,0.05,0.05,5,21.0,26,3.559745317413358e-08,5,1.2734453483515092e-08
+0.125,0.025,0.025,5,19.875,24,2.8518997916407274e-09,5,1.1131894427089679e-09
+0.0625,0.0125,0.0125,5,16.5,22,2.3927295999672286e-10,5,8.983422767403362e-11
+0.03125,0.00625,0.00625,5,16.9375,22,2.016044047236412e-11,5,7.041874292428453e-12
