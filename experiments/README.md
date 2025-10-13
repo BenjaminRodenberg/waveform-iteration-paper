@@ -4,32 +4,29 @@ This folder `experiments` contains the scenarios and all required data and helpe
 
 ## Overview
 
-The subfolders of this folder refer to the test cases provided in Section 4 Results and follow the naming convention of the three test cases at the root level of this repository:
+The subfolders of this folder refer to the test cases provided in *Section 4 Results*:
 
 * `experiments/oscillator-overlap` corresponds to *Section 4.1 Partitioned oscillator*
 * `experiments/partitioned-heat-conduction` corresponds to *Section 4.2 Partitioned heat conduction*
 * `experiments/perpendicular-flap` corresponds to *Section 4.3 Perpendicular flap*
 
-In the following sections of this document provide installation instructions for the necessary dependencies for running the cases and instructions on how to run the individual cases. The cases closely follow the tutorial cases from the preCICE distribution version v2404.0 [^Chen2024]. Please refer to the tutorial descriptions on [the preCICE website](https://precice.org/tutorials.html) or to the `README.md` files of the respective cases under [github.com/precice/tutorials](github.com/precice/tutorials) for details on the setups ([v2024.04](https://github.com/precice/tutorials/tree/v202404.0)).
+The following sections of this README document provide installation instructions for necessary dependencies and instructions on how to run the cases. The cases closely follow the [tutorial cases from the preCICE distribution version v2404.0](https://github.com/precice/tutorials/tree/v202404.0) [^Chen2024]. Refer to the tutorial descriptions on [the preCICE website](https://precice.org/tutorials.html) for details on the setups.
 
 ## Dependencies & installation steps
 
-You can start from a recent Linux-based system (Ubuntu 24.04 is recommended). Alternatively, the preCICE distribution version v2404.0 [^Chen2024] should provide a good basis for running the experiments provided in this repository.
-
-In contrast to the preCICE distribution version v2404.0 a more recent version of preCICE and of some adapters will be required and have to be installed. The experiments are known to run as expected on a system with the following specification:
+You can start from a recent Linux-based system (Ubuntu 24.04 is recommended). The experiments are known to run on a system with the following specification:
 
 ### preCICE components
 
 * preCICE [`3.3.0`](https://github.com/precice/precice/releases/tag/v3.3.0)
-* pyprecice [`3.3.0`](https://github.com/precice/python-bindings/releases/tag/v3.3.0) (automatically installed via `requirements.txt` of the respective case)
-* FEniCS adapter [`2.2.0`](https://github.com/precice/fenics-adapter/releases/tag/v2.2.0) (automatically installed via `requirements.txt` of the respective case)
+* pyprecice [`3.3.0`](https://github.com/precice/python-bindings/releases/tag/v3.3.0) (automatically installed via `requirements.txt` of the respective cases)
+* FEniCS adapter [`2.2.0`](https://github.com/precice/fenics-adapter/releases/tag/v2.2.0) (automatically installed via `requirements.txt` of the respective cases)
 * OpenFOAM adapter [`1.3.1`](https://github.com/precice/openfoam-adapter/releases/tag/v1.3.1)
 
-### OS and other dependencies
+### Other dependencies
 
-* Recommended OS: Ubuntu `24.04`, but the workflow should work similarly for other Ubuntu versions or Linux-based systems
-* The Python package [prepesthel](https://pypi.org/project/prepesthel/) for automation of preCICE runs (automatically installed via `requirements.txt` of the respective case)
-* Additional python packages (automatically installed via `requirements.txt` of the respective case)
+* The Python package [prepesthel](https://pypi.org/project/prepesthel/) for automation of preCICE runs (automatically installed via `requirements.txt` of the respective cases)
+* Additional python packages (automatically installed via `requirements.txt` of the respective cases)
 * FEniCS `2019.2.0.64.dev0` (installed from FEniCS PPA https://launchpad.net/~fenics-packages/+archive/ubuntu/fenics; compare version provided by `python3 -c "import dolfin;print(dolfin.__version__)"` or run `fenics-version`)
 * OpenFOAM `2412` from OpenCFD / ESI (openfoam.com)
 
@@ -37,14 +34,14 @@ In contrast to the preCICE distribution version v2404.0 a more recent version of
 
 The following steps will install the required dependencies:
 
-1. **preCICE**: Download the Debian package (`.deb`) of preCICE 3.3.0 from [here](https://github.com/precice/precice/releases/tag/v3.3.0) and install it on your system by running the command
+1. **preCICE**: Download the Debian package (`.deb`) of [preCICE v3.3.0](https://github.com/precice/precice/releases/tag/v3.3.0) and install it on your system by running the command
 
    ```sh
    wget https://github.com/precice/precice/releases/download/v3.3.0/libprecice3_3.3.0_noble.deb
    sudo apt install -y libprecice3_3.3.0_noble.deb
    ```
 
-   Note: The code name `noble` refers to Ubuntu 24.04, see [here](https://documentation.ubuntu.com/project/release-team/list-of-releases/). If you are using a different Ubuntu version, please replace `noble` with the respective code name.
+   Note: The code name `noble` refers to Ubuntu 24.04, see [Ubuntu docs](https://documentation.ubuntu.com/project/release-team/list-of-releases/). If you are using a different Ubuntu version, please replace `noble` with the respective code name.
 
 2. **FEniCS**: Enter the following commands:
 
@@ -55,7 +52,7 @@ The following steps will install the required dependencies:
    sudo apt install -y fenics
    ```
 
-   These installation instructions similar to the instructions from [here](https://fenicsproject.org/download/archive/).
+   These installation instructions are similar to the instructions the [FEniCS docs](https://fenicsproject.org/download/archive/).
 
 3. **OpenFOAM 2414**: Enter the following commands:
 
@@ -65,7 +62,7 @@ The following steps will install the required dependencies:
    sudo apt install -y openfoam2412-default
    ```
 
-   These installation instructions are similar to the instructions from [here](https://develop.openfoam.com/Development/openfoam/-/wikis/precompiled/debian). After that, you also need to source the OpenFOAM bashrc file:
+   These installation instructions are similar to the instructions from the [OpenFOAM docs](https://develop.openfoam.com/Development/openfoam/-/wikis/precompiled/debian). After that, you also need to source the OpenFOAM bashrc file:
 
    ```sh
    source /usr/lib/openfoam/openfoam2412/etc/bashrc
@@ -86,25 +83,25 @@ The following steps will install the required dependencies:
     ./Allwmake
     ```
 
-5. **pyprecice, the FEniCS adapter, and other Python dependencies**: These dependencies will be fetched automatically from PyPI and installed into an individual virtual environment for each case for setting up the virtual environment, please execute the following commands:
+5. **pyprecice, the FEniCS adapter, and other Python dependencies**: These dependencies are fetched automatically from PyPI and installed into an individual virtual environment for each case. For example:
 
    ```sh
    cd oscillator-overlap
    ./make-venv.sh
    ```
 
-   The command above will create a virtual environment with all the required Python dependencies in the folder `.venv` in `oscillator-overlap`. You can easily get a list of the installed Python packages by running `.venv/bin/pip freeze` from `oscillator-overlap` and you should see `pyprecice` and `prepesthel` in this list. If you want to run one of the other cases please replace `oscillator-overlap` with `partitioned-heat-conduction` or `perpendicular-flap` above.
+   The command above creates a virtual environment with all required Python dependencies in the folder `.venv` in `oscillator-overlap`. You can get a list of the installed Python packages by running `.venv/bin/pip freeze`.
 
 ## Running the test cases
 
-Each case is represented by a subfolder `oscillator-overlap`, `partitioned-heat-conduction`, and `perpendicular-flap`. They are forked from the preCICE tutorials from [github.com/precice/tutorials](github.com/precice/tutorials) and follow their basic structure. Additionally, they contain some helper scripts needed for setting up the runtime environment, running the experiments, and postprocessing data for plotting:
+The test cases are forked from the [preCICE tutorials](https://github.com/precice/tutorials) and follow their basic structure. Additionally, they contain helper scripts for setting up the runtime environment, running the experiments, and postprocessing data for plotting:
 
-* The script `make-venv.sh` allows to create a virtual environment needed for running the experiments (see above for usage).
-* A helper script `run_experiments.sh` that will automatically run all experiments required for each study (convergence study, comparison of iteration numbers etc.). It is recommended to navigate to the respective folder and run this script. This should automatically execute all experiments.
-* A folder `configs` with `.csv` files defining configurations (e.g., time window sizes or time step sizes) for individual experiments.
-* A folder `results`. After running the experiments this folder will contain all the relevant data for creation of the plots.
-* Python scripts `doConvergenceStudy.py`, respectively `doConvergenceStudyMonolithic.py` required for automation of experiment runs via the Python package [prepesthel](https://pypi.org/project/prepesthel/).
-* In contrast to the original preCICE tutorials there is no `precice-config.xml` but a `precice-config.xml.jinja2` Jinja2 template. This template will be processed by the Jinja2 engine to create preCICE configuration files for the respective experiments.
+* `make-venv.sh` creates a virtual environment needed for running the experiments (see above).
+* `run_experiments.sh` runs all experiments required for each study (convergence study, comparison of iteration numbers etc.). It is recommended to navigate to the respective folder and run this script.
+* Folder `configs` with `.csv` files defines configurations (e.g., time window sizes or time step sizes) for individual experiments.
+* Folder `results` will contain all relevant data for creation of the plots after running the experiments.
+* Python scripts `doConvergenceStudy.py` and `doConvergenceStudyMonolithic.py` are indirectly called by `run_experiments.sh` and use the Python package [prepesthel](https://pypi.org/project/prepesthel/) to execute multiple preCICE experiments and create reports with their results.
+* In contrast to the original preCICE tutorials, there is no `precice-config.xml`, but a `precice-config.xml.jinja2` Jinja2 template. This template is processed by the Jinja2 engine to create preCICE configuration files for the respective experiments.
 
 ### Example: Run experiments from Section 4.1
 
@@ -114,8 +111,6 @@ If you want to run, for example, all experiments from *Section 4.1 Partitioned o
 cd oscillator-overlap
 ./run_experiments.sh
 ```
-
-For other experiments, simply replace `oscillator-overlap` with `partitioned-heat-conduction` or `perpendicular-flap`.
 
 After running the experiments, you will find all data in the `results` folder. For `oscillator-overlap` this looks as follows:
 
@@ -163,6 +158,6 @@ results/
         └── rQN.csv
 ```
 
-You can copy this data to the respective location in the `plotting` folder at the root of this repository or use precomputed data already present at this location.
+You can copy this data to the respective location in the `plotting` folder at the root of this repository or instead use the precomputed data already there.
 
 [^Chen2024]: Chen, Jun; Chourdakis, Gerasimos; Desai, Ishaan; Homs-Pons, Carme; Rodenberg, Benjamin; Schneider, David; Simonis, Frédéric; Uekermann, Benjamin; Davis, Kyle; Jaust, Alexander; Kelm, Mathis; Kotarsky, Niklas; Kschidock, Helena; Mishra, Durganshu; Mühlhäußer, Markus; Schrader, Timo Pierre; Schulte, Miriam; Seitz, Valentin; Signorelli, Joseph; van Zwieten, Gertjan; Vinnitchenko, Niklas; Vladimirova, Tina; Willeke, Leonard; Zonta, Elia. *preCICE Distribution Version v2404.0*. DaRUS, 2024, V1. https://doi.org/10.18419/darus-4167.
