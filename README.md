@@ -11,7 +11,7 @@ The following two folders from this repository allow to run the experiments and 
 
 Both folders contain subfolders corresponding to the following subsections of the results section of Rodenberg [^Rodenberg2025]:
 
-* `oscillator-overlap`: 4.1 Oscillator problem
+* `oscillator-overlap`: 4.1 Partitioned oscillator
 * `partitioned-heat-conduction`: 4.2 Partitioned heat conduction
 * `perpendicular-flap`: 4.3 Perpendicular flap
 
@@ -19,12 +19,10 @@ If you want to run the experiments from the paper, please refer to `experiments/
 
 ## Running the experiments and creating the plots with GitHub Actions
 
-The following folders contain job definitions and Dockerfiles that allow to run the experiments and create the plots using GitHub Actions.
+The following folders contain job definitions and Dockerfiles that allow to run the experiments and create the plots using GitHub Actions. You can ignore these folders if you want to run the experiments locally.
 
 * `.github/workflows`: Definition of pipelines that allow to perform the experiments using [GitHub Actions](https://github.com/features/actions). You can fork this repository to run the experiments and create the plots with GitHub Actions. Alternatively, you can also find the artifacts created by the GitHub Actions pipeline on the branch [`gh-pages`](https://github.com/BenjaminRodenberg/test-cases-dissertation/tree/gh-pages).
 * `tools/docker`: Docker files used by the CI job `.github/workflows/publish-docker.yml` to create docker images for running the experiments. The docker images can be found under https://hub.docker.com/r/benjaminrodenberg/fenics-openfoam and https://hub.docker.com/r/benjaminrodenberg/precice-openfoam.
-
-You can ignore these folders if you want to run the experiments locally. However, you can also [fork this repository](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo) with your GitHub account and run a CI pipeline to perform the experiments and create the plots using GitHub CI runners.
 
 [^RodenbergUekermann2025]: Rodenberg, Benjamin; Uekermann, Benjamin. *A waveform iteration implementation for black-box multi-rate higher-order coupling*. [Manuscript in preparation]
 [^Chen2024]: Chen, Jun; Chourdakis, Gerasimos; Desai, Ishaan; Homs-Pons, Carme; Rodenberg, Benjamin; Schneider, David; Simonis, Frédéric; Uekermann, Benjamin; Davis, Kyle; Jaust, Alexander; Kelm, Mathis; Kotarsky, Niklas; Kschidock, Helena; Mishra, Durganshu; Mühlhäußer, Markus; Schrader, Timo Pierre; Schulte, Miriam; Seitz, Valentin; Signorelli, Joseph; van Zwieten, Gertjan; Vinnitchenko, Niklas; Vladimirova, Tina; Willeke, Leonard; Zonta, Elia. *preCICE Distribution Version v2404.0*. DaRUS, 2024, V1. https://doi.org/10.18419/darus-4167.
