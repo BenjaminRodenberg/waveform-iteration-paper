@@ -1,5 +1,5 @@
-# participants version:{'Monolithic': {'url': 'BenjaminRodenberg/test-cases-dissertation', 'repo': 'refs/pull/7/merge', 'chash': '4c031f00c705d9847942442c9c62ac413c142825'}}
-# participants:{'Monolithic': <prepesthel.participant.Participant object at 0x7f097466a3c0>}
+# participants version:{'Monolithic': {'url': 'BenjaminRodenberg/waveform-iteration-paper', 'repo': 'refs/tags/v0.1.0rc1', 'chash': 'f949730c6227a89b97887c5622de9d882ee631e7'}}
+# participants:{'Monolithic': <prepesthel.participant.Participant object at 0x7fcb4796a3c0>}
 # run cmd:python3 doConvergenceStudyMonolithic.py --silent --executor Github --experiment sincos -s 6 -dt 0.2 -tss GaussLegendre2 -o results/Fig13/data/GL2_mono.csv
 # args:Namespace(silent=True, executor='Github', max_time=1.0, base_time_step_size=0.2, time_step_refinements=6, time_step_refinement_factor=[2], experiment='sincos', time_stepping_scheme=['GaussLegendre2'], out_filename='results/Fig13/data/GL2_mono.csv')
 time step size Monolithic,error Monolithic

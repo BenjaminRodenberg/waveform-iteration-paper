@@ -1,7 +1,7 @@
-# participants version:{'Fluid': {'url': 'BenjaminRodenberg/test-cases-dissertation', 'repo': 'refs/pull/7/merge', 'chash': '4c031f00c705d9847942442c9c62ac413c142825'}, 'Solid': {'url': 'BenjaminRodenberg/test-cases-dissertation', 'repo': 'refs/pull/7/merge', 'chash': '4c031f00c705d9847942442c9c62ac413c142825'}}
-# participants:{'Fluid': <prepesthel.participant.Participant object at 0x7f74eaaf12b0>, 'Solid': <prepesthel.participant.Participant object at 0x7f74ea89ff50>}
-# run cmd:python3 doConvergenceStudy.py precice-config-template.xml --silent --executor Github configs/Fig16.csv -o results/Fig16/data/result.csv
-# args:Namespace(template_path='precice-config-template.xml', silent=True, executor='Github', time_config='configs/Fig16.csv', out_filename='results/Fig16/data/result.csv')
+# participants version:{'Fluid': {'url': 'BenjaminRodenberg/waveform-iteration-paper', 'repo': 'refs/tags/v0.1.0rc1', 'chash': 'f949730c6227a89b97887c5622de9d882ee631e7'}, 'Solid': {'url': 'BenjaminRodenberg/waveform-iteration-paper', 'repo': 'refs/tags/v0.1.0rc1', 'chash': 'f949730c6227a89b97887c5622de9d882ee631e7'}}
+# participants:{'Fluid': <prepesthel.participant.Participant object at 0x7ffaad6be270>, 'Solid': <prepesthel.participant.Participant object at 0x7ffaab9a2720>}
+# run cmd:python3 doConvergenceStudy.py precice-config.xml.jinja2 --silent --executor Github configs/Fig16.csv -o results/Fig16/data/result.csv
+# args:Namespace(template_path='precice-config.xml.jinja2', silent=True, executor='Github', time_config='configs/Fig16.csv', out_filename='results/Fig16/data/result.csv')
 # precice.get_version_information():b'3.2.0;no-info [git failed to run];PRECICE_FEATURE_MPI_COMMUNICATION=Y;PRECICE_FEATURE_PETSC_MAPPING=Y;PRECICE_FEATURE_GINKGO_MAPPING=N;PRECICE_FEATURE_PYTHON_ACTIONS=Y;PRECICE_BINDINGS_C=Y;PRECICE_BINDINGS_FORTRAN=Y;CXX=GNU;CXXFLAGS= -O3 -DNDEBUG;LDFLAGS='
 # precice.__version__:3.2.1
 # precice_config_params:{'time_window_size': 0.2, 'max_time': 1, 'waveform_degree': 3, 'reduced': True, 'substeps': True, 'acceleration': 'qn'}
