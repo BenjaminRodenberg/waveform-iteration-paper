@@ -113,31 +113,3 @@ jobs:
         uses: actions/upload-artifact/merge@v4
         with:
           name: results
-
-  publish-pages:
-    permissions:
-      contents: write
-    needs:
-      - merge
-      - visualize
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Download merge output
-        uses: actions/download-artifact@v4
-        with:
-          name: results
-          path: pages/oscillator-overlap/results
-
-      - name: Download visualizations
-        uses: actions/download-artifact@v4
-        with:
-          name: visualizations
-          path: pages/oscillator-overlap/visualizations
-
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: pages

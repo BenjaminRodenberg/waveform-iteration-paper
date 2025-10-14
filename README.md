@@ -21,7 +21,7 @@ If you want to run the experiments from the paper, please refer to `experiments/
 
 The following folders contain job definitions and Dockerfiles that allow to run the experiments and create the plots using GitHub Actions. You can ignore these folders if you want to run the experiments locally.
 
-* `.github/workflows`: Definition of pipelines that allow to perform the experiments using [GitHub Actions](https://github.com/features/actions). You can fork this repository to run the experiments and create the plots with GitHub Actions. Alternatively, you can also find the artifacts created by the GitHub Actions pipeline on the branch [`gh-pages`](https://github.com/BenjaminRodenberg/test-cases-dissertation/tree/gh-pages).
+* `.github/workflows`: Definition of pipelines that allow to perform the experiments using [GitHub Actions](https://github.com/features/actions). You can fork this repository to run the experiments and create the plots with GitHub Actions.
 * `tools/docker`: Docker files used by the CI job `.github/workflows/publish-docker.yml` to create docker images for running the experiments. The docker images can be found under https://hub.docker.com/r/benjaminrodenberg/fenics-openfoam and https://hub.docker.com/r/benjaminrodenberg/precice-openfoam.
 
 [^RodenbergUekermann2025]: Rodenberg, Benjamin; Uekermann, Benjamin. *A waveform iteration implementation for black-box multi-rate higher-order coupling*. [Manuscript in preparation]
