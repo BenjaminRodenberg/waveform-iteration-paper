@@ -71,10 +71,10 @@ jobs:
 
   visualize:
     name: Create plots to visualize experiments from Section 4.3
-    needs: 
+    needs:
       - section_4_3
     runs-on: ubuntu-latest
-    container: 
+    container:
       image: benjaminrodenberg/latex:wi-paper
     steps:
       - name: Checkout Repository
@@ -118,31 +118,3 @@ jobs:
         uses: actions/upload-artifact/merge@v4
         with:
           name: results
-
-  publish-pages:
-    permissions:
-      contents: write
-    needs: 
-      - merge
-      - visualize
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Download merge output
-        uses: actions/download-artifact@v4
-        with:
-          name: results
-          path: pages/perpendicular-flap/results
-
-      - name: Download visualizations
-        uses: actions/download-artifact@v4
-        with:
-          name: visualizations
-          path: pages/perpendicular-flap/visualizations
-
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: pages
