@@ -1,5 +1,5 @@
-# participants version:{'Fluid': {'url': 'BenjaminRodenberg/waveform-iteration-paper', 'repo': 'refs/tags/v0.1.0rc1', 'chash': 'f949730c6227a89b97887c5622de9d882ee631e7'}, 'Solid': {'url': 'BenjaminRodenberg/waveform-iteration-paper', 'repo': 'refs/tags/v0.1.0rc1', 'chash': 'f949730c6227a89b97887c5622de9d882ee631e7'}}
-# participants:{'Fluid': <prepesthel.participant.Participant object at 0x7ffaad6be270>, 'Solid': <prepesthel.participant.Participant object at 0x7ffaab9a2720>}
+# participants version:{'Fluid': {'url': 'BenjaminRodenberg/waveform-iteration-paper', 'repo': 'refs/tags/v202510.0rc1', 'chash': 'e77cf85909bbd1a200b7bb354d374b1f8be91b64'}, 'Solid': {'url': 'BenjaminRodenberg/waveform-iteration-paper', 'repo': 'refs/tags/v202510.0rc1', 'chash': 'e77cf85909bbd1a200b7bb354d374b1f8be91b64'}}
+# participants:{'Fluid': <prepesthel.participant.Participant object at 0x7f1338150830>, 'Solid': <prepesthel.participant.Participant object at 0x7f133a939940>}
 # run cmd:python3 doConvergenceStudy.py precice-config.xml.jinja2 --silent --executor Github configs/Fig16.csv -o results/Fig16/data/result.csv
 # args:Namespace(template_path='precice-config.xml.jinja2', silent=True, executor='Github', time_config='configs/Fig16.csv', out_filename='results/Fig16/data/result.csv')
 # precice.get_version_information():b'3.2.0;no-info [git failed to run];PRECICE_FEATURE_MPI_COMMUNICATION=Y;PRECICE_FEATURE_PETSC_MAPPING=Y;PRECICE_FEATURE_GINKGO_MAPPING=N;PRECICE_FEATURE_PYTHON_ACTIONS=Y;PRECICE_BINDINGS_C=Y;PRECICE_BINDINGS_FORTRAN=Y;CXX=GNU;CXXFLAGS= -O3 -DNDEBUG;LDFLAGS='

@@ -1,5 +1,5 @@
-# participants version:{'Monolithic': {'url': 'BenjaminRodenberg/waveform-iteration-paper', 'repo': 'refs/tags/v0.1.0rc1', 'chash': 'f949730c6227a89b97887c5622de9d882ee631e7'}}
-# participants:{'Monolithic': <prepesthel.participant.Participant object at 0x7fa16f949940>}
+# participants version:{'Monolithic': {'url': 'BenjaminRodenberg/waveform-iteration-paper', 'repo': 'refs/tags/v202510.0rc1', 'chash': 'e77cf85909bbd1a200b7bb354d374b1f8be91b64'}}
+# participants:{'Monolithic': <prepesthel.participant.Participant object at 0x7ff0df9e63c0>}
 # run cmd:python3 doConvergenceStudyMonolithic.py --silent --executor Github --experiment sincos -s 6 -dt 0.2 -tss LobattoIIIC3 -o results/Fig13extra/data/LIIIC3_mono.csv
 # args:Namespace(silent=True, executor='Github', max_time=1.0, base_time_step_size=0.2, time_step_refinements=6, time_step_refinement_factor=[2], experiment='sincos', time_stepping_scheme=['LobattoIIIC3'], out_filename='results/Fig13extra/data/LIIIC3_mono.csv')
 time step size Monolithic,error Monolithic
