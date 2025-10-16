@@ -1,25 +1,25 @@
-# participants version:{'Fluid': {'url': 'BenjaminRodenberg/waveform-iteration-paper', 'repo': 'refs/heads/precice-v-3-3-0', 'chash': 'c3cc35f5d22daa4e9ec94405e27d856b2aa15bd5'}, 'Solid': {'url': 'BenjaminRodenberg/waveform-iteration-paper', 'repo': 'refs/heads/precice-v-3-3-0', 'chash': 'c3cc35f5d22daa4e9ec94405e27d856b2aa15bd5'}}
-# participants:{'Fluid': <prepesthel.participant.Participant object at 0x7f830f972720>, 'Solid': <prepesthel.participant.Participant object at 0x7f830e635970>}
+# participants version:{'Fluid': {'url': 'BenjaminRodenberg/waveform-iteration-paper', 'repo': 'refs/pull/1/merge', 'chash': '3a30510dc829e16bf43d09ff4e8a6861eb5796a4'}, 'Solid': {'url': 'BenjaminRodenberg/waveform-iteration-paper', 'repo': 'refs/pull/1/merge', 'chash': '3a30510dc829e16bf43d09ff4e8a6861eb5796a4'}}
+# participants:{'Fluid': <prepesthel.participant.Participant object at 0x7fceb08fd610>, 'Solid': <prepesthel.participant.Participant object at 0x7fceb06abec0>}
 # run cmd:python3 doConvergenceStudy.py precice-config.xml.jinja2 --silent --executor Github configs/Fig15.csv -o results/Fig15/data/result.csv
 # args:Namespace(template_path='precice-config.xml.jinja2', silent=True, executor='Github', time_config='configs/Fig15.csv', out_filename='results/Fig15/data/result.csv')
 # precice.get_version_information():b'3.3.0;no-info [git failed to run];PRECICE_FEATURE_MPI_COMMUNICATION=Y;PRECICE_FEATURE_PETSC_MAPPING=Y;PRECICE_FEATURE_GINKGO_MAPPING=N;PRECICE_FEATURE_PYTHON_ACTIONS=Y;PRECICE_BINDINGS_C=Y;PRECICE_BINDINGS_FORTRAN=Y;CXX=GNU;CXXFLAGS= -O3 -DNDEBUG;LDFLAGS='
 # precice.__version__:3.3.1
-# precice_config_params:{'time_window_size': 5.0, 'max_time': 10, 'waveform_degree': 3, 'reduced': True, 'substeps': True, 'acceleration': 'qn'}
+# precice_config_params:{'time_window_size': 5.0, 'max_time': 5, 'waveform_degree': 3, 'reduced': True, 'substeps': True, 'acceleration': 'qn'}
 time window size,time step size Fluid,time step size Solid,substeps,waveform degree,reduced,acceleration,substeps Fluid,avg(iterations / window),max(iterations / window),no. QN,substeps Solid
-0.01,0.01,0.01,False,1,True,qn,1,2.0,4,2000,1
-0.03,0.01,0.01,False,1,True,qn,3,2.0089820359281436,6,671,3
-0.03,0.01,0.01,True,3,True,qn,3,2.2095808383233533,6,738,3
-0.05,0.01,0.01,False,1,True,qn,5,2.035,5,407,5
-0.05,0.01,0.01,True,3,True,qn,5,2.27,8,454,5
-0.1,0.01,0.01,False,1,True,qn,10,2.34,7,234,10
-0.1,0.01,0.01,True,3,True,qn,10,2.39,9,239,10
-0.25,0.01,0.01,False,1,True,qn,25,3.35,8,134,25
-0.25,0.01,0.01,True,3,True,qn,25,3.025,8,121,25
-0.5,0.01,0.01,False,1,True,qn,50,4.4,8,88,50
-0.5,0.01,0.01,True,3,True,qn,50,4.3,9,86,50
-1.0,0.01,0.01,False,1,True,qn,100,11.5,28,115,100
-1.0,0.01,0.01,True,3,True,qn,100,6.1,11,61,100
-2.5,0.01,0.01,False,1,True,qn,250,15.75,33,63,250
-2.5,0.01,0.01,True,3,True,qn,250,9.75,14,39,250
-5.0,0.01,0.01,False,1,True,qn,500,6.5,8,13,500
-5.0,0.01,0.01,True,3,True,qn,500,19.0,19,38,500
+0.01,0.01,0.01,False,1,True,qn,1,2.012,4,1006,1
+0.03,0.01,0.01,False,1,True,qn,3,2.035928143712575,4,340,3
+0.03,0.01,0.01,True,3,True,qn,3,2.4011976047904193,6,401,3
+0.05,0.01,0.01,False,1,True,qn,5,2.07,5,207,5
+0.05,0.01,0.01,True,3,True,qn,5,2.54,8,254,5
+0.1,0.01,0.01,False,1,True,qn,10,2.62,7,131,10
+0.1,0.01,0.01,True,3,True,qn,10,2.78,9,139,10
+0.25,0.01,0.01,False,1,True,qn,25,3.75,8,75,25
+0.25,0.01,0.01,True,3,True,qn,25,3.9,8,78,25
+0.5,0.01,0.01,False,1,True,qn,50,4.8,8,48,50
+0.5,0.01,0.01,True,3,True,qn,50,5.2,9,52,50
+1.0,0.01,0.01,False,1,True,qn,100,9.6,16,48,100
+1.0,0.01,0.01,True,3,True,qn,100,6.8,11,34,100
+2.5,0.01,0.01,False,1,True,qn,250,24.0,33,48,250
+2.5,0.01,0.01,True,3,True,qn,250,12.5,14,25,250
+5.0,0.01,0.01,False,1,True,qn,500,8.0,8,8,500
+5.0,0.01,0.01,True,3,True,qn,500,19.0,19,19,500
