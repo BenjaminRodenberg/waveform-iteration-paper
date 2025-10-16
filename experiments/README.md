@@ -19,7 +19,7 @@ You can start from a recent Linux-based system (Ubuntu 24.04 is recommended). Th
 ### preCICE components
 
 * preCICE [`3.3.0`](https://github.com/precice/precice/releases/tag/v3.3.0)
-* pyprecice [`3.3.0`](https://github.com/precice/python-bindings/releases/tag/v3.3.0) (automatically installed via `requirements.txt` of the respective cases)
+* pyprecice [`3.3.1`](https://github.com/precice/python-bindings/releases/tag/v3.3.1) (automatically installed via `requirements.txt` of the respective cases)
 * FEniCS adapter [`2.2.0`](https://github.com/precice/fenics-adapter/releases/tag/v2.2.0) (automatically installed via `requirements.txt` of the respective cases)
 * OpenFOAM adapter [`1.3.1`](https://github.com/precice/openfoam-adapter/releases/tag/v1.3.1)
 
