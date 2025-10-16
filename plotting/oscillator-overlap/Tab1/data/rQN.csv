@@ -1,9 +1,9 @@
-# participants version:{'Mass-Left': {'url': 'BenjaminRodenberg/test-cases-dissertation', 'repo': 'refs/pull/8/merge', 'chash': '3202eb513f485596bf76ab992ea7ac77fea1d47d'}, 'Mass-Right': {'url': 'BenjaminRodenberg/test-cases-dissertation', 'repo': 'refs/pull/8/merge', 'chash': '3202eb513f485596bf76ab992ea7ac77fea1d47d'}}
-# participants:{'Mass-Left': <prepesthel.participant.Participant object at 0x7f003bce6f60>, 'Mass-Right': <prepesthel.participant.Participant object at 0x7f003c3693d0>}
+# participants version:{'Mass-Left': {'url': 'BenjaminRodenberg/waveform-iteration-paper', 'repo': 'refs/heads/precice-v-3-3-0', 'chash': 'c3cc35f5d22daa4e9ec94405e27d856b2aa15bd5'}, 'Mass-Right': {'url': 'BenjaminRodenberg/waveform-iteration-paper', 'repo': 'refs/heads/precice-v-3-3-0', 'chash': 'c3cc35f5d22daa4e9ec94405e27d856b2aa15bd5'}}
+# participants:{'Mass-Left': <prepesthel.participant.Participant object at 0x7fe86938c860>, 'Mass-Right': <prepesthel.participant.Participant object at 0x7fe86938cb00>}
 # run cmd:python3 doConvergenceStudy.py precice-config-rQN.xml.jinja2 --silent --executor Github --config configs/tab1_dts.csv -tss runge_kutta_4 generalized_alpha -wd 3 --exchange-substeps -o results/Tab1/data/rQN.csv
 # args:Namespace(template_path='precice-config-rQN.xml.jinja2', config='configs/tab1_dts.csv', silent=True, executor='Github', max_time=1.0, base_time_window_size=0.04, time_window_refinements=5, base_time_step_refinement=[1, 1], time_step_refinements=1, time_step_refinement_factor=[2, 2], time_stepping_scheme=['runge_kutta_4', 'generalized_alpha'], waveform_degree=3, exchange_substeps=True, out_filename='results/Tab1/data/rQN.csv')
 # precice.get_version_information():b'3.3.0;no-info [git failed to run];PRECICE_FEATURE_MPI_COMMUNICATION=Y;PRECICE_FEATURE_PETSC_MAPPING=Y;PRECICE_FEATURE_GINKGO_MAPPING=N;PRECICE_FEATURE_PYTHON_ACTIONS=Y;PRECICE_BINDINGS_C=Y;PRECICE_BINDINGS_FORTRAN=Y;CXX=GNU;CXXFLAGS= -O3 -DNDEBUG;LDFLAGS='
-# precice.__version__:3.2.1
+# precice.__version__:3.3.1
 # precice_config_params:{'time_window_size': 0.2, 'max_time': 1.0, 'waveform_degree': 3, 'substeps': True}
 time window size,time step size Mass-Left,time step size Mass-Right,error Mass-Left,error Mass-Right
 0.005,0.0050000000000000044,0.00019999999999998448,0.0007804367997321,0.0007463369768833
