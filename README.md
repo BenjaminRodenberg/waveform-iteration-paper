@@ -9,13 +9,13 @@ The following two folders from this repository allow to run the experiments and 
 * `experiments`: The definition of the setups and scripts to execute the experiments. The structure of this folder closely follows https://github.com/precice/tutorials/releases/tag/v202404.0.
 * `plotting`: Scripts for creating plots from the data produced by the experiments. This folder also contains pre-computed data obtained by running the scenarios from `experiments`.
 
-Both folders contain subfolders corresponding to the following subsections of the results section of Rodenberg [^Rodenberg2025]:
+Both folders contain subfolders corresponding to the following subsections of the paper:
 
 * `oscillator-overlap`: 4.1 Partitioned oscillator
 * `partitioned-heat-conduction`: 4.2 Partitioned heat conduction
 * `perpendicular-flap`: 4.3 Perpendicular flap
 
-If you want to run the experiments from the paper, please refer to `experiments/README.md` for further instructions. If you want to create the plots from given results, please refer to `plotting/README.md`.
+If you want to run the experiments, please refer to `experiments/README.md` for further instructions. If you want to create the plots from given results, please refer to `plotting/README.md`.
 
 ## Running the experiments and creating the plots with GitHub Actions
 
@@ -24,6 +24,6 @@ The following folders contain job definitions and Dockerfiles that allow to run 
 * `.github/workflows`: Definition of pipelines that allow to perform the experiments using [GitHub Actions](https://github.com/features/actions). You can fork this repository to run the experiments and create the plots with GitHub Actions.
 * `tools/docker`: Docker files used by the CI job `.github/workflows/publish-docker.yml` to create docker images for running the experiments. The docker images can be found under https://hub.docker.com/r/benjaminrodenberg/fenics-openfoam and https://hub.docker.com/r/benjaminrodenberg/precice-openfoam.
 
-[^RodenbergUekermann2025]: Rodenberg, Benjamin; Uekermann, Benjamin. *A waveform iteration implementation for black-box multi-rate higher-order coupling*. [Manuscript in preparation]
+[^RodenbergUekermann2025]: Rodenberg, Benjamin; Uekermann, Benjamin. *A waveform iteration implementation for black-box multi-rate higher-order coupling*. In review.
 [^Chen2024]: Chen, Jun; Chourdakis, Gerasimos; Desai, Ishaan; Homs-Pons, Carme; Rodenberg, Benjamin; Schneider, David; Simonis, Frédéric; Uekermann, Benjamin; Davis, Kyle; Jaust, Alexander; Kelm, Mathis; Kotarsky, Niklas; Kschidock, Helena; Mishra, Durganshu; Mühlhäußer, Markus; Schrader, Timo Pierre; Schulte, Miriam; Seitz, Valentin; Signorelli, Joseph; van Zwieten, Gertjan; Vinnitchenko, Niklas; Vladimirova, Tina; Willeke, Leonard; Zonta, Elia. *preCICE Distribution Version v2404.0*. DaRUS, 2024, V1. https://doi.org/10.18419/darus-4167.
 [^Rodenberg2025]: Rodenberg, Benjamin. *Flexible and robust time stepping for partitioned multiphysics*. Technical University of Munich, 2025. https://nbn-resolving.org/urn:nbn:de:bvb:91-diss-20250424-1763172-0-4.
