@@ -1,9 +1,9 @@
-# participants version:{'Mass-Left': {'url': 'BenjaminRodenberg/waveform-iteration-paper', 'repo': 'refs/tags/v202510.0rc1', 'chash': 'e77cf85909bbd1a200b7bb354d374b1f8be91b64'}, 'Mass-Right': {'url': 'BenjaminRodenberg/waveform-iteration-paper', 'repo': 'refs/tags/v202510.0rc1', 'chash': 'e77cf85909bbd1a200b7bb354d374b1f8be91b64'}}
-# participants:{'Mass-Left': <prepesthel.participant.Participant object at 0x7fd0029e8890>, 'Mass-Right': <prepesthel.participant.Participant object at 0x7fd0042624e0>}
+# participants version:{'Mass-Left': {'url': 'BenjaminRodenberg/waveform-iteration-paper', 'repo': 'refs/pull/1/merge', 'chash': '3a30510dc829e16bf43d09ff4e8a6861eb5796a4'}, 'Mass-Right': {'url': 'BenjaminRodenberg/waveform-iteration-paper', 'repo': 'refs/pull/1/merge', 'chash': '3a30510dc829e16bf43d09ff4e8a6861eb5796a4'}}
+# participants:{'Mass-Left': <prepesthel.participant.Participant object at 0x7f3038e63590>, 'Mass-Right': <prepesthel.participant.Participant object at 0x7f303b3b3c50>}
 # run cmd:python3 doConvergenceStudy.py precice-config-FP.xml.jinja2 --silent --executor Github --config configs/fig11_dts.csv -tss runge_kutta_4 generalized_alpha -wd 3 --exchange-substeps -o results/Fig11/data/contour_data.csv
 # args:Namespace(template_path='precice-config-FP.xml.jinja2', config='configs/fig11_dts.csv', silent=True, executor='Github', max_time=1.0, base_time_window_size=0.04, time_window_refinements=5, base_time_step_refinement=[1, 1], time_step_refinements=1, time_step_refinement_factor=[2, 2], time_stepping_scheme=['runge_kutta_4', 'generalized_alpha'], waveform_degree=3, exchange_substeps=True, out_filename='results/Fig11/data/contour_data.csv')
-# precice.get_version_information():b'3.2.0;no-info [git failed to run];PRECICE_FEATURE_MPI_COMMUNICATION=Y;PRECICE_FEATURE_PETSC_MAPPING=Y;PRECICE_FEATURE_GINKGO_MAPPING=N;PRECICE_FEATURE_PYTHON_ACTIONS=Y;PRECICE_BINDINGS_C=Y;PRECICE_BINDINGS_FORTRAN=Y;CXX=GNU;CXXFLAGS= -O3 -DNDEBUG;LDFLAGS='
-# precice.__version__:3.2.1
+# precice.get_version_information():b'3.3.0;no-info [git failed to run];PRECICE_FEATURE_MPI_COMMUNICATION=Y;PRECICE_FEATURE_PETSC_MAPPING=Y;PRECICE_FEATURE_GINKGO_MAPPING=N;PRECICE_FEATURE_PYTHON_ACTIONS=Y;PRECICE_BINDINGS_C=Y;PRECICE_BINDINGS_FORTRAN=Y;CXX=GNU;CXXFLAGS= -O3 -DNDEBUG;LDFLAGS='
+# precice.__version__:3.3.1
 # precice_config_params:{'time_window_size': 0.00125, 'max_time': 1.0, 'waveform_degree': 3, 'substeps': True}
 time window size,time step size Mass-Left,time step size Mass-Right,error Mass-Left,error Mass-Right
 0.2,0.05,0.05,0.1922588167763372,0.1604466389881712

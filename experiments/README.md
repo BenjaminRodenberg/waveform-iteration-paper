@@ -18,8 +18,8 @@ You can start from a recent Linux-based system (Ubuntu 24.04 is recommended). Th
 
 ### preCICE components
 
-* preCICE [`3.2.0`](https://github.com/precice/precice/releases/tag/v3.2.0)
-* pyprecice [`3.2.1`](https://github.com/precice/python-bindings/releases/tag/v3.2.1) (automatically installed via `requirements.txt` of the respective cases)
+* preCICE [`3.3.0`](https://github.com/precice/precice/releases/tag/v3.3.0)
+* pyprecice [`3.3.1`](https://github.com/precice/python-bindings/releases/tag/v3.3.1) (automatically installed via `requirements.txt` of the respective cases)
 * FEniCS adapter [`2.2.0`](https://github.com/precice/fenics-adapter/releases/tag/v2.2.0) (automatically installed via `requirements.txt` of the respective cases)
 * OpenFOAM adapter [`1.3.1`](https://github.com/precice/openfoam-adapter/releases/tag/v1.3.1)
 
@@ -34,11 +34,11 @@ You can start from a recent Linux-based system (Ubuntu 24.04 is recommended). Th
 
 The following steps will install the required dependencies:
 
-1. **preCICE**: Download the Debian package (`.deb`) of [preCICE v3.2.0](https://github.com/precice/precice/releases/tag/v3.2.0) and install it on your system by running the command
+1. **preCICE**: Download the Debian package (`.deb`) of [preCICE v3.3.0](https://github.com/precice/precice/releases/tag/v3.3.0) and install it on your system by running the command
 
    ```sh
-   wget https://github.com/precice/precice/releases/download/v3.2.0/libprecice3_3.2.0_noble.deb
-   sudo apt install -y libprecice3_3.2.0_noble.deb
+   wget https://github.com/precice/precice/releases/download/v3.3.0/libprecice3_3.3.0_noble.deb
+   sudo apt install -y libprecice3_3.3.0_noble.deb
    ```
 
    Note: The code name `noble` refers to Ubuntu 24.04, see [Ubuntu docs](https://documentation.ubuntu.com/project/release-team/list-of-releases/). If you are using a different Ubuntu version, please replace `noble` with the respective code name.

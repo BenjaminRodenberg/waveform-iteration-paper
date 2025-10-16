@@ -33,7 +33,7 @@ jobs:
     defaults:
       run:
         working-directory: experiments/partitioned-heat-conduction
-    container: precice/precice:3.2.0
+    container: precice/precice:3.3.0
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -80,7 +80,7 @@ jobs:
     defaults:
       run:
         working-directory: experiments/partitioned-heat-conduction
-    container: precice/precice:3.2.0
+    container: precice/precice:3.3.0
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4

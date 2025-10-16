@@ -1,9 +1,9 @@
-# participants version:{'Fluid': {'url': 'BenjaminRodenberg/waveform-iteration-paper', 'repo': 'refs/tags/v202510.0rc1', 'chash': 'e77cf85909bbd1a200b7bb354d374b1f8be91b64'}, 'Solid': {'url': 'BenjaminRodenberg/waveform-iteration-paper', 'repo': 'refs/tags/v202510.0rc1', 'chash': 'e77cf85909bbd1a200b7bb354d374b1f8be91b64'}}
-# participants:{'Fluid': <prepesthel.participant.Participant object at 0x7fa1796bed20>, 'Solid': <prepesthel.participant.Participant object at 0x7fa179756a50>}
+# participants version:{'Fluid': {'url': 'BenjaminRodenberg/waveform-iteration-paper', 'repo': 'refs/pull/1/merge', 'chash': '3a30510dc829e16bf43d09ff4e8a6861eb5796a4'}, 'Solid': {'url': 'BenjaminRodenberg/waveform-iteration-paper', 'repo': 'refs/pull/1/merge', 'chash': '3a30510dc829e16bf43d09ff4e8a6861eb5796a4'}}
+# participants:{'Fluid': <prepesthel.participant.Participant object at 0x7fceb08fd610>, 'Solid': <prepesthel.participant.Participant object at 0x7fceb06abec0>}
 # run cmd:python3 doConvergenceStudy.py precice-config.xml.jinja2 --silent --executor Github configs/Fig15.csv -o results/Fig15/data/result.csv
 # args:Namespace(template_path='precice-config.xml.jinja2', silent=True, executor='Github', time_config='configs/Fig15.csv', out_filename='results/Fig15/data/result.csv')
-# precice.get_version_information():b'3.2.0;no-info [git failed to run];PRECICE_FEATURE_MPI_COMMUNICATION=Y;PRECICE_FEATURE_PETSC_MAPPING=Y;PRECICE_FEATURE_GINKGO_MAPPING=N;PRECICE_FEATURE_PYTHON_ACTIONS=Y;PRECICE_BINDINGS_C=Y;PRECICE_BINDINGS_FORTRAN=Y;CXX=GNU;CXXFLAGS= -O3 -DNDEBUG;LDFLAGS='
-# precice.__version__:3.2.1
+# precice.get_version_information():b'3.3.0;no-info [git failed to run];PRECICE_FEATURE_MPI_COMMUNICATION=Y;PRECICE_FEATURE_PETSC_MAPPING=Y;PRECICE_FEATURE_GINKGO_MAPPING=N;PRECICE_FEATURE_PYTHON_ACTIONS=Y;PRECICE_BINDINGS_C=Y;PRECICE_BINDINGS_FORTRAN=Y;CXX=GNU;CXXFLAGS= -O3 -DNDEBUG;LDFLAGS='
+# precice.__version__:3.3.1
 # precice_config_params:{'time_window_size': 5.0, 'max_time': 5, 'waveform_degree': 3, 'reduced': True, 'substeps': True, 'acceleration': 'qn'}
 time window size,time step size Fluid,time step size Solid,substeps,waveform degree,reduced,acceleration,substeps Fluid,avg(iterations / window),max(iterations / window),no. QN,substeps Solid
 0.01,0.01,0.01,False,1,True,qn,1,2.012,4,1006,1

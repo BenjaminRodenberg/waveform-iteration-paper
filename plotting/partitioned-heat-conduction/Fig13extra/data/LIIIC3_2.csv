@@ -1,9 +1,9 @@
-# participants version:{'Dirichlet': {'url': 'BenjaminRodenberg/waveform-iteration-paper', 'repo': 'refs/tags/v202510.0rc1', 'chash': 'e77cf85909bbd1a200b7bb354d374b1f8be91b64'}, 'Neumann': {'url': 'BenjaminRodenberg/waveform-iteration-paper', 'repo': 'refs/tags/v202510.0rc1', 'chash': 'e77cf85909bbd1a200b7bb354d374b1f8be91b64'}}
-# participants:{'Dirichlet': <prepesthel.participant.Participant object at 0x7f25ce23b050>, 'Neumann': <prepesthel.participant.Participant object at 0x7f25ce6074d0>}
+# participants version:{'Dirichlet': {'url': 'BenjaminRodenberg/waveform-iteration-paper', 'repo': 'refs/pull/1/merge', 'chash': '3a30510dc829e16bf43d09ff4e8a6861eb5796a4'}, 'Neumann': {'url': 'BenjaminRodenberg/waveform-iteration-paper', 'repo': 'refs/pull/1/merge', 'chash': '3a30510dc829e16bf43d09ff4e8a6861eb5796a4'}}
+# participants:{'Dirichlet': <prepesthel.participant.Participant object at 0x7f0b1db796a0>, 'Neumann': <prepesthel.participant.Participant object at 0x7f0b1a4ba000>}
 # run cmd:python3 doConvergenceStudy.py precice-config.xml.jinja2 --silent --executor Github --experiment sincos -w 6 -s 1 -wd 2 -sb 5 5 -dt 1 -tss LobattoIIIC3 LobattoIIIC3 --exchange-substeps -o results/Fig13extra/data/LIIIC3_2.csv
 # args:Namespace(template_path='precice-config.xml.jinja2', silent=True, executor='Github', max_time=1.0, base_time_window_size=1.0, time_window_refinements=6, base_time_step_refinement=[5, 5], time_step_refinements=1, time_step_refinement_factor=[2, 2], experiment='sincos', time_stepping_scheme=['LobattoIIIC3', 'LobattoIIIC3'], waveform_degree=2, exchange_substeps=True, out_filename='results/Fig13extra/data/LIIIC3_2.csv')
-# precice.get_version_information():b'3.2.0;no-info [git failed to run];PRECICE_FEATURE_MPI_COMMUNICATION=Y;PRECICE_FEATURE_PETSC_MAPPING=Y;PRECICE_FEATURE_GINKGO_MAPPING=N;PRECICE_FEATURE_PYTHON_ACTIONS=Y;PRECICE_BINDINGS_C=Y;PRECICE_BINDINGS_FORTRAN=Y;CXX=GNU;CXXFLAGS= -O3 -DNDEBUG;LDFLAGS='
-# precice.__version__:3.2.1
+# precice.get_version_information():b'3.3.0;no-info [git failed to run];PRECICE_FEATURE_MPI_COMMUNICATION=Y;PRECICE_FEATURE_PETSC_MAPPING=Y;PRECICE_FEATURE_GINKGO_MAPPING=N;PRECICE_FEATURE_PYTHON_ACTIONS=Y;PRECICE_BINDINGS_C=Y;PRECICE_BINDINGS_FORTRAN=Y;CXX=GNU;CXXFLAGS= -O3 -DNDEBUG;LDFLAGS='
+# precice.__version__:3.3.1
 # precice_config_params:{'time_window_size': 0.03125, 'max_time': 1.0, 'waveform_degree': 2, 'substeps': True}
 time window size,time step size Dirichlet,time step size Neumann,substeps Dirichlet,avg(iterations / window),max(iterations / window),error Dirichlet,substeps Neumann,error Neumann
 1.0,0.2,0.2,5,20.0,20,2.6503124034032543e-05,5,2.16762965037276e-05
