@@ -18,9 +18,9 @@ You can start from a recent Linux-based system (Ubuntu 24.04 is recommended). Th
 
 ### preCICE components
 
-* preCICE [`3.3.0`](https://github.com/precice/precice/releases/tag/v3.3.0)
-* pyprecice [`3.3.1`](https://github.com/precice/python-bindings/releases/tag/v3.3.1) (automatically installed via `requirements.txt` of the respective cases)
-* FEniCS adapter [`2.2.0`](https://github.com/precice/fenics-adapter/releases/tag/v2.2.0) (automatically installed via `requirements.txt` of the respective cases)
+* preCICE [`3.4.1`](https://github.com/precice/precice/releases/tag/v3.4.1)
+* pyprecice [`3.4.0`](https://github.com/precice/python-bindings/releases/tag/v3.4.0) (automatically installed via `requirements.txt` of the respective cases)
+* FEniCS adapter [`2.3.0`](https://github.com/precice/fenics-adapter/releases/tag/v2.3.0) (automatically installed via `requirements.txt` of the respective cases)
 * OpenFOAM adapter [`1.3.1`](https://github.com/precice/openfoam-adapter/releases/tag/v1.3.1)
 
 ### Other dependencies
@@ -28,17 +28,17 @@ You can start from a recent Linux-based system (Ubuntu 24.04 is recommended). Th
 * The Python package [prepesthel](https://pypi.org/project/prepesthel/) for automation of preCICE runs (automatically installed via `requirements.txt` of the respective cases)
 * Additional python packages (automatically installed via `requirements.txt` of the respective cases)
 * FEniCS `2019.2.0.64.dev0` (installed from FEniCS PPA https://launchpad.net/~fenics-packages/+archive/ubuntu/fenics; compare version provided by `python3 -c "import dolfin;print(dolfin.__version__)"` or run `fenics-version`)
-* OpenFOAM `2412` from OpenCFD / ESI (openfoam.com)
+* OpenFOAM `2512` from OpenCFD / ESI (openfoam.com)
 
 ### Installing the required dependencies
 
 The following steps will install the required dependencies:
 
-1. **preCICE**: Download the Debian package (`.deb`) of [preCICE v3.3.0](https://github.com/precice/precice/releases/tag/v3.3.0) and install it on your system by running the command
+1. **preCICE**: Download the Debian package (`.deb`) of [preCICE v3.4.1](https://github.com/precice/precice/releases/tag/v3.4.1) and install it on your system by running the command
 
    ```sh
-   wget https://github.com/precice/precice/releases/download/v3.3.0/libprecice3_3.3.0_noble.deb
-   sudo apt install -y libprecice3_3.3.0_noble.deb
+   wget https://github.com/precice/precice/releases/download/v3.4.1/libprecice3_3.4.1_noble.deb
+   sudo apt install -y libprecice3_3.4.1_noble.deb
    ```
 
    Note: The code name `noble` refers to Ubuntu 24.04, see [Ubuntu docs](https://documentation.ubuntu.com/project/release-team/list-of-releases/). If you are using a different Ubuntu version, please replace `noble` with the respective code name.
@@ -54,24 +54,24 @@ The following steps will install the required dependencies:
 
    These installation instructions are similar to the instructions the [FEniCS docs](https://fenicsproject.org/download/archive/).
 
-3. **OpenFOAM 2414**: Enter the following commands:
+3. **OpenFOAM 2512**: Enter the following commands:
 
    ```sh
    curl -s https://dl.openfoam.com/add-debian-repo.sh | sudo bash
    sudo apt update
-   sudo apt install -y openfoam2412-default
+   sudo apt install -y openfoam2512-default
    ```
 
    These installation instructions are similar to the instructions from the [OpenFOAM docs](https://develop.openfoam.com/Development/openfoam/-/wikis/precompiled/debian). After that, you also need to source the OpenFOAM bashrc file:
 
    ```sh
-   source /usr/lib/openfoam/openfoam2412/etc/bashrc
+   source /usr/lib/openfoam/openfoam2512/etc/bashrc
    ```
 
    You can also append this line to your `~/.bashrc` file by running
 
    ```sh
-   echo "source /usr/lib/openfoam/openfoam2412/etc/bashrc" >> ~/.bashrc
+   echo "source /usr/lib/openfoam/openfoam2512/etc/bashrc" >> ~/.bashrc
    ```
 
 4. **OpenFOAM adapter**: Enter the following commands:
