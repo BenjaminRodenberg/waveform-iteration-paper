@@ -28,7 +28,7 @@ You can start from a recent Linux-based system (Ubuntu 24.04 is recommended). Th
 * The Python package [prepesthel](https://pypi.org/project/prepesthel/) for automation of preCICE runs (automatically installed via `requirements.txt` of the respective cases)
 * Additional python packages (automatically installed via `requirements.txt` of the respective cases)
 * FEniCS `2019.2.0.64.dev0` (installed from FEniCS PPA https://launchpad.net/~fenics-packages/+archive/ubuntu/fenics; compare version provided by `python3 -c "import dolfin;print(dolfin.__version__)"` or run `fenics-version`)
-* OpenFOAM `2512` from OpenCFD / ESI (openfoam.com)
+* OpenFOAM `2412` from OpenCFD / ESI (openfoam.com)
 
 ### Installing the required dependencies
 
