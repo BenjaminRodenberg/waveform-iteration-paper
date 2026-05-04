@@ -30,7 +30,7 @@ jobs:
       - name: Activate OpenFOAM # From https://github.com/gerlero/setup-openfoam/blob/68e0bf96c7f2aac1a100291a5d61fff934a472a8/action.yml#L54-L69
         run: |
           old_path="$PATH"
-          source /usr/lib/openfoam/openfoam2412/etc/bashrc || true
+          source /usr/lib/openfoam/openfoam2512/etc/bashrc || true
 
           for var in "${!WM_@}"; do
             echo "$var=${!var}" >> "$GITHUB_ENV"

@@ -9,10 +9,10 @@ RUN apt-get -qq update && \
 # OpenFOAM.com does not work; OpenFOAM installation already provided in benjaminrodenberg/precice-openfoam:3.4.1
 # # Install OpenFOAM
 # RUN wget -q -O - https://dl.openfoam.com/add-debian-repo.sh | bash && \
-#     apt-get -qq install openfoam2412-dev && \
+#     apt-get -qq install openfoam2512-dev && \
 #     rm -rf /var/lib/apt/lists/*
-RUN echo '. /usr/lib/openfoam/openfoam2412/etc/bashrc' >> /root/.bashrc && \
-    echo '. /usr/lib/openfoam/openfoam2412/etc/bashrc' >> /home/precice/.bashrc
+RUN echo '. /usr/lib/openfoam/openfoam2512/etc/bashrc' >> /root/.bashrc && \
+    echo '. /usr/lib/openfoam/openfoam2512/etc/bashrc' >> /home/precice/.bashrc
 
 # Install FEniCS
 RUN add-apt-repository -y ppa:fenics-packages/fenics && \

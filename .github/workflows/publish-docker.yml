@@ -4,7 +4,7 @@ on:
 
 jobs:
   build_precice_openfoam:
-    name: "Build preCICE 3.4.1 on top of opencfd/openfoam-dev:2412"
+    name: "Build preCICE 3.4.1 on top of opencfd/openfoam-dev:2512"
     runs-on: ubuntu-latest
     env:
         docker_username: benjaminrodenberg
